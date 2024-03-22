@@ -63,6 +63,7 @@ export async function POST(req: Request) {
     if (eventType === 'user.created') {
         const payload = {
             name: `${evt.data.first_name} ${evt.data.last_name}`,
+            aka: '',
             mobile: '',
             emergency_number: '',
             email: evt.data.primary_email_address_id,
