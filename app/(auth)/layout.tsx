@@ -1,8 +1,11 @@
 import { ClerkProvider } from "@clerk/nextjs";
 import { Poppins } from "next/font/google";
+import { dark } from "@clerk/themes";
+import { ToastContainer } from "react-toastify";
 import "../globals.css";
+import "react-toastify/dist/ReactToastify.css";
 
-const poppins = Poppins({ subsets: ['latin'], weight: ['400', '600', '900'] });
+const poppins = Poppins({ subsets: ["latin"], weight: ["400", "600", "900"] });
 
 export const metadata = {
   title: "VikinX",
@@ -15,12 +18,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ClerkProvider>
+    <ClerkProvider appearance={{ baseTheme: dark }}>
       <html lang="en">
-        <body className={`${poppins.className} bg-dark-1`}>
-          <div className="w-full flex justify-center items-center min-h-screen">
+        <body className={`${poppins.className}`}>
+          <main className="container w-full flex justify-center items-center min-h-screen">
             {children}
-          </div>
+          </main>
+          <ToastContainer />
         </body>
       </html>
     </ClerkProvider>

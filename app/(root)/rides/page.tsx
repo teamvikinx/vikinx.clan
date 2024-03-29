@@ -21,8 +21,6 @@ const Page = async () => {
 
     if (user && !user.onboarding) {
         redirect('/onboarding');
-    } else {
-        redirect('/');
     }
 
     return <div>Onboarding</div>;
