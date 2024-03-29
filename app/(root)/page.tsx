@@ -86,7 +86,7 @@ export default async function Home() {
             </p>
             <div className="grid grid-cols-2 lg:grid-cols-3 gap-6">
               {constants.whyUsPoints.map((item) => (
-               <TextCard item={item} />
+               <TextCard key={item.title} item={item} />
               ))}
             </div>
             <div className="text-center lg:text-left">
