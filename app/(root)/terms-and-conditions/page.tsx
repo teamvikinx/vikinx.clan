@@ -137,7 +137,7 @@ const Page = () => {
           <h3 className="subtitle">Contact Us</h3>
           <div>
             If you have any questions about these Terms and Conditions, please
-            contact us at{" "}
+            contact us at
             <Chip color="primary" size="sm" variant="flat">
               team@vikinx.in
             </Chip>

@@ -116,7 +116,7 @@ const Page = () => {
         </li>
         <li>
           <p>
-            <strong>Website</strong> refers to VikinX, accessible from{" "}
+            <strong>Website</strong> refers to VikinX, accessible from
             <a
               href="https://www.VikinX.in"
               rel="external nofollow noopener"
@@ -541,7 +541,7 @@ const Page = () => {
       <ul className="list-decimal list-outside pl-4 mt-4">
         <li>
           <div>
-            By email:{" "}
+            By email:
             <Chip className="mb-2" color="primary" size="sm" variant="flat">
               team@vikinx.in
             </Chip>
@@ -549,7 +549,7 @@ const Page = () => {
         </li>
         <li>
           <div>
-            By visiting this page on our website:{" "}
+            By visiting this page on our website:
             <a href="https://vikinx.in/contact" target="_blank">
               <Chip className="mb-2" color="primary" size="sm" variant="flat">
                 https://vikinx.in/contact
