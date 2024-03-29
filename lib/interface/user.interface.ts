@@ -6,7 +6,7 @@ interface IUser {
     email: string;
     bio: string;
     profile_picture: any;
-    bikes: { name: string; pet_name: string }[] | [];
+    bikes: [] | { name: string; pet_name?: string; }[] | undefined;
     joined_at: string | Date;
     dob: string | Date;
     is_active: boolean;
