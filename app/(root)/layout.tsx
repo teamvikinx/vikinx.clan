@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
-import '../globals.css';
 import Header from '@/components/layout/Header';
 import { ClerkProvider } from '@clerk/nextjs';
 import { dark } from '@clerk/themes';
 import Footer from '@/components/layout/Footer';
 import { Toaster } from "react-hot-toast";
+import '../globals.css';
 
 const poppins = Poppins({ subsets: ['latin'], weight: ['400', '600', '900'] });
 

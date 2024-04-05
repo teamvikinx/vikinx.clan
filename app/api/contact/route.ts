@@ -18,8 +18,6 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ message: "Message recieved!" }, { status: 200 });
   } catch (error) {
-    console.log(error);
-    
     return NextResponse.json(
       { message: error },
       { status: HttpStatusCode.BadRequest }

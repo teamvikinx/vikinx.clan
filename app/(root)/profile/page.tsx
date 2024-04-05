@@ -1,8 +1,6 @@
 import UserAccountProfile from "@/components/forms/UserAccountProfile";
 import { fetchUser } from "@/lib/actions/users.action";
 import { currentUser } from "@clerk/nextjs";
-import { Button, Link } from "@nextui-org/react";
-import { Edit2Icon } from "lucide-react";
 import React from "react";
 
 async function fetchUserData() {
