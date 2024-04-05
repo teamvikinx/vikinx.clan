@@ -3,7 +3,7 @@
 import { constants } from "@/lib/utils";
 import React, { useState } from "react";
 import Image from "next/image";
-import { CircleUser, RadioTower, User2 } from "lucide-react";
+import { CircleUser, RadioTower, User2, UserRoundCog } from "lucide-react";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import {
   Button,
@@ -18,25 +18,29 @@ import {
 } from "@nextui-org/react";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
+import UserAccountProfile from "../forms/UserAccountProfile";
+import Page from "@/app/(auth)/onboarding/page";
 
 const Header = () => {
   const pathname = usePathname();
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
-    <Navbar onMenuOpenChange={setIsMenuOpen} className="z-[99999]">
+    <Navbar onMenuOpenChange={setIsMenuOpen} className="z-[99]">
       <NavbarContent>
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           className="sm:hidden"
         />
         <NavbarBrand>
-          <Image
-            src={"/vikinx-logo.png"}
-            width={100}
-            height={200}
-            alt="vikinx-logo"
-          />
+          <Link href="/">
+            <Image
+              src={"/vikinx-logo.png"}
+              width={100}
+              height={200}
+              alt="vikinx-logo"
+            />
+          </Link>
         </NavbarBrand>
       </NavbarContent>
 
@@ -83,7 +87,12 @@ const Header = () => {
       <NavbarContent justify="end">
         <SignedOut>
           <NavbarItem>
-            <Button as={Link} color="secondary" href="/sign-in" variant="bordered">
+            <Button
+              as={Link}
+              color="secondary"
+              href="/sign-in"
+              variant="bordered"
+            >
               Sign In
             </Button>
           </NavbarItem>
@@ -98,13 +107,19 @@ const Header = () => {
             <Button
               size={"sm"}
               color="secondary"
-              variant="flat"
+              variant="light"
               as={Link}
               href={"/announcements"}
             >
               <RadioTower size={18} />
             </Button>
-            <UserButton afterSignOutUrl="/" />
+            <UserButton afterSignOutUrl="/">
+              <UserButton.UserProfileLink
+                label="Profile"
+                url="/profile"
+                labelIcon={<UserRoundCog size={18} />}
+              />
+            </UserButton>
           </span>
         </SignedIn>
       </NavbarContent>

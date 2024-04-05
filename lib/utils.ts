@@ -1,5 +1,5 @@
 import { type ClassValue, clsx } from "clsx";
-import { Slide, toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 import { twMerge } from "tailwind-merge";
 import moment from "moment";
 
@@ -35,8 +35,8 @@ export const constants = {
       icon: "/assets/headset-solid.svg",
     },
     {
-      title: "Rides",
-      path: "/rides",
+      title: "Events",
+      path: "/events",
       smHidden: false,
       icon: "/assets/flag-solid.svg",
     },
@@ -44,6 +44,9 @@ export const constants = {
   tables: {
     users: "vikinx_users",
     rides: "rides",
+    gallery: "vikinx-gallery",
+    contact: "contact",
+    newsletter: "newsletter",
   },
   whyUsPoints: [
     {
@@ -108,74 +111,26 @@ export const helpers = {
   ) => {
     switch (type) {
       case "error":
-        toast.error(message, {
-          position: "top-right",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-          transition: Slide,
-        });
-        break;
-      case "info":
-        toast.info(message, {
-          position: "top-right",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-          transition: Slide,
-        });
-        break;
-      case "warning":
-        toast.warning(message, {
-          position: "top-right",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-          transition: Slide,
-        });
+        toast.error(message);
         break;
       case "success":
-        toast.success(message, {
-          position: "top-right",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-          transition: Slide,
-        });
+        toast.success(message);
         break;
       default:
-        toast(message, {
-          position: "top-right",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-          transition: Slide,
-        });
+        toast(message);
         break;
     }
   },
 
   formatDate: (date: any) => moment(date).format("DD MMMM YYYY"),
+  generateUniqueId: () => {
+    return Math.random().toString(36).substr(2) + Date.now().toString(36);
+  },
+  validateEmail: (email: string) => {
+    const re =
+      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+  },
 };
 
 export const facts = [

@@ -61,8 +61,8 @@ const Footer = () => {
               <Link className="block text-slate-500" href="/contact">
                 Contact
               </Link>
-              <Link className="block text-slate-500" href="/rides">
-                Ride
+              <Link className="block text-slate-500" href="/events">
+                Events
               </Link>
               <Link className="block text-slate-500" href="/announcements">
                 Announcements

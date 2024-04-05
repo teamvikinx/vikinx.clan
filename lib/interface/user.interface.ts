@@ -13,6 +13,7 @@ interface IUser {
     user_id: string;
     socials: { [key: string]: string };
     blood_group: string;
+    state: string;
     rides_joined: { joined_at: any; ride_id: string }[];
     status: boolean;
     onboarding: boolean;
