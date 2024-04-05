@@ -4,29 +4,9 @@ import { helpers } from "@/lib/utils";
 import { currentUser } from "@clerk/nextjs";
 import { Card, CardHeader, Image } from "@nextui-org/react";
 import Link from "next/link";
-import { redirect } from "next/navigation";
 import React from "react";
 
-async function fetchUserData() {
-  const user = await currentUser();
-  let userInfo: IUser | null;
-
-  if (user) {
-    userInfo = await fetchUser(user.id);
-  } else {
-    userInfo = null;
-  }
-
-  return userInfo;
-}
-
 const Page = async () => {
-  // const user = await fetchUserData();
-
-  // if (user && !user.onboarding) {
-  //     redirect('/onboarding');
-  // }
-
   const rides = await getRides();
 
   return (

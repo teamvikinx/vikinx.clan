@@ -18,7 +18,7 @@ const RideCard: React.FC<RideCardProps> = ({ ride }) => {
     >
       <CardHeader>
         <div>
-          <Link href={`/rides/${ride.uuid}`}>
+          <Link href={`/events/${ride.uuid}`}>
             <p className="text-secondary lg:text-lg font-semibold">
               {ride.title}
             </p>
@@ -26,7 +26,7 @@ const RideCard: React.FC<RideCardProps> = ({ ride }) => {
           <p className=" text-tiny line-clamp-2">{ride.summary}</p>
         </div>
       </CardHeader>
-      <Link href={`/rides/${ride.uuid}`}>
+      <Link href={`/events/${ride.uuid}`}>
         <Image alt={ride.title} className="object-cover" src={ride.thumbnail} />
       </Link>
       <CardFooter className="justify-center before:bg-white/10 border-white/20 border-1 overflow-hidden py-4 absolute before:rounded-xl rounded-large bottom-1 w-[calc(100%_-_8px)] shadow-small ml-1 z-10">

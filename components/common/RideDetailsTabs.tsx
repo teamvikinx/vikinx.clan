@@ -1,6 +1,6 @@
 "use client";
 import { Tabs, Tab, Button } from "@nextui-org/react";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import parse from "html-react-parser";
 import Confetti from "react-confetti";
 import axios from "axios";

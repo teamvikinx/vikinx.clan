@@ -1,6 +1,6 @@
 "use client";
 import { facts } from "@/lib/utils";
-import { Button, Card, CardBody, CardFooter } from "@nextui-org/react";
+import { Button, Card } from "@nextui-org/react";
 import { Shuffle } from "lucide-react";
 import React, { useEffect, useState } from "react";
 

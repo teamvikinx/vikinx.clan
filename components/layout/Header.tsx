@@ -3,7 +3,7 @@
 import { constants } from "@/lib/utils";
 import React, { useState } from "react";
 import Image from "next/image";
-import { CircleUser, RadioTower, User2, UserRoundCog } from "lucide-react";
+import { RadioTower, UserRoundCog } from "lucide-react";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import {
   Button,
@@ -18,8 +18,6 @@ import {
 } from "@nextui-org/react";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
-import UserAccountProfile from "../forms/UserAccountProfile";
-import Page from "@/app/(auth)/onboarding/page";
 
 const Header = () => {
   const pathname = usePathname();

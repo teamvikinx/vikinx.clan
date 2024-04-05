@@ -1,6 +1,5 @@
 "use client";
 import { helpers } from "@/lib/utils";
-import { contactValidation } from "@/lib/validations/contact.validation";
 import { newsletterValidation } from "@/lib/validations/newsletter.validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {

@@ -4,21 +4,15 @@ import Stories from "@/components/common/Stories";
 import VikinXText from "@/components/common/VikinXText";
 import { PulseBeams } from "@/components/ui/PulseBeam";
 import { getTotalActiveUsersCount } from "@/lib/actions/users.action";
-import { constants, helpers } from "@/lib/utils";
+import { constants } from "@/lib/utils";
 import {
   Button,
-  Card,
-  CardBody,
-  CardFooter,
-  CardHeader,
   Image,
 } from "@nextui-org/react";
-import localFonts from "next/font/local";
 import Link from "next/link";
 import TextCard from "@/components/common/cards/TextCard";
 import { getFeaturedRides } from "@/lib/actions/rides.action";
 
-const NHLDucks = localFonts({ src: "../../app/fonts/NHL Ducks.ttf" });
 
 export default async function Home() {
   const totalUsersRegistered = await getTotalActiveUsersCount();
