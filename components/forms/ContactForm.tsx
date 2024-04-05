@@ -8,7 +8,6 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
-import "react-toastify/dist/ReactToastify.css";
 
 type ContactFormT = z.infer<typeof contactValidation>;
 
