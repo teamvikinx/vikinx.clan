@@ -23,7 +23,7 @@ const Facts = () => {
   useEffect(() => {
     interval = setInterval(() => {
       shuffleFacts();
-    }, 10000);
+    }, 15000);
     return () => clearInterval(interval); // This represents the unmount function, in which you need to clear your interval to prevent memory leaks.
   }, []);
 

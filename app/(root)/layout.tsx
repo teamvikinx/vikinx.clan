@@ -5,6 +5,7 @@ import Header from '@/components/layout/Header';
 import { ClerkProvider } from '@clerk/nextjs';
 import { dark } from '@clerk/themes';
 import Footer from '@/components/layout/Footer';
+import { Toaster } from "react-hot-toast";
 
 const poppins = Poppins({ subsets: ['latin'], weight: ['400', '600', '900'] });
 
@@ -23,6 +24,7 @@ export default function RootLayout({
             <body className={`${poppins.className}`}>
                 <ClerkProvider appearance={{ baseTheme: dark }}>
                         <Header />
+                        <Toaster position="bottom-center" />
                         <main className='container mx-auto px-4 md:px-6 lg:px-8 '>
                             {children}
                         </main>

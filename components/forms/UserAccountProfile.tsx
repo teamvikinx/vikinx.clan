@@ -8,26 +8,41 @@ import {
   Input,
   Textarea,
   Link,
+  Chip,
+  Select,
+  SelectItem,
 } from "@nextui-org/react";
 import { Controller, useFieldArray, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import React, { useState } from "react";
 import { userValidation } from "@/lib/validations/user.validation";
 import { z } from "zod";
-import { Facebook, Instagram, Twitter } from "lucide-react";
+import {
+  Facebook,
+  Instagram,
+  Twitter,
+} from "lucide-react";
 import axios from "axios";
 import { helpers } from "@/lib/utils";
 import { useRouter } from "next/navigation";
+import { states } from "@/lib/data/states";
 
 type OnboadringForm = z.infer<typeof userValidation>;
 
 interface UserAccountProfileProps {
   userData: IUser;
+  edit?: boolean;
 }
 
 const UserAccountProfile: React.FC<UserAccountProfileProps> = ({
   userData,
+  edit = false,
 }) => {
+  const router = useRouter();
+
+  const [editMode, setEditMode] = useState(false);
+  const [loading, setLoading] = useState(false);
+
   const {
     handleSubmit,
     control,
@@ -56,12 +71,9 @@ const UserAccountProfile: React.FC<UserAccountProfileProps> = ({
         ? userData.socials["twitter"]
         : undefined,
       blood_group: userData.blood_group,
+      state: userData.state,
     },
   });
-
-  const router = useRouter();
-
-  const [loading, setLoading] = useState(false);
 
   const {
     fields: bikeFields,
@@ -93,7 +105,12 @@ const UserAccountProfile: React.FC<UserAccountProfileProps> = ({
       );
 
       if (response.data.message) {
-        router.push("/");
+        if (edit) {
+          setEditMode(false);
+          helpers.toastify("Updated profile successfully 🎉", "success");
+        } else {
+          router.push("/");
+        }
       }
       setLoading(false);
     } catch (error: any) {
@@ -104,7 +121,27 @@ const UserAccountProfile: React.FC<UserAccountProfileProps> = ({
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 mb-8">
+      {edit && (
+        <div className="flex justify-between items-center">
+          <Chip variant="faded" className="text-xs font-semibold">
+            Mode: {editMode ? "Edit" : "View"}
+          </Chip>
+
+          <Button
+            size="sm"
+            color="secondary"
+            variant="flat"
+            onClick={() => setEditMode((prevState) => !prevState)}
+          >
+            {editMode ? "View Profile" : "Edit Profile"}
+          </Button>
+        </div>
+      )}
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="space-y-6 mb-8"
+        noValidate
+      >
         <Card>
           <CardHeader>Basic Details</CardHeader>
           <Divider />
@@ -115,6 +152,8 @@ const UserAccountProfile: React.FC<UserAccountProfileProps> = ({
                 control={control}
                 render={({ field }) => (
                   <Input
+                    isRequired
+                    readOnly={edit && !editMode}
                     size="sm"
                     label="Name"
                     {...field}
@@ -129,6 +168,7 @@ const UserAccountProfile: React.FC<UserAccountProfileProps> = ({
                 control={control}
                 render={({ field }) => (
                   <Input
+                    readOnly={edit && !editMode}
                     size="sm"
                     label="AKA"
                     {...field}
@@ -143,6 +183,8 @@ const UserAccountProfile: React.FC<UserAccountProfileProps> = ({
                 control={control}
                 render={({ field }) => (
                   <Textarea
+                    isRequired
+                    readOnly={edit && !editMode}
                     size="sm"
                     label="Bio"
                     {...field}
@@ -157,6 +199,8 @@ const UserAccountProfile: React.FC<UserAccountProfileProps> = ({
                 control={control}
                 render={({ field }) => (
                   <Input
+                    isRequired
+                    readOnly={edit && !editMode}
                     size="sm"
                     {...field}
                     label="Mobile"
@@ -170,6 +214,8 @@ const UserAccountProfile: React.FC<UserAccountProfileProps> = ({
                 control={control}
                 render={({ field }) => (
                   <Input
+                    isRequired
+                    readOnly={edit && !editMode}
                     size="sm"
                     label="Emergency Number"
                     {...field}
@@ -183,6 +229,8 @@ const UserAccountProfile: React.FC<UserAccountProfileProps> = ({
                 control={control}
                 render={({ field }) => (
                   <Input
+                    isRequired
+                    readOnly={edit && !editMode}
                     size="sm"
                     label="Email"
                     {...field}
@@ -196,6 +244,8 @@ const UserAccountProfile: React.FC<UserAccountProfileProps> = ({
                 control={control}
                 render={({ field }) => (
                   <Input
+                    isRequired
+                    readOnly={edit && !editMode}
                     size="sm"
                     label="Date of birth"
                     type="date"
@@ -210,6 +260,8 @@ const UserAccountProfile: React.FC<UserAccountProfileProps> = ({
                 control={control}
                 render={({ field }) => (
                   <Input
+                    isRequired
+                    readOnly={edit && !editMode}
                     size="sm"
                     label="Blood Group"
                     {...field}
@@ -217,6 +269,30 @@ const UserAccountProfile: React.FC<UserAccountProfileProps> = ({
                     errorMessage={errors.blood_group?.message?.toString()}
                   />
                 )}
+              />
+              <Controller
+                name="state"
+                control={control}
+                render={({ field }) => {
+                  return (
+                    <Select
+                      isRequired
+                      isDisabled={edit && !editMode}
+                      size="sm"
+                      label="State"
+                      {...field}
+                      isInvalid={!!errors.state}
+                      errorMessage={errors.state?.message?.toString()}
+                      defaultSelectedKeys={[field.value]}
+                    >
+                      {states.map((state) => (
+                        <SelectItem key={state} value={state}>
+                          {state}
+                        </SelectItem>
+                      ))}
+                    </Select>
+                  );
+                }}
               />
             </div>
           </CardBody>
@@ -231,6 +307,7 @@ const UserAccountProfile: React.FC<UserAccountProfileProps> = ({
                 control={control}
                 render={({ field }) => (
                   <Input
+                    readOnly={edit && !editMode}
                     size="sm"
                     label="Instagram"
                     {...field}
@@ -245,6 +322,7 @@ const UserAccountProfile: React.FC<UserAccountProfileProps> = ({
                 control={control}
                 render={({ field }) => (
                   <Input
+                    readOnly={edit && !editMode}
                     size="sm"
                     label="Facebook"
                     {...field}
@@ -259,6 +337,7 @@ const UserAccountProfile: React.FC<UserAccountProfileProps> = ({
                 control={control}
                 render={({ field }) => (
                   <Input
+                    readOnly={edit && !editMode}
                     size="sm"
                     label="twitter"
                     {...field}
@@ -288,10 +367,14 @@ const UserAccountProfile: React.FC<UserAccountProfileProps> = ({
                   control={control}
                   render={({ field }) => (
                     <Input
+                      isRequired
+                      label="Bike Model"
+                      readOnly={edit && !editMode}
                       {...field}
                       errorMessage={errors.bikes?.[index]?.name?.message}
                       isInvalid={!!errors.bikes?.[index]?.name?.message}
                       placeholder="Bike Name"
+                      size="sm"
                     />
                   )}
                 />
@@ -300,14 +383,17 @@ const UserAccountProfile: React.FC<UserAccountProfileProps> = ({
                   control={control}
                   render={({ field }) => (
                     <Input
+                      label="Bike Petname"
+                      readOnly={edit && !editMode}
                       {...field}
                       errorMessage={errors.bikes?.[index]?.pet_name?.message}
                       isInvalid={!!errors.bikes?.[index]?.pet_name?.message}
                       placeholder="Pet Name"
+                      size="sm"
                     />
                   )}
                 />
-                {index ? (
+                {index && editMode ? (
                   <Button
                     className="col-span-2 lg:col-auto"
                     color="danger"
@@ -321,23 +407,27 @@ const UserAccountProfile: React.FC<UserAccountProfileProps> = ({
                 )}
               </div>
             ))}
-            <Button
-              className="w-full mt-6"
-              onClick={() => appendBike({ name: "", pet_name: "" })}
-            >
-              Add Bike
-            </Button>
+            {editMode && (
+              <Button
+                className="w-full mt-6"
+                onClick={() => appendBike({ name: "", pet_name: "" })}
+              >
+                Add Bike
+              </Button>
+            )}
           </CardBody>
         </Card>
 
-        <Button
-          color="secondary"
-          type="submit"
-          className="w-full font-semibold uppercase"
-          isLoading={loading}
-        >
-          Submit
-        </Button>
+        {editMode && (
+          <Button
+            color="secondary"
+            type="submit"
+            className="w-full font-semibold uppercase"
+            isLoading={loading}
+          >
+            {editMode ? "Update" : "Submit"}
+          </Button>
+        )}
         {!userData.onboarding && (
           <small className="text-center block">
             By clicking Submit, you agree to our{" "}
