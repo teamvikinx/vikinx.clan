@@ -1,7 +1,7 @@
 import ContactForm from "@/components/forms/ContactForm";
 import { fetchUser } from "@/lib/actions/users.action";
 import { currentUser } from "@clerk/nextjs";
-import { Button, Card, Chip } from "@nextui-org/react";
+import { Button, Card, Chip, Image } from "@nextui-org/react";
 import { Facebook, Instagram, Twitter } from "lucide-react";
 import React from "react";
 
@@ -33,10 +33,10 @@ const Page = async () => {
       <section className="py-8">
         <Card className="grid lg:grid-cols-3 lg:gap-4 items-center">
           <div className="hidden lg:flex">
-            <img
+            <Image
               src="/contact.jpg"
               alt="dominar-400"
-              className="w-full grayscale"
+              className="w-full grayscale rounded-r-none"
             />
           </div>
           <div className="lg:col-span-2 p-4 lg:p-8">

@@ -59,8 +59,6 @@ const ContactForm: React.FC<ContactFormProps> = ({ userData }) => {
       resetField("subject");
       setLoading(false);
     } catch (error: any) {
-      console.log(error);
-
       helpers.toastify(
         error.response.data.message || "Something went wrong!",
         "error"

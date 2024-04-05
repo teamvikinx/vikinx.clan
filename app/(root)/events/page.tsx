@@ -45,7 +45,7 @@ const Page = async () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {rides.map((ride) => (
-              <Link href={`/events/${ride.uuid}`}>
+              <Link key={ride.uuid} href={`/events/${ride.uuid}`}>
                 <Card isPressable className="border-primary  border-l-8 rounded-none h-[200px] w-full">
                   <CardHeader className="absolute z-10 bottom-0 flex-col !items-start backdrop-blur-sm bg-white/500 rounded-none">
                     <p className="text-tiny text-secondary-200 uppercase font-semibold">
