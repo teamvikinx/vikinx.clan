@@ -5,14 +5,11 @@ import VikinXText from "@/components/common/VikinXText";
 import { PulseBeams } from "@/components/ui/PulseBeam";
 import { getTotalActiveUsersCount } from "@/lib/actions/users.action";
 import { constants } from "@/lib/utils";
-import {
-  Button,
-  Image,
-} from "@nextui-org/react";
+import { Button, Image } from "@nextui-org/react";
 import Link from "next/link";
 import TextCard from "@/components/common/cards/TextCard";
 import { getFeaturedRides } from "@/lib/actions/rides.action";
-
+import { Suspense } from "react";
 
 export default async function Home() {
   const totalUsersRegistered = await getTotalActiveUsersCount();
@@ -126,22 +123,27 @@ export default async function Home() {
             Be Part Of The Adventure!
           </span>
         </h1>
-
-        <div
-          className={`grid md:grid-cols-2 lg:grid-cols-${featuredRides.length} justify-center gap-6`}
-        >
-          {featuredRides.map((ride) => (
-            <RideCard ride={ride} key={ride.uuid} />
-          ))}
-        </div>
+        <Suspense fallback={<p>Loading Featured Rides...</p>}>
+          <div
+            className={`grid md:grid-cols-2 lg:grid-cols-${featuredRides.length} justify-center gap-6`}
+          >
+            {featuredRides.map((ride) => (
+              <RideCard ride={ride} key={ride.uuid} />
+            ))}
+          </div>
+        </Suspense>
       </section>
 
       <section>
-        <Stories />
+        <Suspense fallback={<p>Loading Stories...</p>}>
+          <Stories />
+        </Suspense>
       </section>
 
       <section>
-        <Facts />
+        <Suspense fallback={<p>Loading Facts...</p>}>
+          <Facts />
+        </Suspense>
       </section>
 
       <section>
