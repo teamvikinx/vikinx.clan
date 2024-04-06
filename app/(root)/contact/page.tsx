@@ -7,15 +7,27 @@ import { Metadata } from "next";
 import React from "react";
 
 export const metadata: Metadata = {
+  title: "VikinX | Contact",
+  openGraph: {
     title: "VikinX | Contact",
-    openGraph: {
-      title: "VikinX | Contact",
-      url: "https://vikinx.in/contact",
-    },
-    twitter: {
-      title: "VikinX | Contact",
-    },
-  };
+    url: "https://vikinx.in/contact",
+    images: [
+      {
+        url: "https://res.cloudinary.com/dtijjnwyx/image/upload/v1710770646/vikinx-logo-zoomed_ambrrp.png",
+        alt: "VikinX logo",
+      },
+    ],
+  },
+  twitter: {
+    title: "VikinX | Contact",
+    images: [
+      {
+        url: "https://res.cloudinary.com/dtijjnwyx/image/upload/v1710770646/vikinx-logo-zoomed_ambrrp.png",
+        alt: "VikinX logo",
+      },
+    ],
+  },
+};
 
 async function fetchUserData() {
   const user = await currentUser();

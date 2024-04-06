@@ -7,9 +7,21 @@ export const metadata: Metadata = {
   openGraph: {
     title: "VikinX | TnC",
     url: "https://vikinx.in/terms-and-conditions",
+    images: [
+      {
+        url: "https://res.cloudinary.com/dtijjnwyx/image/upload/v1710770646/vikinx-logo-zoomed_ambrrp.png",
+        alt: "VikinX logo",
+      },
+    ],
   },
   twitter: {
     title: "VikinX | TnC",
+    images: [
+      {
+        url: "https://res.cloudinary.com/dtijjnwyx/image/upload/v1710770646/vikinx-logo-zoomed_ambrrp.png",
+        alt: "VikinX logo",
+      },
+    ],
   },
 };
 
