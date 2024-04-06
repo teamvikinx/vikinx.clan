@@ -1,5 +1,17 @@
 import { Chip, Divider } from "@nextui-org/react";
+import { Metadata } from "next";
 import React from "react";
+
+export const metadata: Metadata = {
+  title: "VikinX | Privacy Policy",
+  openGraph: {
+    title: "VikinX | Privacy Policy",
+    url: "https://vikinx.in/privacy-policy",
+  },
+  twitter: {
+    title: "VikinX | Privacy Policy",
+  },
+};
 
 const Page = () => {
   return (

@@ -3,7 +3,19 @@ import { fetchUser } from "@/lib/actions/users.action";
 import { currentUser } from "@clerk/nextjs";
 import { Button, Card, Chip, Image } from "@nextui-org/react";
 import { Facebook, Instagram, Twitter } from "lucide-react";
+import { Metadata } from "next";
 import React from "react";
+
+export const metadata: Metadata = {
+    title: "VikinX | Contact",
+    openGraph: {
+      title: "VikinX | Contact",
+      url: "https://vikinx.in/contact",
+    },
+    twitter: {
+      title: "VikinX | Contact",
+    },
+  };
 
 async function fetchUserData() {
   const user = await currentUser();

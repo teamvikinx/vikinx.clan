@@ -1,16 +1,57 @@
 import { getRideById } from "@/lib/actions/rides.action";
 import { helpers } from "@/lib/utils";
-import {
-  Card,
-  CardBody,
-  Image,
-  Link,
-} from "@nextui-org/react";
+import { Card, CardBody, Image, Link } from "@nextui-org/react";
 import { CalendarFold, RouteIcon, SquareArrowOutUpRight } from "lucide-react";
 import React from "react";
 import RideDetailsTabs from "@/components/common/RideDetailsTabs";
 import { currentUser } from "@clerk/nextjs";
 import { fetchUser } from "@/lib/actions/users.action";
+import { Metadata, ResolvingMetadata } from "next";
+
+type Props = {
+  params: { id: string };
+};
+
+export async function generateMetadata(
+  { params }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  // read route params
+  const id = params.id;
+
+  // fetch data
+  const ride = await getRideById(id);
+
+  // optionally access and extend (rather than replace) parent metadata
+  //   const previousImages = (await parent).openGraph?.images || [];
+
+  return {
+    title: ride.title,
+    description: ride.summary,
+    openGraph: {
+      title: ride.title,
+      url: `https://vikinx.in/events/${ride.uuid}`,
+      description: ride.summary,
+      images: [
+        {
+          url: ride.thumbnail,
+          alt: "Event Thumbnail",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: ride.title,
+      description: ride.summary,
+      images: [
+        {
+          url: ride.thumbnail,
+          alt: "Event Thumbnail",
+        },
+      ],
+    },
+  };
+}
 
 async function fetchUserData() {
   const user = await currentUser();

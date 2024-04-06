@@ -1,7 +1,20 @@
 import UserAccountProfile from "@/components/forms/UserAccountProfile";
 import { fetchUser } from "@/lib/actions/users.action";
 import { currentUser } from "@clerk/nextjs";
+import { Metadata } from "next";
 import React from "react";
+
+export const metadata: Metadata = {
+    title: "VikinX | User Profile",
+    openGraph: {
+      title: "VikinX | User Profile",
+      url: "https://vikinx.in/profile",
+    },
+    twitter: {
+      title: "VikinX | User Profile",
+    },
+  };
+
 
 async function fetchUserData() {
   const user = await currentUser();

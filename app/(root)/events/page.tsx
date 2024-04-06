@@ -1,10 +1,20 @@
 import { getRides } from "@/lib/actions/rides.action";
-import { fetchUser } from "@/lib/actions/users.action";
 import { helpers } from "@/lib/utils";
-import { currentUser } from "@clerk/nextjs";
 import { Card, CardHeader, Image } from "@nextui-org/react";
+import { Metadata } from "next";
 import Link from "next/link";
 import React from "react";
+
+export const metadata: Metadata = {
+    title: "VikinX | Events",
+    openGraph: {
+      title: "VikinX | Events",
+      url: "https://vikinx.in/events",
+    },
+    twitter: {
+      title: "VikinX | Events",
+    },
+  };
 
 const Page = async () => {
   const rides = await getRides();
