@@ -12,9 +12,21 @@ export const metadata: Metadata = {
   openGraph: {
     title: "VikinX | About",
     url: "https://vikinx.in/about",
+    images: [
+      {
+        url: "https://res.cloudinary.com/dtijjnwyx/image/upload/v1710770646/vikinx-logo-zoomed_ambrrp.png",
+        alt: "VikinX logo",
+      },
+    ],
   },
   twitter: {
     title: "VikinX | About",
+    images: [
+      {
+        url: "https://res.cloudinary.com/dtijjnwyx/image/upload/v1710770646/vikinx-logo-zoomed_ambrrp.png",
+        alt: "VikinX logo",
+      },
+    ],
   },
 };
 

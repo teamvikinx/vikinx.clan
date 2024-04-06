@@ -5,16 +5,27 @@ import { Metadata } from "next";
 import React from "react";
 
 export const metadata: Metadata = {
+  title: "VikinX | User Profile",
+  openGraph: {
     title: "VikinX | User Profile",
-    openGraph: {
-      title: "VikinX | User Profile",
-      url: "https://vikinx.in/profile",
-    },
-    twitter: {
-      title: "VikinX | User Profile",
-    },
-  };
-
+    url: "https://vikinx.in/profile",
+    images: [
+      {
+        url: "https://res.cloudinary.com/dtijjnwyx/image/upload/v1710770646/vikinx-logo-zoomed_ambrrp.png",
+        alt: "VikinX logo",
+      },
+    ],
+  },
+  twitter: {
+    title: "VikinX | User Profile",
+    images: [
+      {
+        url: "https://res.cloudinary.com/dtijjnwyx/image/upload/v1710770646/vikinx-logo-zoomed_ambrrp.png",
+        alt: "VikinX logo",
+      },
+    ],
+  },
+};
 
 async function fetchUserData() {
   const user = await currentUser();

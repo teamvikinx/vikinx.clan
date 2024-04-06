@@ -3,7 +3,7 @@
 import { constants } from "@/lib/utils";
 import React, { useState } from "react";
 import Image from "next/image";
-import { RadioTower, UserRoundCog } from "lucide-react";
+import { LogInIcon, RadioTower, UserRoundCheck, UserRoundCog, UserRoundPlus } from "lucide-react";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import {
   Button,
@@ -15,13 +15,22 @@ import {
   NavbarMenuItem,
   NavbarMenuToggle,
   Link,
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownTrigger,
+  cn,
 } from "@nextui-org/react";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
+import useWindowDimensions from "@/hooks/use-window-dimensions";
+
+const iconClasses =
+  "text-xl text-primary pointer-events-none flex-shrink-0";
 
 const Header = () => {
   const pathname = usePathname();
-
+  const { width } = useWindowDimensions();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
     <Navbar onMenuOpenChange={setIsMenuOpen} className="z-[99]">
@@ -84,21 +93,47 @@ const Header = () => {
       </NavbarContent>
       <NavbarContent justify="end">
         <SignedOut>
-          <NavbarItem>
-            <Button
-              as={Link}
-              color="secondary"
-              href="/sign-in"
-              variant="bordered"
-            >
-              Sign In
-            </Button>
-          </NavbarItem>
-          <NavbarItem>
-            <Button as={Link} color="secondary" href="/sign-up" variant="solid">
-              Sign Up
-            </Button>
-          </NavbarItem>
+          {width > 768 ? (
+            <>
+              <NavbarItem>
+                <Button
+                  as={Link}
+                  color="secondary"
+                  href="/sign-in"
+                  variant="bordered"
+                  size="sm"
+                >
+                  Sign In
+                </Button>
+              </NavbarItem>
+              <NavbarItem>
+                <Button
+                  as={Link}
+                  color="secondary"
+                  href="/sign-up"
+                  variant="solid"
+                  size="sm"
+                >
+                  Sign Up
+                </Button>
+              </NavbarItem>
+            </>
+          ) : (
+            <Dropdown>
+              <DropdownTrigger>
+                <Button size="sm" isIconOnly variant="flat" color="primary">
+                  <LogInIcon size={16} />
+                </Button>
+              </DropdownTrigger>
+              <DropdownMenu
+                variant="faded"
+                aria-label="Dropdown menu with icons"
+              >
+                <DropdownItem key="sign-up" startContent={<UserRoundPlus className={iconClasses} size={14}/>}>Sign Up</DropdownItem>
+                <DropdownItem key="sign-in" startContent={<UserRoundCheck className={iconClasses} size={14}/>}>Sign In</DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
+          )}
         </SignedOut>
         <SignedIn>
           <span className="flex  items-center ml-6 space-x-4">
