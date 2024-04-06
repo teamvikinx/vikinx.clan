@@ -58,7 +58,7 @@ export default async function Home() {
       </section>
 
       <section>
-        <div className="grid lg:grid-cols-3 grid-flow-row gap-6 items-center">
+        <div className="lg:grid lg:grid-cols-3 grid-flow-row gap-6 items-center">
           <div>
             <h1 className="title mb-4 lg:hidden block">
               Why <VikinXText />?
