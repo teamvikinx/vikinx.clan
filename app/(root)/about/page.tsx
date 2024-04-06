@@ -101,7 +101,7 @@ const Page = () => {
             </Button>
             <Button
               as={Link}
-              href="/ride"
+              href="/events"
               color="secondary"
               variant="bordered"
               className="mt-4"
