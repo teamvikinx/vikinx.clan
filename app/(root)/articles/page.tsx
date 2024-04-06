@@ -10,7 +10,7 @@ const Page = () => {
     <main className="h-[80vh] w-full flex justify-center items-center mx-0">
       <section className="text-center">
         <Image
-          src="/Short Logo - Zoomed.png"
+          src="/Short Logo - Zoomed.webp"
           width={250}
           alt="vikinx-originals-short-logo"
         />
@@ -25,7 +25,7 @@ const Page = () => {
       <main className="h-[80vh] w-full flex justify-center items-center">
         <section className="text-center">
           <Image
-            src="/Short Logo - Zoomed.png"
+            src="/Short Logo - Zoomed.webp"
             width={250}
             alt="vikinx-originals-short-logo"
           />

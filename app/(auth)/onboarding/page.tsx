@@ -47,7 +47,7 @@ const Page = async () => {
       <span>
         <Link href={"/"} className="flex justify-center">
           <Image
-            src={"/vikinx-logo.png"}
+            src={"/vikinx-logo.webp"}
             width={150}
             height={200}
             alt="vikinx-logo"

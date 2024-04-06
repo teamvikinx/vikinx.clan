@@ -119,7 +119,7 @@ const Page = () => {
             <h1 className="title">
               Why We <span className="text-primary">Exist!</span>
             </h1>
-            <Image src="/vikinx-bikes.jpg" alt="guys-on-bike" width={700} />
+            <Image src="/vikinx-bikes.webp" alt="guys-on-bike" width={700} />
           </span>
         </div>
         <div>

@@ -11,7 +11,7 @@ const Footer = () => {
         <div className="grid justify-center items-center lg:grid-cols-2">
           <div className="text-center lg:text-left">
             <div className="flex justify-center lg:justify-start lg:ml-4">
-              <Image src={"/vikinx-logo.png"} width={200} alt="vikinx-logo" />
+              <Image src={"/vikinx-logo.webp"} width={200} alt="vikinx-logo" />
             </div>
             <p className="md:!w-[300px] mb-6 paragraph">
               <VikinXText /> is not just a name; it’s a promise of a new dawn in

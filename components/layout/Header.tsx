@@ -42,7 +42,7 @@ const Header = () => {
         <NavbarBrand>
           <Link href="/">
             <Image
-              src={"/vikinx-logo.png"}
+              src={"/vikinx-logo.webp"}
               width={100}
               height={200}
               alt="vikinx-logo"
