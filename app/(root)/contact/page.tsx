@@ -58,7 +58,7 @@ const Page = async () => {
         <Card className="grid lg:grid-cols-3 lg:gap-4 items-center">
           <div className="hidden lg:flex">
             <Image
-              src="/contact.jpg"
+              src="/contact.webp"
               alt="dominar-400"
               className="w-full grayscale rounded-r-none"
             />

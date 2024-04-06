@@ -20,7 +20,7 @@ export default async function Home() {
       <section>
         <div
           className="relative w-full h-screen bg-cover bg-center"
-          style={{ backgroundImage: "url('/home-bg.jpg')" }}
+          style={{ backgroundImage: "url('/home-bg.webp')" }}
         >
           <div className="absolute w-full h-full p-5 text-white bg-black bg-opacity-70 text-xl flex flex-col items-center justify-center overflow-hidden">
             <div className="space-y-6 text-center">
@@ -62,7 +62,7 @@ export default async function Home() {
             </h1>
             <Image
               className="grayscale"
-              src="/why-us.jpg"
+              src="/why-us.webp"
               alt="why-us-image"
               width={400}
             />
@@ -165,7 +165,7 @@ export default async function Home() {
             <div className="text-center">
               <div className="flex justify-center">
                 <Image
-                  src="/vikinx-short-og.png"
+                  src="/vikinx-short-og.webp"
                   width={250}
                   alt="vikinx-originals-short-logo"
                 />
@@ -188,7 +188,7 @@ export default async function Home() {
           <div className="flex justify-center">
             <Image
               className="grayscale"
-              src="/vikinx-guy.jpg"
+              src="/vikinx-guy.webp"
               alt="vikinx-merch-guy"
               width={400}
             />
