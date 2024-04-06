@@ -1,6 +1,6 @@
 "use client";
 import { facts } from "@/lib/utils";
-import { Button, Card, CardBody, CardFooter } from "@nextui-org/react";
+import { Button, Card } from "@nextui-org/react";
 import { Shuffle } from "lucide-react";
 import React, { useEffect, useState } from "react";
 
@@ -23,7 +23,7 @@ const Facts = () => {
   useEffect(() => {
     interval = setInterval(() => {
       shuffleFacts();
-    }, 10000);
+    }, 15000);
     return () => clearInterval(interval); // This represents the unmount function, in which you need to clear your interval to prevent memory leaks.
   }, []);
 

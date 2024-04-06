@@ -1,4 +1,5 @@
 import * as z from "zod";
+import { states } from "../data/states";
 
 const bikes = z.object({
   name: z
@@ -38,6 +39,9 @@ export const userValidation = z
     facebook: z.string().url({ message: "Invalid URL" }).optional(),
     twitter: z.string().url({ message: "Invalid URL" }).optional(),
     blood_group: z.string({ required_error: "Blood group is required field" }),
+    state: z.enum(states as [string, ...string[]], {
+      required_error: "State is required",
+    }),
   })
   .refine((data) => data.mobile !== data.emergency_number, {
     message: "Mobile and emergency number must be different",

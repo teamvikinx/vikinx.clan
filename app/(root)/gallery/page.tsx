@@ -1,40 +1,41 @@
-"use client";
 import VikinXText from "@/components/common/VikinXText";
-import { images } from "@/lib/data/gallery-images";
-import React, { useEffect, useState } from "react";
-import PhotoAlbum from "react-photo-album";
-import Lightbox from "yet-another-react-lightbox";
+import React from "react";
 import "yet-another-react-lightbox/styles.css";
+import PhotoGallery from "@/components/ui/PhotoGallery";
+import { Metadata } from "next";
 
-const slides = images.map(({ original, width, height }) => ({
-  src: original,
-  width,
-  height,
-}));
+export const metadata: Metadata = {
+  title: "VikinX | Gallery",
+  openGraph: {
+    title: "VikinX | Gallery",
+    url: "https://vikinx.in/gallery",
+    images: [
+      {
+        url: "https://res.cloudinary.com/dtijjnwyx/image/upload/v1710770646/vikinx-logo-zoomed_ambrrp.png",
+        alt: "VikinX logo",
+      },
+    ],
+  },
+  twitter: {
+    title: "VikinX | Gallery",
+    images: [
+      {
+        url: "https://res.cloudinary.com/dtijjnwyx/image/upload/v1710770646/vikinx-logo-zoomed_ambrrp.png",
+        alt: "VikinX logo",
+      },
+    ],
+  },
+};
 
 const Page = () => {
-  const [index, setIndex] = useState(-1);
-
   return (
     <main className="py-16">
       <section>
         <h1 className="title text-center mb-8">
-            <VikinXText /> Gallery
+          <VikinXText /> Gallery
         </h1>
-        <PhotoAlbum
-          layout="columns"
-          photos={slides}
-          targetRowHeight={150}
-          onClick={({ index: current }: { index: any }) => setIndex(current)}
-        />
 
-        <Lightbox
-          className="relaive z-[99999]"
-          index={index}
-          slides={slides}
-          open={index >= 0}
-          close={() => setIndex(-1)}
-        />
+        <PhotoGallery />
       </section>
     </main>
   );

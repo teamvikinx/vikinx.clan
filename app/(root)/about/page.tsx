@@ -4,7 +4,31 @@ import TextCard from "@/components/common/cards/TextCard";
 import GlobeFinal from "@/components/ui/GlobeFinal";
 import { constants } from "@/lib/utils";
 import { Button, Image, Link } from "@nextui-org/react";
+import { Metadata } from "next";
 import React from "react";
+
+export const metadata: Metadata = {
+  title: "VikinX | About",
+  openGraph: {
+    title: "VikinX | About",
+    url: "https://vikinx.in/about",
+    images: [
+      {
+        url: "https://res.cloudinary.com/dtijjnwyx/image/upload/v1710770646/vikinx-logo-zoomed_ambrrp.png",
+        alt: "VikinX logo",
+      },
+    ],
+  },
+  twitter: {
+    title: "VikinX | About",
+    images: [
+      {
+        url: "https://res.cloudinary.com/dtijjnwyx/image/upload/v1710770646/vikinx-logo-zoomed_ambrrp.png",
+        alt: "VikinX logo",
+      },
+    ],
+  },
+};
 
 const Page = () => {
   return (

@@ -1,5 +1,29 @@
 import { Chip, Divider } from "@nextui-org/react";
+import { Metadata } from "next";
 import React from "react";
+
+export const metadata: Metadata = {
+  title: "VikinX | Privacy Policy",
+  openGraph: {
+    title: "VikinX | Privacy Policy",
+    url: "https://vikinx.in/privacy-policy",
+    images: [
+      {
+        url: "https://res.cloudinary.com/dtijjnwyx/image/upload/v1710770646/vikinx-logo-zoomed_ambrrp.png",
+        alt: "VikinX logo",
+      },
+    ],
+  },
+  twitter: {
+    title: "VikinX | Privacy Policy",
+    images: [
+      {
+        url: "https://res.cloudinary.com/dtijjnwyx/image/upload/v1710770646/vikinx-logo-zoomed_ambrrp.png",
+        alt: "VikinX logo",
+      },
+    ],
+  },
+};
 
 const Page = () => {
   return (

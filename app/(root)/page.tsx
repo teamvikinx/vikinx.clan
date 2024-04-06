@@ -3,24 +3,13 @@ import RideCard from "@/components/common/cards/RideCard";
 import Stories from "@/components/common/Stories";
 import VikinXText from "@/components/common/VikinXText";
 import { PulseBeams } from "@/components/ui/PulseBeam";
-import {
-  getFeaturedRides,
-  getTotalActiveUsersCount,
-} from "@/lib/actions/users.action";
-import { constants, helpers } from "@/lib/utils";
-import {
-  Button,
-  Card,
-  CardBody,
-  CardFooter,
-  CardHeader,
-  Image,
-} from "@nextui-org/react";
-import localFonts from "next/font/local";
+import { getTotalActiveUsersCount } from "@/lib/actions/users.action";
+import { constants } from "@/lib/utils";
+import { Button, Image } from "@nextui-org/react";
 import Link from "next/link";
 import TextCard from "@/components/common/cards/TextCard";
-
-const NHLDucks = localFonts({ src: "../../app/fonts/NHL Ducks.ttf" });
+import { getFeaturedRides } from "@/lib/actions/rides.action";
+import { Suspense } from "react";
 
 export default async function Home() {
   const totalUsersRegistered = await getTotalActiveUsersCount();
@@ -40,15 +29,15 @@ export default async function Home() {
                 Journeys
               </h1>
               <p className="text-sm lg:text-lg lg:w-[900px] mx-auto">
-                Crafted with the soul of a rider, <VikinXText /> is your compass to the
-                uncharted. We’re not just about the ride; we’re about
+                Crafted with the soul of a rider, <VikinXText /> is your compass
+                to the uncharted. We’re not just about the ride; we’re about
                 revolutionizing the ride. Connect, conquer, and celebrate the
                 rider’s spirit with us.{" "}
                 <span className="text-secondary font-semibold">
                   Ride Bold. Tour Vast. Explore Endless.{" "}
                 </span>
-                Join the <VikinXText /> revolution—where every journey is a story
-                waiting to be told.
+                Join the <VikinXText /> revolution—where every journey is a
+                story waiting to be told.
               </p>
               <Button
                 as={Link}
@@ -66,12 +55,17 @@ export default async function Home() {
       </section>
 
       <section>
-        <div className="grid lg:grid-cols-3 grid-flow-row gap-6 items-center">
+        <div className="lg:grid lg:grid-cols-3 grid-flow-row gap-6 items-center">
           <div>
             <h1 className="title mb-4 lg:hidden block">
               Why <VikinXText />?
             </h1>
-            <Image className="grayscale" src="/why-us.jpg" alt="why-us-image" width={400} />
+            <Image
+              className="grayscale"
+              src="/why-us.jpg"
+              alt="why-us-image"
+              width={400}
+            />
           </div>
           <div className="col-span-2 space-y-6">
             <h1 className="title hidden lg:block">
@@ -79,14 +73,14 @@ export default async function Home() {
             </h1>
             <p className="text-justify paragraph">
               Embark on a journey where the road never ends, and the adventure
-              is eternal. Join <VikinXText />, and become part of a movement that’s more
-              than just riding—it’s about embracing the spirit of the open road
-              and the brotherhood that comes with it. Here’s why you should
-              throttle up and join us.
+              is eternal. Join <VikinXText />, and become part of a movement
+              that’s more than just riding—it’s about embracing the spirit of
+              the open road and the brotherhood that comes with it. Here’s why
+              you should throttle up and join us.
             </p>
             <div className="grid grid-cols-2 lg:grid-cols-3 gap-6">
               {constants.whyUsPoints.map((item) => (
-               <TextCard key={item.title} item={item} />
+                <TextCard key={item.title} item={item} />
               ))}
             </div>
             <div className="text-center lg:text-left">
@@ -113,9 +107,9 @@ export default async function Home() {
             </span>
           </h1>
           <p className="mx-auto text-center lg:!w-[700px] paragraph">
-            Embark on <VikinXText /> Expeditions, where every throttle twist narrates a
-            tale of adventure and camaraderie. Join us to traverse the
-            uncharted, with the wind as your guide and the horizon as your
+            Embark on <VikinXText /> Expeditions, where every throttle twist
+            narrates a tale of adventure and camaraderie. Join us to traverse
+            the uncharted, with the wind as your guide and the horizon as your
             limit.
           </p>
         </div>
@@ -129,22 +123,27 @@ export default async function Home() {
             Be Part Of The Adventure!
           </span>
         </h1>
-
-        <div
-          className={`grid md:grid-cols-2 lg:grid-cols-${featuredRides.length} justify-center gap-6`}
-        >
-          {featuredRides.map((ride) => (
-            <RideCard ride={ride} key={ride.uuid} />
-          ))}
-        </div>
+        <Suspense fallback={<p>Loading Featured Rides...</p>}>
+          <div
+            className={`grid md:grid-cols-2 lg:grid-cols-${featuredRides.length} justify-center gap-6`}
+          >
+            {featuredRides.map((ride) => (
+              <RideCard ride={ride} key={ride.uuid} />
+            ))}
+          </div>
+        </Suspense>
       </section>
 
       <section>
-        <Stories />
+        <Suspense fallback={<p>Loading Stories...</p>}>
+          <Stories />
+        </Suspense>
       </section>
 
       <section>
-        <Facts />
+        <Suspense fallback={<p>Loading Facts...</p>}>
+          <Facts />
+        </Suspense>
       </section>
 
       <section>
@@ -157,7 +156,7 @@ export default async function Home() {
             in the grand saga of the road. Are you ready to write yours? We are
             taking first 100 users as{" "}
             <span className="font-semibold">
-            <VikinXText /> Originals.
+              <VikinXText /> Originals.
             </span>
           </p>
         </div>
@@ -187,7 +186,12 @@ export default async function Home() {
             </div>
           </div>
           <div className="flex justify-center">
-            <Image className="grayscale" src="/vikinx-guy.jpg" alt="vikinx-merch-guy" width={400} />
+            <Image
+              className="grayscale"
+              src="/vikinx-guy.jpg"
+              alt="vikinx-merch-guy"
+              width={400}
+            />
           </div>
         </div>
       </section>

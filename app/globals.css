@@ -13,3 +13,7 @@
     @apply text-sm lg:text-base
   }
 }
+
+.contact-bg-image {
+  background-image: url('/public/contact.jpg');
+}
