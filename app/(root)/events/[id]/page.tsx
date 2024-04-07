@@ -3,7 +3,7 @@ import { helpers } from "@/lib/utils";
 import { Card, CardBody, Image, Link } from "@nextui-org/react";
 import { CalendarFold, RouteIcon, SquareArrowOutUpRight } from "lucide-react";
 import React from "react";
-import RideDetailsTabs from "@/components/common/RideDetailsTabs";
+import RideDetailsTabs from "@/components/RideDetailsTabs";
 import { currentUser } from "@clerk/nextjs";
 import { fetchUser } from "@/lib/actions/users.action";
 import { Metadata, ResolvingMetadata } from "next";
@@ -78,7 +78,7 @@ const Page = async ({ params }: { params: { [key: string]: string } }) => {
   return (
     <main className="py-8">
       <Card className="max-w-[900px] mx-auto !rounded-b-none">
-        <CardBody className="p-0">
+        <CardBody className="p-0 overflow-x-hidden">
           <Image
             shadow="sm"
             radius="lg"

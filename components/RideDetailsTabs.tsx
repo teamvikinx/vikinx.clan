@@ -61,13 +61,6 @@ const RideDetailsTabs: React.FC<RideDetailsTabsProps> = ({
     }
   };
 
-//   useEffect(() => {
-//     if (show) {
-//       setTimeout(() => {
-//         setShow(false);
-//       }, 3000);
-//     }
-//   }, [show]);
   return (
     <>
       <div className="text-center">
@@ -92,10 +85,16 @@ const RideDetailsTabs: React.FC<RideDetailsTabsProps> = ({
           {parse(description)}
         </Tab>
         <Tab key="Riders Joined" title="Riders Joined" className="px-4">
-          <p>Test</p>
+          {parse(description)}
         </Tab>
       </Tabs>
-      <Confetti run={show} numberOfPieces={500} recycle={false} width={width} height={height} />
+      <Confetti
+        run={show}
+        numberOfPieces={500}
+        recycle={false}
+        width={width}
+        height={height}
+      />
     </>
   );
 };

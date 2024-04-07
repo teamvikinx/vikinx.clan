@@ -67,6 +67,15 @@ interface IRide {
   is_feature: boolean;
 }
 
+interface Announcement {
+  title: string;
+  message: string;
+  announced_at: string;
+  announcement_id: string;
+  announcement_by: string;
+  type: string
+}
+
 type RideStatus =
   | "count"
   | "active"
