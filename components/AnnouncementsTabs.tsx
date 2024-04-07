@@ -99,7 +99,7 @@ const AnnouncementsTabs = () => {
           ) : (
             <ScrollShadow className="h-[400px] pr-2 lg:pr-4 scroll-smooth snap-y ">
               {announcementsFiltered.map((x) => (
-                <div className="snap-center">
+                <div className="snap-center" key={x.announcement_id}>
                   <AnnouncementCard announcment={x} />
                 </div>
               ))}
@@ -111,11 +111,11 @@ const AnnouncementsTabs = () => {
             <CardFullSkeleton />
           ) : (
             <ScrollShadow className="h-[400px] pr-2 lg:pr-4 scroll-smooth snap-y ">
-              <div className="snap-center">
-                {announcementsFiltered.map((x) => (
+              {announcementsFiltered.map((x) => (
+                <div className="snap-center" key={x.announcement_id}>
                   <AnnouncementCard announcment={x} />
-                ))}
-              </div>
+                </div>
+              ))}
             </ScrollShadow>
           )}
         </Tab>
@@ -124,11 +124,11 @@ const AnnouncementsTabs = () => {
             <CardFullSkeleton />
           ) : (
             <ScrollShadow className="h-[400px] pr-2 lg:pr-4 scroll-smooth snap-y ">
-              <div className="snap-center">
-                {announcementsFiltered.map((x) => (
+              {announcementsFiltered.map((x) => (
+                <div className="snap-center" key={x.announcement_id}>
                   <AnnouncementCard announcment={x} />
-                ))}
-              </div>
+                </div>
+              ))}
             </ScrollShadow>
           )}
         </Tab>
