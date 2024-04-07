@@ -48,6 +48,7 @@ export const constants = {
     contact: "contact",
     newsletter: "newsletter",
     announcements: "announcements",
+    review: "review",
   },
   whyUsPoints: [
     {

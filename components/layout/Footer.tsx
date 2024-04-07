@@ -67,6 +67,9 @@ const Footer = () => {
               <Link className="block text-slate-500" href="/announcements">
                 Announcements
               </Link>
+              <Link className="block text-slate-500" href="/your-story">
+                Your Story
+              </Link>
             </div>
           </div>
         </div>

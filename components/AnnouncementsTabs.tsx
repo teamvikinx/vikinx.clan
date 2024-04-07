@@ -52,20 +52,24 @@ const AnnouncementsTabs = () => {
   };
 
   useEffect(() => {
-    setAnnouncementsFiltered(
-      announcements.filter((x) => {
-        if (activeTab === "all") {
-          return x.title
-            .toLowerCase()
-            .includes(debouncedSearchTerm.toLowerCase());
-        } else {
-          return (
-            x.title.toLowerCase().includes(debouncedSearchTerm.toLowerCase()) &&
-            x.type === activeTab
-          );
-        }
-      })
-    );
+    if (debouncedSearchTerm) {
+      setAnnouncementsFiltered(
+        announcements.filter((x) => {
+          if (activeTab === "all") {
+            return x.title
+              .toLowerCase()
+              .includes(debouncedSearchTerm.toLowerCase());
+          } else {
+            return (
+              x.title
+                .toLowerCase()
+                .includes(debouncedSearchTerm.toLowerCase()) &&
+              x.type === activeTab
+            );
+          }
+        })
+      );
+    }
   }, [debouncedSearchTerm]);
 
   useEffect(() => {

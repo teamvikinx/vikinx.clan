@@ -17,11 +17,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import React, { useState } from "react";
 import { userValidation } from "@/lib/validations/user.validation";
 import { z } from "zod";
-import {
-  Facebook,
-  Instagram,
-  Twitter,
-} from "lucide-react";
+import { Facebook, Instagram, Twitter } from "lucide-react";
 import axios from "axios";
 import { helpers } from "@/lib/utils";
 import { useRouter } from "next/navigation";
@@ -418,16 +414,15 @@ const UserAccountProfile: React.FC<UserAccountProfileProps> = ({
           </CardBody>
         </Card>
 
-        {editMode && (
-          <Button
-            color="secondary"
-            type="submit"
-            className="w-full font-semibold uppercase"
-            isLoading={loading}
-          >
-            {editMode ? "Update" : "Submit"}
-          </Button>
-        )}
+        <Button
+          color="secondary"
+          type="submit"
+          className="w-full font-semibold uppercase"
+          isLoading={loading}
+        >
+          {editMode ? "Update" : "Submit"}
+        </Button>
+
         {!userData.onboarding && (
           <small className="text-center block">
             By clicking Submit, you agree to our{" "}

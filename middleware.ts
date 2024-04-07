@@ -15,7 +15,6 @@ export default authMiddleware({
     "/events/:id",
     "/terms-and-conditions",
     "/privacy-policy",
-    "/announcements",
     "/api/webhook/clerk",
     "/api/gallery",
     "/api/users",

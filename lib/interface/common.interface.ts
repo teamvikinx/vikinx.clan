@@ -73,7 +73,16 @@ interface Announcement {
   announced_at: string;
   announcement_id: string;
   announcement_by: string;
-  type: string
+  type: string;
+}
+
+interface IReview {
+  uuid: string;
+  is_approved: boolean;
+  comment: string;
+  review_by: { name: string; id: string };
+  feature: boolean;
+  reviewed_at: number;
 }
 
 type RideStatus =
