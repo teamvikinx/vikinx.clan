@@ -47,6 +47,7 @@ export const constants = {
     gallery: "vikinx-gallery",
     contact: "contact",
     newsletter: "newsletter",
+    announcements: "announcements",
   },
   whyUsPoints: [
     {
@@ -130,6 +131,24 @@ export const helpers = {
     const re =
       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
+  },
+  formatDateForDisplay: (postDate: Date) => {
+    const now = moment(); // Get the current date and time
+    const postMoment = moment(postDate); // Convert the post date to a Moment object
+
+    // Calculate the difference in days between now and the post date
+    const daysAgo = now.diff(postMoment, "days");
+
+    if (daysAgo === 0) {
+      return "today"; // If the post was made today
+    } else if (daysAgo === 1) {
+      return "yesterday"; // If the post was made yesterday
+    } else if (daysAgo <= 7) {
+      return postMoment.format("dddd"); // Display the day of the week (e.g., Monday, Tuesday, etc.)
+    } else {
+      // For older posts, display the date in the format "1st April"
+      return postMoment.format("Do MMMM YYYY");
+    }
   },
 };
 

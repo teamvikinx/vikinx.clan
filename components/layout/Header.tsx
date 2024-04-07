@@ -19,7 +19,6 @@ import {
   DropdownItem,
   DropdownMenu,
   DropdownTrigger,
-  cn,
 } from "@nextui-org/react";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";

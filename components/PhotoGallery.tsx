@@ -3,7 +3,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import PhotoAlbum from "react-photo-album";
 import Lightbox from "yet-another-react-lightbox";
-import GallerySkeleton from "../common/skeletons/GallerySkeleton";
+import GallerySkeleton from "./common/skeletons/GallerySkeleton";
 
 const PhotoGallery = () => {
   const [index, setIndex] = useState(-1);
