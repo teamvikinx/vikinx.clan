@@ -55,14 +55,20 @@ const Footer = () => {
               <Link className="block text-slate-500" href="/about">
                 About
               </Link>
+              <Link className="block text-slate-500" href="/events">
+                Events
+              </Link>
+              <Link className="block text-slate-500" href="/gallery">
+                Gallery
+              </Link>
               <Link className="block text-slate-500" href="/articles">
                 Articles
               </Link>
+              <Link className="block text-slate-500" href="/your-story">
+                Rider Diaries
+              </Link>
               <Link className="block text-slate-500" href="/contact">
                 Contact
-              </Link>
-              <Link className="block text-slate-500" href="/events">
-                Events
               </Link>
               <Link className="block text-slate-500" href="/announcements">
                 Announcements

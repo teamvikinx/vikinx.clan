@@ -33,7 +33,7 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ currentUser }) => {
     const payload: IReview = {
       ...data,
       is_approved: false,
-      feature: false,
+      is_featured: false,
       review_by: {
         name: currentUser.name,
         id: currentUser.id,

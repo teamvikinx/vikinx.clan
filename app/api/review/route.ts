@@ -13,8 +13,6 @@ export async function POST(req: NextRequest) {
       .where("review_by.id", "==", payload.review_by.id)
       .get();
     const alreadyExist = _docRef.docs.map((x) => x.data());
-    console.log(alreadyExist.length > 0);
-
     if (alreadyExist.length > 0) {
       return NextResponse.json(
         { message: "You already have submitted you story with us!" },
