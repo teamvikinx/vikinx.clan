@@ -11,10 +11,7 @@ const ratelimit = new Ratelimit({
 });
 
 export async function rateLimitMiddleware(request: NextRequest) {
-  const ip = headers().get('x-forwarded-for') ?? request.ip ?? "127.0.0.1";
-
+  const ip = headers().get("x-forwarded-for") ?? request.ip ?? "127.0.0.1";
   const { success } = await ratelimit.limit(ip);
-  console.log(success, ip);
-
   return Boolean(success);
 }

@@ -98,7 +98,7 @@ export default async function Home() {
         </div>
       </section>
       <section>
-        <div>
+        <div className="relative z-30">
           <h1 className="title text-center">
             <VikinXText className="mr-2 md:mr-3" />
             Expeditions{" "}

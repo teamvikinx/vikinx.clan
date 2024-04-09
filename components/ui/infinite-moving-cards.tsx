@@ -11,7 +11,7 @@ export const InfiniteMovingCards = ({
   className,
 }: {
   items: {
-    quote: string;
+    comment: string;
     name: string;
     title?: string;
   }[];
@@ -100,7 +100,7 @@ export const InfiniteMovingCards = ({
                 className="user-select-none -z-1 pointer-events-none absolute -left-0.5 -top-0.5 h-[calc(100%_+_4px)] w-[calc(100%_+_4px)]"
               ></div>
               <span className=" relative z-20 text-xs md:text-tiny leading-[1.6] text-gray-100 font-normal">
-                {item.quote}
+                {item.comment}
               </span>
               <div className="relative z-20 mt-6 flex flex-row items-center">
                 <span className="flex flex-col gap-1">

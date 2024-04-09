@@ -84,9 +84,9 @@ const RideDetailsTabs: React.FC<RideDetailsTabsProps> = ({
         <Tab key="Ride Details" title="Ride Details" className="px-4">
           {parse(description)}
         </Tab>
-        <Tab key="Riders Joined" title="Riders Joined" className="px-4">
+        {/* <Tab key="Riders Joined" title="Riders Joined" className="px-4">
           {parse(description)}
-        </Tab>
+        </Tab> */}
       </Tabs>
       <Confetti
         run={show}

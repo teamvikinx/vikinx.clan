@@ -17,6 +17,12 @@ export const constants = {
     },
     { title: "About", path: "/about", smHidden: true, icon: null },
     {
+      title: "Events",
+      path: "/events",
+      smHidden: false,
+      icon: "/assets/flag-solid.svg",
+    },
+    {
       title: "Gallery",
       path: "/gallery",
       smHidden: false,
@@ -29,16 +35,16 @@ export const constants = {
       icon: "/assets/newspaper-solid.svg",
     },
     {
+      title: "Rider Diaries",
+      path: "/rider-diaries",
+      smHidden: false,
+      icon: "/assets/newspaper-solid.svg",
+    },
+    {
       title: "Contact",
       path: "/contact",
       smHidden: false,
       icon: "/assets/headset-solid.svg",
-    },
-    {
-      title: "Events",
-      path: "/events",
-      smHidden: false,
-      icon: "/assets/flag-solid.svg",
     },
   ],
   tables: {
@@ -259,40 +265,80 @@ export const facts = [
 export const stories = [
   {
     name: "Asher K",
-    quote:
+    uuid: Math.random(),
+    review_by: {
+      id: Math.random(),
+      name: "Asher K",
+    },
+    comment:
       "The experience was very chilling and breathtaking. Enjoyed every moment of it with other like-minded bikers. Love being part of this amazing community. Looking forward for more such adventures.",
   },
   {
     name: "Rajesh Lokhande",
-    quote:
+    uuid: Math.random(),
+    review_by: {
+      id: Math.random(),
+      name: "Rajesh Lokhande",
+    },
+    comment:
       "What a ride! The Lonavla trip with VikinX was epic. The people, breakfast and the experience were just perfect. Plus, the cool merch made us all feel like part of a special club. Can’t wait for the next one!",
   },
   {
     name: "Abdullah Khot",
-    quote: "AMAZING RIDE IT WAS . WAITING FOR ANOTHER.",
+    uuid: Math.random(),
+    review_by: {
+      id: Math.random(),
+      name: "Abdullah Khot",
+    },
+    comment: "AMAZING RIDE IT WAS . WAITING FOR ANOTHER.",
   },
   {
     name: "MOHAMMAD SAMI",
-    quote:
+    uuid: Math.random(),
+    review_by: {
+      id: Math.random(),
+      name: "MOHAMMAD SAMI",
+    },
+    comment:
       "Recently had the thrill of a lifetime biking from Kalamboli to Lonavala, and I must say, it was an exhilarating experience! The scenic route, coupled with the adrenaline rush of the ride, made it an unforgettable journey. The team-up with my biking buddies added to the excitement, making it even more enjoyable. I would rate this adventure a solid 4 out of 5 stars. Can't wait for the next thrilling ride",
   },
   {
     name: "Naved Qureshi",
-    quote:
+    uuid: Math.random(),
+    review_by: {
+      id: Math.random(),
+      name: "Naved Qureshi",
+    },
+    comment:
       "My first experience with your community was amazing. I felt welcomed and excited to ride alongside fellow enthusiasts. Together, we shared stories, discovered new routes, and formed lasting friendships. Joining your community wasn't just about riding; it was about becoming part of a supportive family bonded by our love for adventure on the open road.",
   },
   {
     name: "Mohsin S",
-    quote: `My first experience riding with VikinX was exhilarating! As we geared up for our adventure, the anticipation was palpable. Riding alongside my college friends, each of us adorned with our clan insignia, felt like being part of an epic journey. 
+    uuid: Math.random(),
+    review_by: {
+      id: Math.random(),
+      name: "Mohsin S",
+    },
+    comment: `My first experience riding with VikinX was exhilarating! As we geared up for our adventure, the anticipation was palpable. Riding alongside my college friends, each of us adorned with our clan insignia, felt like being part of an epic journey. 
     We navigated winding roads and scenic routes, sharing laughter, stories, and occasional friendly competition. It was more than just a ride; it was a bonding experience that forged lasting memories and strengthened our friendship.
     The first ride with VikinX set the tone for many more memorable adventures to come.`,
   },
   {
     name: "Sawant Z",
-    quote: `I just went on my first bike ride, and it was awesome! It's so cool how people who love to travel get together for these rides. I really want you guys to join us and become part of the VikinX family.`,
+    uuid: Math.random(),
+    review_by: {
+      id: Math.random(),
+      name: "Sawant Z",
+    },
+    comment: `I just went on my first bike ride, and it was awesome! It's so cool how people who love to travel get together for these rides. I really want you guys to join us and become part of the VikinX family.`,
   },
   {
     name: "Saif Hamdare",
-    quote: `Riding with a group was an amazing experience! Having fellow riders around made the journey joyful and added a sense of safety. Can't wait to join the next ride soon!`,
+    uuid: Math.random(),
+    review_by: {
+      id: Math.random(),
+      name: "Saif Hamdare",
+    },
+    comment: `Riding with a group was an amazing experience! Having fellow riders around made the journey joyful and added a sense of safety. Can't wait to join the next ride soon!`,
   },
 ];

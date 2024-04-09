@@ -3,6 +3,7 @@ import React from "react";
 import { InfiniteMovingCards } from "../ui/infinite-moving-cards";
 import { stories } from "@/lib/utils";
 import VikinXText from "./VikinXText";
+import { Button, Link } from "@nextui-org/react";
 
 const Stories = () => {
   return (
@@ -19,6 +20,18 @@ const Stories = () => {
         </p>
       </div>
       <InfiniteMovingCards items={stories} direction="right" speed="slow" />
+      <div className="text-center">
+        <Button
+          as={Link}
+          color="primary"
+          variant="bordered"
+          size="sm"
+          className="mt-4"
+          href="/rider-diaries"
+        >
+          Read More
+        </Button>
+      </div>
     </>
   );
 };

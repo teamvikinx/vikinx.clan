@@ -3,7 +3,12 @@
 import { constants } from "@/lib/utils";
 import React, { useState } from "react";
 import Image from "next/image";
-import { RadioTower, UserRoundCog } from "lucide-react";
+import {
+  MegaphoneIcon,
+  RadioTower,
+  TicketXIcon,
+  UserRoundCog,
+} from "lucide-react";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import {
   Button,
@@ -108,15 +113,31 @@ const Header = () => {
         </SignedOut>
         <SignedIn>
           <span className="flex  items-center ml-6 space-x-4">
-            <Button
-              size={"sm"}
-              color="secondary"
-              variant="light"
-              as={Link}
-              href={"/announcements"}
-            >
-              <RadioTower size={18} />
-            </Button>
+            <Link href="/events" color="foreground" className="lg:hidden">
+              <span>
+                <Button size={"sm"} color="primary" variant="light" isIconOnly>
+                  <TicketXIcon size={18} />
+                </Button>
+                <small className="text-[10px] block font-semibold -mt-2 text-center">
+                  Events
+                </small>
+              </span>
+            </Link>
+            <Link href="/announcements" color="foreground">
+              <span>
+                <Button
+                  size={"sm"}
+                  color="secondary"
+                  variant="light"
+                  isIconOnly
+                >
+                  <MegaphoneIcon size={18} />
+                </Button>
+                <small className="text-[10px] block font-semibold -mt-2 text-center">
+                  Info
+                </small>
+              </span>
+            </Link>
             <UserButton afterSignOutUrl="/">
               <UserButton.UserProfileLink
                 label="Profile"

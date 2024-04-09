@@ -11,6 +11,7 @@ export default authMiddleware({
     "/contact",
     "/articles",
     "/gallery",
+    "/rider-diaries",
     "/events",
     "/events/:id",
     "/terms-and-conditions",
