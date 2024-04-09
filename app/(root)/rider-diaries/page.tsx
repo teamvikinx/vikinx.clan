@@ -2,7 +2,31 @@ import VikinXText from "@/components/common/VikinXText";
 import { getStories } from "@/lib/actions/stories.actions";
 import { stories } from "@/lib/utils";
 import { Card, CardBody, CardFooter } from "@nextui-org/react";
+import { Metadata } from "next";
 import React from "react";
+
+export const metadata: Metadata = {
+  title: "VikinX | Rider Diaries",
+  openGraph: {
+    title: "VikinX | Rider Diaries",
+    url: "https://vikinx.in/profile",
+    images: [
+      {
+        url: "https://res.cloudinary.com/dtijjnwyx/image/upload/v1710770646/vikinx-logo-zoomed_ambrrp.png",
+        alt: "VikinX logo",
+      },
+    ],
+  },
+  twitter: {
+    title: "VikinX | Rider Diaries",
+    images: [
+      {
+        url: "https://res.cloudinary.com/dtijjnwyx/image/upload/v1710770646/vikinx-logo-zoomed_ambrrp.png",
+        alt: "VikinX logo",
+      },
+    ],
+  },
+};
 
 const Page = async () => {
   const userStories = await getStories(false);
