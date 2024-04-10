@@ -12,7 +12,7 @@ const TextCard: React.FC<TextCardProps> = ({ item, className }) => {
       <p className="text-secondary font-semibold text-sm lg:text-base">
         {item.title}
       </p>
-      <p className="text-xs lg:text-base">{item.content}</p>
+      <p className="text-xs lg:text-sm">{item.content}</p>
     </Card>
   );
 };

@@ -29,14 +29,14 @@ export const constants = {
       icon: null,
     },
     {
-      title: "Articles",
-      path: "/articles",
+      title: "Rider Diaries",
+      path: "/rider-diaries",
       smHidden: false,
       icon: "/assets/newspaper-solid.svg",
     },
     {
-      title: "Rider Diaries",
-      path: "/rider-diaries",
+      title: "Articles",
+      path: "/articles",
       smHidden: false,
       icon: "/assets/newspaper-solid.svg",
     },
@@ -188,18 +188,18 @@ export const facts = [
     fact: "Emilio Scotto is an Argentine adventurer, photojournalist, and writer. As of 2009, he holds the Guinness record for the world's longest motorcycle ride, spanning 10 years, 232 countries and a total distance of 457,000 miles (735,000 km). He rode on the “Black Princess” a 1980 Honda GoldWing GL1100 motorcycle.",
     source: "directasia",
   },
-  {
-    fact: "Kawasaki started up in 1878 in the shipbuilding industry. They made their first motorcycle in 1962. Today Kawasaki Heavy Industries make aeroplanes, helicopters, trains, ships, industrial robots, missiles, spacecraft, jet skis, and of course motorcycles.",
-    source: "motorcyclepartswarehouse",
-  },
-  {
-    fact: "Royal Enfield started making motorcycles in 1901, and are the oldest brand still in production today, with the Bullet model having the longest production run of all time.",
-    source: "motorcyclepartswarehouse",
-  },
-  {
-    fact: "Ducati started up in 1935 making radio parts.",
-    source: "motorcyclepartswarehouse",
-  },
+  // {
+  //   fact: "Kawasaki started up in 1878 in the shipbuilding industry. They made their first motorcycle in 1962. Today Kawasaki Heavy Industries make aeroplanes, helicopters, trains, ships, industrial robots, missiles, spacecraft, jet skis, and of course motorcycles.",
+  //   source: "motorcyclepartswarehouse",
+  // },
+  // {
+  //   fact: "Royal Enfield started making motorcycles in 1901, and are the oldest brand still in production today, with the Bullet model having the longest production run of all time.",
+  //   source: "motorcyclepartswarehouse",
+  // },
+  // {
+  //   fact: "Ducati started up in 1935 making radio parts.",
+  //   source: "motorcyclepartswarehouse",
+  // },
   {
     fact: "The longest ever backwards motorcycle ride was achieved by Dipayan Choudhury in India in 2017. He covered 125.52 miles (202 Kilometers). He was facing backwards, the motorcycle was going forwards. To achieve that in India is a miracle, but probably less frightening than seeing what is going on in front of you.",
     source: "motorcyclepartswarehouse",
@@ -216,22 +216,22 @@ export const facts = [
     fact: "The first-ever motorcycle, or rather motorised bicycle with an internal combustion engine, was made by Gottlieb Daimler and Wilhelm Maybach in Germany in 1885. It had a wooden frame and a gas-powered engine. It was destroyed in a fire in 1903.",
     source: "motorcyclepartswarehouse",
   },
-  {
-    fact: "In 1997 Honda launched the CBR1100XX Blackbird. It was very fast. In 1999 Suzuki launched the GSX1300R Hayabusa. It was even faster. The English translation of Hayabusa is Peregrine falcon, and Peregrine falcons eat Blackbirds. In a dive, a Peregrine falcon has about the same top speed as a Hayabusa.",
-    source: "motorcyclepartswarehouse",
-  },
-  {
-    fact: "The fastest production motorcycle to date is the Kawasaki Ninja H2R. It is a track-only bike that achieved 249 mph in 2016.",
-    source: "motorcyclepartswarehouse",
-  },
+  // {
+  //   fact: "In 1997 Honda launched the CBR1100XX Blackbird. It was very fast. In 1999 Suzuki launched the GSX1300R Hayabusa. It was even faster. The English translation of Hayabusa is Peregrine falcon, and Peregrine falcons eat Blackbirds. In a dive, a Peregrine falcon has about the same top speed as a Hayabusa.",
+  //   source: "motorcyclepartswarehouse",
+  // },
+  // {
+  //   fact: "The fastest production motorcycle to date is the Kawasaki Ninja H2R. It is a track-only bike that achieved 249 mph in 2016.",
+  //   source: "motorcyclepartswarehouse",
+  // },
   {
     fact: "On average, motorcyclists are happier than the average motorist. The study uncovered the therapeutic potential of motorcycle riding, with 82 percent of riders agreeing that riding makes them happy — compared to only around 55 per cent of motorists.",
     source: "economictimes",
   },
-  {
-    fact: "Harley Davidson motorcycles have a failure rate over twice that of the top three motorcycle manufacturers in the world.",
-    source: "kickassfacts",
-  },
+  // {
+  //   fact: "Harley Davidson motorcycles have a failure rate over twice that of the top three motorcycle manufacturers in the world.",
+  //   source: "kickassfacts",
+  // },
   {
     fact: "In 2003 Dodge built and sold nine motorcycles with a viper V-10 engine called the Dodge Tomahawk.",
     source: "kickassfacts",
@@ -240,10 +240,10 @@ export const facts = [
     fact: `In Motorcycle Road Racing (i.e. Isle of Man TT) the paramedics ride superbikes too, following the racers, to be as fast as possible on the crash scene.`,
     source: "streetrider",
   },
-  {
-    fact: `The first-ever Harley Davidson motorcycle only went 40km/h. It had a single-cylinder engine that actually used a tomato can as its carburetor.`,
-    source: "streetrider",
-  },
+  // {
+  //   fact: `The first-ever Harley Davidson motorcycle only went 40km/h. It had a single-cylinder engine that actually used a tomato can as its carburetor.`,
+  //   source: "streetrider",
+  // },
   {
     fact: `Horses were used as a method of transportation for messengers during World War 1 but were soon overtaken by the use of motorcycles.`,
     source: "streetrider",

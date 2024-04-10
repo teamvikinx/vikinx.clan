@@ -39,7 +39,7 @@ const Page = () => {
             <h1 className="title text-center">
               Our <span className="text-primary">Mission</span>
             </h1>
-            <p className="lg:w-[700px] mx-auto text-center paragraph">
+            <p className="lg:w-[700px] mx-auto text-justify lg:text-center paragraph">
               Our mission is to empower riders with technology that enhances
               their riding experience, fosters a sense of community, and
               promotes safety. We aim to provide a platform where riders can
@@ -59,7 +59,7 @@ const Page = () => {
           Our Vision <span className="text-primary">+</span>
           <span className="text-slate-500"> Values</span>
         </h1>
-        <p className="lg:w-[700px] mx-auto text-center paragraph">
+        <p className="lg:w-[700px] mx-auto text-justify lg:text-center paragraph">
           To revolutionize the biking experience by creating a global community
           of riders who share a passion for the open road, and to make every
           ride an effortless adventure.
@@ -69,7 +69,7 @@ const Page = () => {
             <TextCard
               key={item.title}
               item={item}
-              className={idx === 2 ? "row-span-2 justify-center" : "row-span-1"}
+              className={idx === 2 ? "row-span-2 justify-center lg:text-justify" : "row-span-1 lg:text-justify"}
             />
           ))}
         </div>
@@ -83,7 +83,7 @@ const Page = () => {
             </h1>
           </div>
           <div>
-            <p className="paragraph text-center lg:text-left">
+            <p className="paragraph text-justify lg:text-left">
               Be part of a legacy in the making. Every ride is a chapter in the
               grand saga of the road. Are you ready to write yours?
             </p>
@@ -126,7 +126,7 @@ const Page = () => {
           <h3 className="subtitle">
             Discover the Joy of Effortless Riding with <VikinXText />!
           </h3>
-          <div className="lg:w-[700px] mx-auto text-center space-y-4 paragraph">
+          <div className="lg:w-[700px] mx-auto text-justify lg:text-center space-y-4 paragraph">
             <p>
               Are you a solo rider seeking the thrill of the open road, yet
               yearning for the camaraderie and safety of a group ride? Or
@@ -154,7 +154,7 @@ const Page = () => {
       <section id="vikin-originals">
         <div className="grid justify-center items-center lg:grid-cols-2">
           <Image
-            src="/og-short-logo-spotlight.png"
+            src="/og-short-logo-spotlight.webp"
             alt="og-short-logo-spotlight"
             width={500}
           />
@@ -165,7 +165,7 @@ const Page = () => {
                 <VikinXText /> Originals?
               </span>
             </h1>
-            <p className="lg:w-[700px] mx-auto text-center lg:text-justify paragraph">
+            <p className="mx-auto text-justify lg:text-justify paragraph">
               VikinX Originals represents the pinnacle of distinction within the
               VikinX Community. It’s not merely a title; it’s a symbol of
               prestige and respect. Members awarded this honor enjoy exclusive
