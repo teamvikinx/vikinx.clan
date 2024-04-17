@@ -35,9 +35,9 @@ export const userValidation = z
         message: "You must be at least 18 years old to register",
       })
       .default(""),
-    instagram: z.string().url({ message: "Invalid URL" }).optional(),
-    facebook: z.string().url({ message: "Invalid URL" }).optional(),
-    twitter: z.string().url({ message: "Invalid URL" }).optional(),
+    instagram: z.string().url().optional().or(z.literal('')),
+    facebook: z.string().url().optional().or(z.literal('')),
+    twitter: z.string().url().optional().or(z.literal('')),
     blood_group: z.string({ required_error: "Blood group is required field" }),
     state: z.enum(states as [string, ...string[]], {
       required_error: "State is required",

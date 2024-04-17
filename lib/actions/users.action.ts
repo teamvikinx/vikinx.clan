@@ -20,10 +20,19 @@ export const fetchUser = async (userId: string): Promise<IUser | null> => {
 };
 
 export const createUser = async (payload: IUser) => {
+  let finalPayload = { ...payload };
+  const querySnapshot = await db.collection(constants.tables.users).get();
+
+  const usersRegistered = querySnapshot.size;
+
+  if (usersRegistered <= 100) {
+    finalPayload = { ...finalPayload, is_original: true };
+  }
+
   const docRef = db.collection(constants.tables.users).doc(payload.user_id);
 
   try {
-    await docRef.set(payload);
+    await docRef.set(finalPayload);
   } catch (error: any) {
     throw new Error(`Failed to fetch user:  ${error.message}`);
   }

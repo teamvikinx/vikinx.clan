@@ -51,7 +51,7 @@ export default function RootLayout({
       <body className={`${poppins.className}`}>
         <ClerkProvider appearance={{ baseTheme: dark }}>
           <Header />
-          <Toaster position="bottom-center" />
+          <Toaster position="top-right" reverseOrder={false} />
           <main className="container mx-auto px-4 md:px-6 lg:px-8 ">
             {children}
           </main>

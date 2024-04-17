@@ -82,13 +82,18 @@ export async function POST(req: Request) {
       dob: evt.data.birthday || "",
       is_active: false,
       user_id: evt.data.id,
-      socials: {},
+      socials: {
+        instagram: "",
+        facebook: "",
+        twitter: "",
+      },
       blood_group: "",
       rides_joined: [],
       status: true,
       onboarding: false,
       last_login: evt.data.last_sign_in_at,
-      state: ''
+      state: "",
+      is_original: false
     };
     await createUser(payload);
     return NextResponse.json({ message: "User created" }, { status: 201 });

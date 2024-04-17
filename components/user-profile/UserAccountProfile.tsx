@@ -103,6 +103,7 @@ const UserAccountProfile: React.FC<UserAccountProfileProps> = ({
       if (response.data.message) {
         if (edit) {
           setEditMode(false);
+          router.push("/profile");
           helpers.toastify("Updated profile successfully 🎉", "success");
         } else {
           router.push("/");
@@ -118,7 +119,7 @@ const UserAccountProfile: React.FC<UserAccountProfileProps> = ({
   return (
     <>
       {edit && (
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center mb-4">
           <Chip variant="faded" className="text-xs font-semibold">
             Mode: {editMode ? "Edit" : "View"}
           </Chip>
@@ -129,7 +130,7 @@ const UserAccountProfile: React.FC<UserAccountProfileProps> = ({
             variant="flat"
             onClick={() => setEditMode((prevState) => !prevState)}
           >
-            {editMode ? "View Profile" : "Edit Profile"}
+            {editMode ? "View Details" : "Edit Details"}
           </Button>
         </div>
       )}
@@ -403,25 +404,31 @@ const UserAccountProfile: React.FC<UserAccountProfileProps> = ({
                 )}
               </div>
             ))}
-            {editMode && (
+            {editMode || !userData.onboarding ? (
               <Button
                 className="w-full mt-6"
                 onClick={() => appendBike({ name: "", pet_name: "" })}
               >
                 Add Bike
               </Button>
+            ) : (
+              <></>
             )}
           </CardBody>
         </Card>
 
-        <Button
-          color="secondary"
-          type="submit"
-          className="w-full font-semibold uppercase"
-          isLoading={loading}
-        >
-          {editMode ? "Update" : "Submit"}
-        </Button>
+        {editMode || !userData.onboarding ? (
+          <Button
+            color="secondary"
+            type="submit"
+            className="w-full font-semibold uppercase"
+            isLoading={loading}
+          >
+            {editMode ? "Update" : "Submit"}
+          </Button>
+        ) : (
+          <></>
+        )}
 
         {!userData.onboarding && (
           <small className="text-center block">

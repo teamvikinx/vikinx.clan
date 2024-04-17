@@ -8,6 +8,8 @@ export const getFeaturedRides = async () => {
     const querySnapshot = await db
       .collection(constants.tables.rides)
       .where("is_featured", "==", true)
+      .where("is_published", "==", true)
+      .where("status", "==", "active")
       .get();
 
     const data = querySnapshot.docs.map((data) => data.data() as IRide);
@@ -22,6 +24,7 @@ export const getRides = async () => {
     const querySnapshot = await db
       .collection(constants.tables.rides)
       .where("status", "==", "active")
+      .where("is_published", "==", true)
       .get();
 
     const data = querySnapshot.docs.map((data) => data.data() as IRide);
@@ -38,5 +41,14 @@ export const getRideById = async (rideId: string) => {
     return ride.data() as IRide;
   } catch (error: any) {
     throw new Error(`Failed to fetch ride details: ${error.message}`);
+  }
+};
+export const getRules = async () => {
+  try {
+    const data = await db.collection(constants.tables.rules).doc("rule").get();
+
+    return data.data() as { rule: string };
+  } catch (error: any) {
+    throw new Error(`Failed to fetch ride rules: ${error.message}`);
   }
 };

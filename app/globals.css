@@ -17,3 +17,7 @@
 .contact-bg-image {
   background-image: url('/public/contact.webp');
 }
+
+.profileSection__danger_btn {
+  display: none !important;
+}

@@ -7,6 +7,14 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+export const socials = {
+  instagram: "https://www.instagram.com/vikinx.clan/",
+  facebook: "",
+  twitter: "https://twitter.com/TeamVikinX",
+  mail: "teamvikinx@gmail.com",
+  whatsapp: "https://chat.whatsapp.com/HuOBjCm7g39DQrToqeaj3p",
+};
+
 export const constants = {
   navLinks: [
     {
@@ -55,7 +63,9 @@ export const constants = {
     newsletter: "newsletter",
     announcements: "announcements",
     review: "review",
+    rules: "rules",
   },
+  allowedStates: ["maharashtra"],
   whyUsPoints: [
     {
       title: "Experience the Unmatched",
@@ -119,13 +129,31 @@ export const helpers = {
   ) => {
     switch (type) {
       case "error":
-        toast.error(message);
+        toast.error(message, {
+          style: {
+            borderRadius: "10px",
+            background: "#333",
+            color: "#fff",
+          },
+        });
         break;
       case "success":
-        toast.success(message);
+        toast.success(message, {
+          style: {
+            borderRadius: "10px",
+            background: "#333",
+            color: "#fff",
+          },
+        });
         break;
       default:
-        toast(message);
+        toast(message, {
+          style: {
+            borderRadius: "10px",
+            background: "#333",
+            color: "#fff",
+          },
+        });
         break;
     }
   },
