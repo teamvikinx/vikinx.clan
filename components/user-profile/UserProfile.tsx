@@ -20,8 +20,6 @@ const UserProfile: React.FC<UserProfileProps> = ({
   user,
   viewProfile = false,
 }) => {
-  console.log(user);
-  
   return (
     <section className="max-w-[900px] mx-auto space-y-8">
       <Card>

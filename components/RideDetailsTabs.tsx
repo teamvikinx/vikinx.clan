@@ -91,9 +91,6 @@ const RideDetailsTabs: React.FC<RideDetailsTabsProps> = ({
     setRiderIds(ids);
   }, []);
 
-  console.log(user.state.toLowerCase(), constants.allowedStates[0], constants.allowedStates.includes(user.state.toLowerCase()), !user.user_id);
-  
-
   return (
     <>
       <div className="text-center">

@@ -7,7 +7,7 @@ export const getStories = async (isFeatured = false) => {
   try {
     let query = db
       .collection(constants.tables.review)
-      .where("is_approved", "==", true);
+      .where("is_approved", "==", true).where("is_archive", "==", false);;
 
     if (isFeatured) {
       query = query.where("is_featured", "==", true);
@@ -19,7 +19,7 @@ export const getStories = async (isFeatured = false) => {
 
     return data;
   } catch (error: any) {
-    console.log(error)
+    console.log(error);
     throw new Error(`Failed to fetch user stories: ${error.message}`);
   }
 };

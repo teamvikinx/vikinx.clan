@@ -21,18 +21,33 @@ export const fetchUser = async (userId: string): Promise<IUser | null> => {
 
 export const createUser = async (payload: IUser) => {
   let finalPayload = { ...payload };
-  const querySnapshot = await db.collection(constants.tables.users).get();
-
-  const usersRegistered = querySnapshot.size;
-
-  if (usersRegistered <= 100) {
-    finalPayload = { ...finalPayload, is_original: true };
-  }
-
-  const docRef = db.collection(constants.tables.users).doc(payload.user_id);
-
   try {
+    const querySnapshot = await db.collection(constants.tables.users).get();
+
+    const usersRegistered = querySnapshot.size;
+
+    if (usersRegistered <= 100) {
+      finalPayload = { ...finalPayload, is_original: true };
+    }
+
+    const docRef = db.collection(constants.tables.users).doc(payload.user_id);
+    const docRef2 = db
+      .collection("pageSizes")
+      .doc("users")
+      .collection("count")
+      .doc("vikin");
+
+    const countData = (await docRef2.get()).data() as {
+      active: number;
+      deactivated: number;
+      count: number;
+    };
+
     await docRef.set(finalPayload);
+    await docRef2.update({
+      active: countData.active++,
+      count: countData.count++,
+    });
   } catch (error: any) {
     throw new Error(`Failed to fetch user:  ${error.message}`);
   }
@@ -68,36 +83,3 @@ export const getTotalActiveUsersCount = async () => {
   }
 };
 
-export const getRides = async () => {
-  try {
-    const querySnapshot = await db
-      .collection(constants.tables.rides)
-      .where("status", "==", "active")
-      .get();
-
-    const data = querySnapshot.docs.map((data) => data.data() as IRide);
-
-    return data;
-  } catch (error: any) {
-    throw new Error(`Failed to fetch rides: ${error.message}`);
-  }
-};
-
-export const getRideById = async (rideId: string) => {
-  try {
-    let ride = await db.collection(constants.tables.rides).doc(rideId).get();
-    let riders;
-    if (ride.exists) {
-      const rideData = ride.data() as IRide;
-      riders = await db
-        .collection(constants.tables.users)
-        .where("id", "in", rideData.users_joined)
-        .get();
-
-      rideData.users_joined = riders.docs.map((user) => user.data() as IUser);
-    }
-    return ride.data() as IRide;
-  } catch (error: any) {
-    throw new Error(`Failed to fetch ride details: ${error.message}`);
-  }
-};

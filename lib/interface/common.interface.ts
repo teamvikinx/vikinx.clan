@@ -82,6 +82,7 @@ interface IReview {
   comment: string;
   review_by: { name: string; id: string };
   is_featured: boolean;
+  is_archive: boolean;
   reviewed_at: number;
 }
 
