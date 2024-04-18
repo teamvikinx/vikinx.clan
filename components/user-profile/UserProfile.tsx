@@ -72,7 +72,7 @@ const UserProfile: React.FC<UserProfileProps> = ({
               {/* bikes */}
               <div>
                 {user.bikes?.map((bike) => (
-                  <Chip size="sm">
+                  <Chip size="sm" key={bike.name}>
                     {bike.name} (AKA {bike.pet_name})
                   </Chip>
                 ))}
