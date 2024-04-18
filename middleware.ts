@@ -1,6 +1,8 @@
 import { authMiddleware, redirectToSignIn } from "@clerk/nextjs";
 import { rateLimitMiddleware } from "./middlewares/rateLimit";
 import { NextResponse } from "next/server";
+import { HttpStatusCode } from "axios";
+import { isUserAllowed } from "./middlewares/userAllowed";
 
 const rateLimitRoutes = ["/api/contact", "/api/newsletter"];
 
@@ -30,10 +32,24 @@ export default authMiddleware({
       return redirectToSignIn({ returnBackUrl: req.url });
     }
 
-    if (rateLimitRoutes.some((route) => new RegExp(route).test(req.url))) {
-      const isBlocked = await rateLimitMiddleware(req);
+    if (auth.userId) {
+      const isAllowed = await isUserAllowed(req, auth.userId);
 
-      return isBlocked
+      return isAllowed
+        ? NextResponse.next()
+        : NextResponse.json(
+            {
+              message:
+                "Your account is temporarily suspended. Please contact the VikinX support team for assistance.",
+            },
+            { status: HttpStatusCode.BadRequest }
+          );
+    }
+
+    if (rateLimitRoutes.some((route) => new RegExp(route).test(req.url))) {
+      const isAllowed = await rateLimitMiddleware(req);
+
+      return isAllowed
         ? NextResponse.next()
         : NextResponse.json(
             {

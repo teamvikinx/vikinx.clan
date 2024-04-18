@@ -163,23 +163,27 @@ export default async function Home() {
         <PulseBeams />
       </section>
 
-      <section className="!-mt-16 relative z-20 md:!mt-32">
-        <h1 className="title text-center">
-          Upcoming Expeditions
-          <span className="text-slate-500 block mt-2">
-            Be Part Of The Adventure!
-          </span>
-        </h1>
-        <Suspense fallback={<p>Loading Featured Rides...</p>}>
-          <div
-            className={`grid md:grid-cols-2 lg:grid-cols-${featuredRides.length} justify-center gap-6`}
-          >
-            {featuredRides.map((ride) => (
-              <RideCard ride={ride} key={ride.uuid} />
-            ))}
-          </div>
-        </Suspense>
-      </section>
+      {featuredRides.length ? (
+        <section className="!-mt-16 relative z-20 md:!mt-32">
+          <h1 className="title text-center">
+            Upcoming Expeditions
+            <span className="text-slate-500 block mt-2">
+              Be Part Of The Adventure!
+            </span>
+          </h1>
+          <Suspense fallback={<p>Loading Featured Rides...</p>}>
+            <div
+              className={`grid md:grid-cols-2 lg:grid-cols-${featuredRides.length} justify-center gap-6`}
+            >
+              {featuredRides.map((ride) => (
+                <RideCard ride={ride} key={ride.uuid} />
+              ))}
+            </div>
+          </Suspense>
+        </section>
+      ) : (
+        <></>
+      )}
 
       <section>
         <Suspense fallback={<p>Loading Stories...</p>}>

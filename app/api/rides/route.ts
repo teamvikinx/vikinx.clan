@@ -12,6 +12,8 @@ export async function POST(req: NextRequest) {
       joined_at: number;
       user_id: string;
       ride_id: string;
+      name: string;
+      profile_picture: string
     };
 
     const docRef = db.collection(constants.tables.rides).doc(payload.ride_id);
@@ -22,6 +24,8 @@ export async function POST(req: NextRequest) {
       ridersArray.push({
         joined_at: payload.joined_at,
         user_id: payload.user_id,
+        name: payload.name,
+        profile_picture: payload.profile_picture
       });
 
       ride.users_joined = ridersArray;
@@ -38,6 +42,8 @@ export async function POST(req: NextRequest) {
       );
     }
   } catch (error) {
+    console.log(error);
+    
     return NextResponse.json(
       { message: error },
       { status: HttpStatusCode.BadRequest }

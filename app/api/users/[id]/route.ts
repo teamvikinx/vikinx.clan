@@ -4,14 +4,21 @@ import admin from "@/lib/config/firebase";
 import { constants } from "@/lib/utils";
 
 const db = admin.firestore();
-export async function POST(req: NextRequest) {
-  try {
-    const payload = (await req.json()) as Partial<IUser>;
 
-    const docRef = db.collection(constants.tables.users).doc(payload.user_id!);
-    await docRef.update(payload);
+export async function GET(
+  req: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  try {
+    const data = await db
+      .collection(constants.tables.users)
+      .doc(params.id)
+      .get();
+
+    const user = data.data() as IUser;
+    
     return NextResponse.json(
-      { message: "Onboarding successfull" },
+      { allowed: user ? user.status : false },
       { status: 200 }
     );
   } catch (error) {
@@ -21,5 +28,3 @@ export async function POST(req: NextRequest) {
     );
   }
 }
-
-

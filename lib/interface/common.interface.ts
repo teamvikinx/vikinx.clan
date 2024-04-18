@@ -56,7 +56,7 @@ interface IRide {
   average_kilometers: number;
   is_published: boolean;
   status?: RideStatus;
-  users_joined: { joined_at: any; user_id: string }[];
+  users_joined: { joined_at: any; user_id: string, name: string; profile_picture: string }[];
   uuid: string;
   createdAt: Date | string;
   createdBy: string;
@@ -82,6 +82,7 @@ interface IReview {
   comment: string;
   review_by: { name: string; id: string };
   is_featured: boolean;
+  is_archive: boolean;
   reviewed_at: number;
 }
 

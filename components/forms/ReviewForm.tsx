@@ -34,6 +34,7 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ currentUser }) => {
       ...data,
       is_approved: false,
       is_featured: false,
+      is_archive: false,
       review_by: {
         name: currentUser.name,
         id: currentUser.id,
