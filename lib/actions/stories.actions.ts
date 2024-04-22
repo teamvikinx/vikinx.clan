@@ -1,4 +1,4 @@
-'user server'
+'use server'
 import { constants } from "../utils";
 import admin from "../config/firebase";
 
