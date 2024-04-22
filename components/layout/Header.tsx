@@ -3,7 +3,12 @@
 import { constants } from "@/lib/utils";
 import React, { useState } from "react";
 import Image from "next/image";
-import { LogInIcon, RadioTower, UserRoundCheck, UserRoundCog, UserRoundPlus } from "lucide-react";
+import {
+  MegaphoneIcon,
+  RadioTower,
+  TicketXIcon,
+  UserRoundCog,
+} from "lucide-react";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import {
   Button,
@@ -15,22 +20,12 @@ import {
   NavbarMenuItem,
   NavbarMenuToggle,
   Link,
-  Dropdown,
-  DropdownItem,
-  DropdownMenu,
-  DropdownTrigger,
-  cn,
 } from "@nextui-org/react";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
-import useWindowDimensions from "@/hooks/use-window-dimensions";
-
-const iconClasses =
-  "text-xl text-primary pointer-events-none flex-shrink-0";
 
 const Header = () => {
   const pathname = usePathname();
-  const { width } = useWindowDimensions();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
     <Navbar onMenuOpenChange={setIsMenuOpen} className="z-[99]">
@@ -42,7 +37,7 @@ const Header = () => {
         <NavbarBrand>
           <Link href="/">
             <Image
-              src={"/vikinx-logo.png"}
+              src={"/vikinx-logo.webp"}
               width={100}
               height={200}
               alt="vikinx-logo"
@@ -64,7 +59,7 @@ const Header = () => {
               <Link color="foreground" href={item.path}>
                 {item.title}
                 {isSelected && (
-                  <motion.div className="absolute -bottom-[1px] left-0 right-0 h-[1px]">
+                  <motion.div className="absolute top-full left-1/2 -translate-x-1/2 -translate-y-1/2 h-[1px]">
                     <svg width="37" height="8" viewBox="0 0 37 8" fill="none">
                       <motion.path
                         d="M1 5.39971C7.48565 -1.08593 6.44837 -0.12827 8.33643 6.47992C8.34809 6.52075 11.6019 2.72875 12.3422 2.33912C13.8991 1.5197 16.6594 2.96924 18.3734 2.96924C21.665 2.96924 23.1972 1.69759 26.745 2.78921C29.7551 3.71539 32.6954 3.7794 35.8368 3.7794"
@@ -93,61 +88,68 @@ const Header = () => {
       </NavbarContent>
       <NavbarContent justify="end">
         <SignedOut>
-          {width > 768 ? (
-            <>
-              <NavbarItem>
-                <Button
-                  as={Link}
-                  color="secondary"
-                  href="/sign-in"
-                  variant="bordered"
-                  size="sm"
-                >
-                  Sign In
-                </Button>
-              </NavbarItem>
-              <NavbarItem>
-                <Button
-                  as={Link}
-                  color="secondary"
-                  href="/sign-up"
-                  variant="solid"
-                  size="sm"
-                >
-                  Sign Up
-                </Button>
-              </NavbarItem>
-            </>
-          ) : (
-            <Dropdown>
-              <DropdownTrigger>
-                <Button size="sm" isIconOnly variant="flat" color="primary">
-                  <LogInIcon size={16} />
-                </Button>
-              </DropdownTrigger>
-              <DropdownMenu
-                variant="faded"
-                aria-label="Dropdown menu with icons"
-              >
-                <DropdownItem key="sign-up" startContent={<UserRoundPlus className={iconClasses} size={14}/>}>Sign Up</DropdownItem>
-                <DropdownItem key="sign-in" startContent={<UserRoundCheck className={iconClasses} size={14}/>}>Sign In</DropdownItem>
-              </DropdownMenu>
-            </Dropdown>
-          )}
+          <NavbarItem>
+            <Button
+              as={Link}
+              color="secondary"
+              href="/sign-in"
+              variant="bordered"
+              size="sm"
+            >
+              Sign In
+            </Button>
+          </NavbarItem>
+          <NavbarItem>
+            <Button
+              as={Link}
+              color="secondary"
+              href="/sign-up"
+              variant="solid"
+              size="sm"
+            >
+              Sign Up
+            </Button>
+          </NavbarItem>
         </SignedOut>
         <SignedIn>
           <span className="flex  items-center ml-6 space-x-4">
-            <Button
-              size={"sm"}
-              color="secondary"
-              variant="light"
-              as={Link}
-              href={"/announcements"}
+            <Link href="/events" color="foreground" className="lg:hidden">
+              <span>
+                <Button size={"sm"} color="primary" variant="light" isIconOnly>
+                  <TicketXIcon size={18} />
+                </Button>
+                <small className="text-[10px] block font-semibold -mt-2 text-center">
+                  Events
+                </small>
+              </span>
+            </Link>
+            <Link href="/announcements" color="foreground">
+              <span>
+                <Button
+                  size={"sm"}
+                  color="secondary"
+                  variant="light"
+                  isIconOnly
+                >
+                  <MegaphoneIcon size={18} />
+                </Button>
+                <small className="text-[10px] block font-semibold -mt-2 text-center">
+                  Info
+                </small>
+              </span>
+            </Link>
+            <UserButton
+              afterSignOutUrl="/"
+              userProfileProps={{
+                appearance: {
+                  elements: {
+                    profileSection__danger: "hidden",
+                  },
+                },
+              }}
             >
-              <RadioTower size={18} />
-            </Button>
-            <UserButton afterSignOutUrl="/">
               <UserButton.UserProfileLink
+                key={"profile-section-custom"}
                 label="Profile"
                 url="/profile"
                 labelIcon={<UserRoundCog size={18} />}

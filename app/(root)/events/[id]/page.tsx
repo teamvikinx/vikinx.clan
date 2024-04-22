@@ -1,9 +1,9 @@
-import { getRideById } from "@/lib/actions/rides.action";
+import { getRideById, getRules } from "@/lib/actions/rides.action";
 import { helpers } from "@/lib/utils";
 import { Card, CardBody, Image, Link } from "@nextui-org/react";
 import { CalendarFold, RouteIcon, SquareArrowOutUpRight } from "lucide-react";
 import React from "react";
-import RideDetailsTabs from "@/components/common/RideDetailsTabs";
+import RideDetailsTabs from "@/components/RideDetailsTabs";
 import { currentUser } from "@clerk/nextjs";
 import { fetchUser } from "@/lib/actions/users.action";
 import { Metadata, ResolvingMetadata } from "next";
@@ -66,6 +66,8 @@ async function fetchUserData() {
     status: userInfo?.status || false,
     onboarding: userInfo?.onboarding || false,
     state: userInfo?.state || "",
+    name: userInfo?.name,
+    profile_picture: userInfo?.profile_picture,
   };
 
   return userData as IUser;
@@ -74,11 +76,12 @@ async function fetchUserData() {
 const Page = async ({ params }: { params: { [key: string]: string } }) => {
   const ride = await getRideById(params.id);
   const user = await fetchUserData();
+  const { rule } = await getRules();
 
   return (
     <main className="py-8">
       <Card className="max-w-[900px] mx-auto !rounded-b-none">
-        <CardBody className="p-0">
+        <CardBody className="p-0 overflow-x-hidden">
           <Image
             shadow="sm"
             radius="lg"
@@ -114,7 +117,8 @@ const Page = async ({ params }: { params: { [key: string]: string } }) => {
               description={ride.description}
               rideId={params.id}
               user={user}
-              ridersJoined={ride.users_joined.map((user) => user.user_id)}
+              ridersJoined={ride.users_joined}
+              rules={rule}
             />
           </div>
         </CardBody>

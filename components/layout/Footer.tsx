@@ -3,6 +3,8 @@ import { Facebook, Instagram, Twitter } from "lucide-react";
 import React from "react";
 import NewsLetter from "../forms/NewsLetter";
 import VikinXText from "../common/VikinXText";
+import Socials from "../common/Socials";
+import { socials } from "@/lib/utils";
 
 const Footer = () => {
   return (
@@ -11,61 +13,75 @@ const Footer = () => {
         <div className="grid justify-center items-center lg:grid-cols-2">
           <div className="text-center lg:text-left">
             <div className="flex justify-center lg:justify-start lg:ml-4">
-              <Image src={"/vikinx-logo.png"} width={200} alt="vikinx-logo" />
+              <Image src={"/vikinx-logo.webp"} width={200} alt="vikinx-logo" />
             </div>
             <p className="md:!w-[300px] mb-6 paragraph">
               <VikinXText /> is not just a name; it’s a promise of a new dawn in
               riding and brotherhood.
             </p>
-            <div className="space-x-4 lg:justify-self-end">
-              <Button
-                href=""
-                className="rounded-full"
-                size="sm"
-                variant="flat"
-                color="secondary"
-              >
-                <Instagram size={14} />
-              </Button>
-              <Button
-                href=""
-                className="rounded-full"
-                size="sm"
-                variant="flat"
-                color="secondary"
-              >
-                <Twitter size={14} />
-              </Button>
-              <Button
-                href=""
-                className="rounded-full"
-                size="sm"
-                variant="flat"
-                color="secondary"
-              >
-                <Facebook size={14} />
-              </Button>
-            </div>
+            <Socials {...socials} />
           </div>
           <div className="justify-self-center text-center lg:text-left mt-8 lg:mt-0 lg:justify-self-end">
             <div>
-              <Link className="block text-slate-500" href="/">
+              <Link
+                className="block text-slate-500 hover:text-primary"
+                href="/"
+              >
                 Home
               </Link>
-              <Link className="block text-slate-500" href="/about">
+              <Link
+                className="block text-slate-500 hover:text-primary"
+                href="/about"
+              >
                 About
               </Link>
-              <Link className="block text-slate-500" href="/articles">
-                Articles
-              </Link>
-              <Link className="block text-slate-500" href="/contact">
-                Contact
-              </Link>
-              <Link className="block text-slate-500" href="/events">
+              <Link
+                className="block text-slate-500 hover:text-primary"
+                href="/events"
+              >
                 Events
               </Link>
-              <Link className="block text-slate-500" href="/announcements">
+              <Link
+                className="block text-slate-500 hover:text-primary"
+                href="/gallery"
+              >
+                Gallery
+              </Link>
+              <Link
+                className="block text-slate-500 hover:text-primary"
+                href="/articles"
+              >
+                Articles
+              </Link>
+              <Link
+                className="block text-slate-500 hover:text-primary"
+                href="/rider-diaries"
+              >
+                Rider Diaries
+              </Link>
+              <Link
+                className="block text-slate-500 hover:text-primary"
+                href="/contact"
+              >
+                Contact
+              </Link>
+              <Link
+                className="block text-slate-500 hover:text-primary"
+                href="/announcements"
+              >
                 Announcements
+              </Link>
+              <Link
+                className="block text-slate-500 hover:text-primary"
+                href="/your-story"
+              >
+                Your Story
+              </Link>
+              <Link
+                className="block text-slate-500 hover:text-primary"
+                href="/profile"
+              >
+                Profile
               </Link>
             </div>
           </div>

@@ -17,13 +17,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import React, { useState } from "react";
 import { userValidation } from "@/lib/validations/user.validation";
 import { z } from "zod";
-import {
-  Facebook,
-  Instagram,
-  Twitter,
-} from "lucide-react";
+import { Facebook, Instagram, Twitter } from "lucide-react";
 import axios from "axios";
-import { helpers } from "@/lib/utils";
+import { constants, helpers } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import { states } from "@/lib/data/states";
 
@@ -107,6 +103,7 @@ const UserAccountProfile: React.FC<UserAccountProfileProps> = ({
       if (response.data.message) {
         if (edit) {
           setEditMode(false);
+          router.push("/profile");
           helpers.toastify("Updated profile successfully 🎉", "success");
         } else {
           router.push("/");
@@ -122,7 +119,7 @@ const UserAccountProfile: React.FC<UserAccountProfileProps> = ({
   return (
     <>
       {edit && (
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center mb-4">
           <Chip variant="faded" className="text-xs font-semibold">
             Mode: {editMode ? "Edit" : "View"}
           </Chip>
@@ -133,7 +130,7 @@ const UserAccountProfile: React.FC<UserAccountProfileProps> = ({
             variant="flat"
             onClick={() => setEditMode((prevState) => !prevState)}
           >
-            {editMode ? "View Profile" : "Edit Profile"}
+            {editMode ? "View Details" : "Edit Details"}
           </Button>
         </div>
       )}
@@ -256,19 +253,27 @@ const UserAccountProfile: React.FC<UserAccountProfileProps> = ({
                 )}
               />
               <Controller
-                name="blood_group"
+                 name="blood_group"
                 control={control}
-                render={({ field }) => (
-                  <Input
-                    isRequired
-                    readOnly={edit && !editMode}
-                    size="sm"
-                    label="Blood Group"
-                    {...field}
-                    isInvalid={!!errors.blood_group?.message?.toString()}
-                    errorMessage={errors.blood_group?.message?.toString()}
-                  />
-                )}
+                render={({ field }) => {
+                  return (
+                    <Select
+                      isRequired
+                      size="sm"
+                      label="Blood Group"
+                      {...field}
+                      isInvalid={!!errors.blood_group}
+                      errorMessage={errors.blood_group?.message?.toString()}
+                      defaultSelectedKeys={[field.value]}
+                    >
+                      {constants.bloodGroups.map((blood_group) => (
+                        <SelectItem key={blood_group} value={blood_group}>
+                          {blood_group}
+                        </SelectItem>
+                      ))}
+                    </Select>
+                  );
+                }}
               />
               <Controller
                 name="state"
@@ -359,7 +364,7 @@ const UserAccountProfile: React.FC<UserAccountProfileProps> = ({
               <div
                 key={field.id}
                 className={`grid grid-cols-2 lg:grid-cols-${
-                  index ? 3 : 2
+                  index && editMode ? 3 : 2
                 }  gap-4 mb-6`}
               >
                 <Controller
@@ -407,18 +412,20 @@ const UserAccountProfile: React.FC<UserAccountProfileProps> = ({
                 )}
               </div>
             ))}
-            {editMode && (
+            {editMode || !userData.onboarding ? (
               <Button
                 className="w-full mt-6"
                 onClick={() => appendBike({ name: "", pet_name: "" })}
               >
                 Add Bike
               </Button>
+            ) : (
+              <></>
             )}
           </CardBody>
         </Card>
 
-        {editMode && (
+        {editMode || !userData.onboarding ? (
           <Button
             color="secondary"
             type="submit"
@@ -427,7 +434,10 @@ const UserAccountProfile: React.FC<UserAccountProfileProps> = ({
           >
             {editMode ? "Update" : "Submit"}
           </Button>
+        ) : (
+          <></>
         )}
+
         {!userData.onboarding && (
           <small className="text-center block">
             By clicking Submit, you agree to our{" "}

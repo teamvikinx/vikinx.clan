@@ -4,7 +4,6 @@ import admin from "@/lib/config/firebase";
 import { constants } from "@/lib/utils";
 
 const db = admin.firestore();
-
 export async function POST(req: NextRequest) {
   try {
     const payload = (await req.json()) as Partial<IUser>;
@@ -22,3 +21,5 @@ export async function POST(req: NextRequest) {
     );
   }
 }
+
+

@@ -1,4 +1,4 @@
-import UserAccountProfile from "@/components/forms/UserAccountProfile";
+import UserAccountProfile from "@/components/user-profile/UserAccountProfile";
 import { fetchUser } from "@/lib/actions/users.action";
 import { currentUser } from "@clerk/nextjs";
 import Image from "next/image";
@@ -19,7 +19,7 @@ async function fetchUserData() {
     aka: userInfo?.aka || "",
     mobile: userInfo?.mobile || "",
     emergency_number: userInfo?.emergency_number || "",
-    email:  userInfo?.email || user?.emailAddresses[0].emailAddress,
+    email: userInfo?.email || user?.emailAddresses[0].emailAddress,
     bio: userInfo?.bio || "",
     profile_picture: userInfo?.profile_picture || user?.imageUrl,
     bikes: userInfo?.bikes || [],
@@ -30,15 +30,20 @@ async function fetchUserData() {
     rides_joined: userInfo?.rides_joined || [],
     status: userInfo?.status,
     onboarding: userInfo?.onboarding,
+    state: userInfo?.state,
   };
-  
+
   return userData as IUser;
 }
 
-const Page = async () => {
+const Page = async ({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string };
+}) => {
   const user = await fetchUserData();
 
-  if (user && user.onboarding) {
+  if (user && user.onboarding && !searchParams.edit) {
     redirect("/");
   }
 
@@ -47,17 +52,23 @@ const Page = async () => {
       <span>
         <Link href={"/"} className="flex justify-center">
           <Image
-            src={"/vikinx-logo.png"}
+            src={"/vikinx-logo.webp"}
             width={150}
             height={200}
             alt="vikinx-logo"
           />
         </Link>
         <div className="text-center mb-8">
-          <h1 className="title">Onboarding</h1>
-          <p className="subtitle">Let your jounery begin!</p>
+          {searchParams.edit ? (
+            <h1 className="title">Edit Profile Details</h1>
+          ) : (
+            <>
+              <h1 className="title">Onboarding</h1>
+              <p className="subtitle">Let your jounery begin!</p>
+            </>
+          )}
         </div>
-        <UserAccountProfile userData={user} />
+        <UserAccountProfile userData={user} edit={!!searchParams.edit} />
       </span>
     </div>
   );

@@ -10,8 +10,10 @@ import Link from "next/link";
 import TextCard from "@/components/common/cards/TextCard";
 import { getFeaturedRides } from "@/lib/actions/rides.action";
 import { Suspense } from "react";
+import { currentUser } from "@clerk/nextjs";
 
 export default async function Home() {
+  const user = await currentUser();
   const totalUsersRegistered = await getTotalActiveUsersCount();
   const featuredRides = await getFeaturedRides();
 
@@ -20,7 +22,7 @@ export default async function Home() {
       <section>
         <div
           className="relative w-full h-screen bg-cover bg-center"
-          style={{ backgroundImage: "url('/home-bg.jpg')" }}
+          style={{ backgroundImage: "url('/home-bg.webp')" }}
         >
           <div className="absolute w-full h-full p-5 text-white bg-black bg-opacity-70 text-xl flex flex-col items-center justify-center overflow-hidden">
             <div className="space-y-6 text-center">
@@ -28,7 +30,7 @@ export default async function Home() {
                 <span className="text-primary">Uniting Riders</span>, Redefining
                 Journeys
               </h1>
-              <p className="text-sm lg:text-lg lg:w-[900px] mx-auto">
+              <p className="text-sm lg:text-lg lg:w-[900px] mx-auto text-justify lg:text-center">
                 Crafted with the soul of a rider, <VikinXText /> is your compass
                 to the uncharted. We’re not just about the ride; we’re about
                 revolutionizing the ride. Connect, conquer, and celebrate the
@@ -42,7 +44,7 @@ export default async function Home() {
               <Button
                 as={Link}
                 color="primary"
-                href="/sign-up"
+                href={user ? "/events" : "/sign-up"}
                 variant="solid"
                 radius="sm"
                 className="!w-[150px]  font-semibold uppercase"
@@ -56,19 +58,54 @@ export default async function Home() {
 
       <section>
         <div className="lg:grid lg:grid-cols-3 grid-flow-row gap-6 items-center">
-          <div>
-            <h1 className="title mb-4 lg:hidden block">
+          {/* FOR SMALL SCREENS */}
+          <div className="lg:hidden block">
+            <h1 className="title mb-4 text-center lg:hidden block">
               Why <VikinXText />?
             </h1>
-            <Image
-              className="grayscale"
-              src="/why-us.jpg"
-              alt="why-us-image"
-              width={400}
-            />
+            <div className="relative">
+              <Image
+                className="grayscale object-cover"
+                src="/why-us.webp"
+                alt="why-us-image"
+                width={400}
+              />
+              <div className="bg-black/50 absolute top-0 left-0 w-full h-full z-10" />
+              <div className="absolute text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
+                <p className="text-justify paragraph">
+                  Embark on a journey where the road never ends, and the
+                  adventure is eternal. Join <VikinXText />, and become part of
+                  a movement that’s more than just riding—it’s about embracing
+                  the spirit of the open road and the brotherhood that comes
+                  with it. Here’s why you should throttle up and join us.
+                </p>
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-6 mt-6">
+              {constants.whyUsPoints.map((item, idx) => (
+                <TextCard
+                  key={item.title}
+                  item={item}
+                  className={
+                    idx === constants.whyUsPoints.length - 1
+                      ? "col-span-full"
+                      : "mt-0"
+                  }
+                />
+              ))}
+            </div>
           </div>
-          <div className="col-span-2 space-y-6">
-            <h1 className="title hidden lg:block">
+          {/* FOR SMALL SCREENS */}
+
+          {/* FOR LARGE SCREENS */}
+          <Image
+            className="grayscale object-cover hidden lg:block"
+            src="/why-us.webp"
+            alt="why-us-image"
+            width={400}
+          />
+          <div className="col-span-2 space-y-6 hidden lg:block">
+            <h1 className="title">
               Why <VikinXText className="mr-2" />?
             </h1>
             <p className="text-justify paragraph">
@@ -78,9 +115,17 @@ export default async function Home() {
               the open road and the brotherhood that comes with it. Here’s why
               you should throttle up and join us.
             </p>
-            <div className="grid grid-cols-2 lg:grid-cols-3 gap-6">
-              {constants.whyUsPoints.map((item) => (
-                <TextCard key={item.title} item={item} />
+            <div className="grid grid-rows-2 grid-cols-3 gap-6 mt-6">
+              {constants.whyUsPoints.map((item, idx) => (
+                <TextCard
+                  key={item.title}
+                  item={item}
+                  className={
+                    idx === 2
+                      ? "row-span-full justify-center text-justify"
+                      : "mt-0 text-justify"
+                  }
+                />
               ))}
             </div>
             <div className="text-center lg:text-left">
@@ -95,10 +140,12 @@ export default async function Home() {
               </Button>
             </div>
           </div>
+
+          {/* FOR LARGE SCREENS */}
         </div>
       </section>
       <section>
-        <div>
+        <div className="relative z-30">
           <h1 className="title text-center">
             <VikinXText className="mr-2 md:mr-3" />
             Expeditions{" "}
@@ -116,23 +163,27 @@ export default async function Home() {
         <PulseBeams />
       </section>
 
-      <section className="!-mt-16 relative z-20 md:!mt-32">
-        <h1 className="title text-center">
-          Upcoming Expeditions
-          <span className="text-slate-500 block mt-2">
-            Be Part Of The Adventure!
-          </span>
-        </h1>
-        <Suspense fallback={<p>Loading Featured Rides...</p>}>
-          <div
-            className={`grid md:grid-cols-2 lg:grid-cols-${featuredRides.length} justify-center gap-6`}
-          >
-            {featuredRides.map((ride) => (
-              <RideCard ride={ride} key={ride.uuid} />
-            ))}
-          </div>
-        </Suspense>
-      </section>
+      {featuredRides.length ? (
+        <section className="!-mt-16 relative z-20 md:!mt-32">
+          <h1 className="title text-center">
+            Upcoming Expeditions
+            <span className="text-slate-500 block mt-2">
+              Be Part Of The Adventure!
+            </span>
+          </h1>
+          <Suspense fallback={<p>Loading Featured Rides...</p>}>
+            <div
+              className={`grid md:grid-cols-2 lg:grid-cols-${featuredRides.length} justify-center gap-6`}
+            >
+              {featuredRides.map((ride) => (
+                <RideCard ride={ride} key={ride.uuid} />
+              ))}
+            </div>
+          </Suspense>
+        </section>
+      ) : (
+        <></>
+      )}
 
       <section>
         <Suspense fallback={<p>Loading Stories...</p>}>
@@ -165,7 +216,7 @@ export default async function Home() {
             <div className="text-center">
               <div className="flex justify-center">
                 <Image
-                  src="/vikinx-short-og.png"
+                  src="/vikinx-short-og.webp"
                   width={250}
                   alt="vikinx-originals-short-logo"
                 />
@@ -188,7 +239,7 @@ export default async function Home() {
           <div className="flex justify-center">
             <Image
               className="grayscale"
-              src="/vikinx-guy.jpg"
+              src="/vikinx-guy.webp"
               alt="vikinx-merch-guy"
               width={400}
             />

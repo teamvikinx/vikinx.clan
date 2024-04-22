@@ -3,7 +3,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import PhotoAlbum from "react-photo-album";
 import Lightbox from "yet-another-react-lightbox";
-import GallerySkeleton from "../common/skeletons/GallerySkeleton";
+import GallerySkeleton from "./common/skeletons/GallerySkeleton";
 
 const PhotoGallery = () => {
   const [index, setIndex] = useState(-1);
@@ -13,12 +13,15 @@ const PhotoGallery = () => {
   const getGalleryImages = async () => {
     setLoading(true);
     try {
-      const response = await axios.get<{ data: CloudinaryResponse[] }>(
-        "/api/gallery"
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/gallery`,
+        { next: { revalidate: 3600 } }
       );
 
-      if (response.data && response.data.data) {
-        const updatedData = response.data.data.map((image) => ({
+      const data = await res.json();
+
+      if (data.data && data.data.data) {
+        const updatedData = data.data.data.map((image: CloudinaryResponse) => ({
           src: image.secure_url,
           width: image.width,
           height: image.height,

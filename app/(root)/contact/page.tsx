@@ -1,8 +1,10 @@
+import Socials from "@/components/common/Socials";
 import ContactForm from "@/components/forms/ContactForm";
 import { fetchUser } from "@/lib/actions/users.action";
+import { socials } from "@/lib/utils";
 import { currentUser } from "@clerk/nextjs";
-import { Button, Card, Chip, Image } from "@nextui-org/react";
-import { Facebook, Instagram, Twitter } from "lucide-react";
+import { Button, Card, Chip, Image, Link } from "@nextui-org/react";
+import { Facebook, Instagram, MailIcon, Twitter } from "lucide-react";
 import { Metadata } from "next";
 import React from "react";
 
@@ -58,7 +60,7 @@ const Page = async () => {
         <Card className="grid lg:grid-cols-3 lg:gap-4 items-center">
           <div className="hidden lg:flex">
             <Image
-              src="/contact.jpg"
+              src="/contact.webp"
               alt="dominar-400"
               className="w-full grayscale rounded-r-none"
             />
@@ -72,39 +74,8 @@ const Page = async () => {
               </p>
             </div>
             <ContactForm userData={userDetails} />
-            <div className="space-x-4 text-center">
-              <Button
-                href=""
-                className="rounded-full"
-                size="sm"
-                variant="flat"
-                color="secondary"
-              >
-                <Instagram size={14} />
-              </Button>
-              <Button
-                href=""
-                className="rounded-full"
-                size="sm"
-                variant="flat"
-                color="secondary"
-              >
-                <Twitter size={14} />
-              </Button>
-              <Button
-                href=""
-                className="rounded-full"
-                size="sm"
-                variant="flat"
-                color="secondary"
-              >
-                <Facebook size={14} />
-              </Button>
-              <span className="inline-block mt-4 md:mt-0">
-                <Chip size="md" color="secondary" variant="flat">
-                  team@vikinx.in
-                </Chip>
-              </span>
+            <div className="flex justify-center items-center">
+              <Socials {...socials} />
             </div>
           </div>
         </Card>
