@@ -61,7 +61,7 @@ const RideDetailsTabs: React.FC<RideDetailsTabsProps> = ({
     }
 
     if (!user.onboarding) {
-      router.push("/onboarding");
+      router.push(`/onboarding?enroll=true&eventId=${rideId}`);
       return;
     }
 
@@ -169,7 +169,7 @@ const RideDetailsTabs: React.FC<RideDetailsTabsProps> = ({
               <Link href={`/profile/${rider.user_id}`}>
                 <div className="flex items-center space-x-4">
                   <Avatar src={rider.profile_picture} />
-                  <p>{rider.name}</p>
+                  <p>{rider.user_id === user.user_id ? "You" : rider.name}</p>
                 </div>
               </Link>
               <div>

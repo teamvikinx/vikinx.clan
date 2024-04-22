@@ -20,7 +20,7 @@ import { z } from "zod";
 import { Facebook, Instagram, Twitter } from "lucide-react";
 import axios from "axios";
 import { constants, helpers } from "@/lib/utils";
-import { useRouter } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import { states } from "@/lib/data/states";
 import { cities } from "@/lib/data/cities";
 
@@ -36,6 +36,7 @@ const UserAccountProfile: React.FC<UserAccountProfileProps> = ({
   edit = false,
 }) => {
   const router = useRouter();
+  const params = useSearchParams();
 
   const [editMode, setEditMode] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -99,6 +100,17 @@ const UserAccountProfile: React.FC<UserAccountProfileProps> = ({
     setLoading(true);
     const payload: Partial<IUser> = {
       ...data,
+      bio:
+        data.bio ||
+        `Hello everyone! My name is ${data.name} ${
+          data.aka ? `but you can call me ${data.aka}` : ""
+        }, I hail from the vibrant city of ${
+          data.city
+        } nestled in the heart of ${data.state}. I’m the proud owner of ${
+          data.bikes[0].name
+        } affectionately dubbed ${
+          data.bikes[0].pet_name
+        }. It’s a thrill to be part of VikinX, and I’m eagerly anticipating all the exciting events on the horizon. Let’s ride into new adventures together!`,
       bikes: data.bikes.length ? data.bikes : [],
       socials: {
         instagram: data.instagram || "",
@@ -116,6 +128,22 @@ const UserAccountProfile: React.FC<UserAccountProfileProps> = ({
       );
 
       if (response.data.message) {
+        if (Boolean(params.get("enroll")) && params.get("eventId")) {
+          const response = await axios.post<{ message: string }>("/api/rides", {
+            joined_at: Date.now(),
+            user_id: userData.user_id,
+            name: data.name,
+            profile_picture: userData.profile_picture,
+            ride_id: params.get("eventId"),
+          });
+
+          if (response.data.message) {
+            router.push(`/events${params.get("eventId")}`);
+            setLoading(false);
+            return
+          }
+        }
+
         if (edit) {
           setEditMode(false);
           router.push("/profile");
@@ -130,6 +158,8 @@ const UserAccountProfile: React.FC<UserAccountProfileProps> = ({
       setLoading(false);
     }
   };
+
+  console.log(params.get("eventId"));
 
   useEffect(() => {
     const _cities = cities.filter(
@@ -201,7 +231,6 @@ const UserAccountProfile: React.FC<UserAccountProfileProps> = ({
                 control={control}
                 render={({ field }) => (
                   <Textarea
-                    isRequired
                     readOnly={edit && !editMode}
                     size="sm"
                     label="Bio"
@@ -470,7 +499,7 @@ const UserAccountProfile: React.FC<UserAccountProfileProps> = ({
               <div
                 key={field.id}
                 className={`grid grid-cols-2 lg:grid-cols-${
-                  index && editMode ? 3 : 2
+                  (index && editMode) || (index && !params.get("edit")) ? 3 : 2
                 }  gap-4 mb-6`}
               >
                 <Controller
@@ -504,7 +533,7 @@ const UserAccountProfile: React.FC<UserAccountProfileProps> = ({
                     />
                   )}
                 />
-                {index && editMode ? (
+                {(index && editMode) || (index && !params.get("edit")) ? (
                   <Button
                     className="col-span-2 lg:col-auto"
                     color="danger"
@@ -523,7 +552,7 @@ const UserAccountProfile: React.FC<UserAccountProfileProps> = ({
                 className="w-full mt-6"
                 onClick={() => appendBike({ name: "", pet_name: "" })}
               >
-                Add Bike
+                Add More Bikes
               </Button>
             ) : (
               <></>

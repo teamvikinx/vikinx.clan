@@ -24,7 +24,7 @@ export const userValidation = z
   .object({
     name: z.string().trim().min(3).max(30),
     aka: z.string().trim().min(3).optional().or(z.literal("")),
-    bio: z.string().trim().min(50).max(1000),
+    bio: z.string().trim().min(50).max(1000).optional().or(z.literal("")),
     address: z.string().trim().min(10).max(1000),
     mobile: z.string().refine((value) => indianMobileNumberRegex.test(value), {
       message: "Invalid mobile number",
