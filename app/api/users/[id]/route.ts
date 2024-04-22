@@ -18,7 +18,7 @@ export async function GET(
     const user = data.data() as IUser;
     
     return NextResponse.json(
-      { allowed: user ? user.status : false },
+      { allowed: user ? user.status : true },
       { status: 200 }
     );
   } catch (error) {
