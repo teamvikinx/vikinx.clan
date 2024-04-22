@@ -14,10 +14,14 @@ interface IUser {
   socials: { instagram: string; facebook: string; twitter: string };
   blood_group: string;
   state: string;
+  city: string;
   rides_joined: { joined_at: any; ride_id: string }[];
   status: boolean;
   onboarding: boolean;
   last_login: any;
-  hide_details?: boolean
-  is_original: boolean
+  hide_details?: boolean;
+  is_original: boolean;
+  address: string;
+  pincode: string;
+  gender: string;
 }

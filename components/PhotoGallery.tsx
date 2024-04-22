@@ -20,8 +20,8 @@ const PhotoGallery = () => {
 
       const data = await res.json();
 
-      if (data.data && data.data.data) {
-        const updatedData = data.data.data.map((image: CloudinaryResponse) => ({
+      if (data.data) {
+        const updatedData = data.data.map((image: CloudinaryResponse) => ({
           src: image.secure_url,
           width: image.width,
           height: image.height,
@@ -40,6 +40,7 @@ const PhotoGallery = () => {
   useEffect(() => {
     getGalleryImages();
   }, []);
+  
 
   return (
     <>

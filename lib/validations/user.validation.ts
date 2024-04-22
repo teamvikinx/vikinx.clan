@@ -25,6 +25,7 @@ export const userValidation = z
     name: z.string().trim().min(3).max(30),
     aka: z.string().trim().min(3).optional().or(z.literal("")),
     bio: z.string().trim().min(50).max(1000),
+    address: z.string().trim().min(10).max(1000),
     mobile: z.string().refine((value) => indianMobileNumberRegex.test(value), {
       message: "Invalid mobile number",
     }),
@@ -64,12 +65,20 @@ export const userValidation = z
       .url()
       .optional()
       .or(z.literal("")),
+    pincode: z
+      .string()
+      .min(6, { message: "Invalid pincode" })
+      .max(6, { message: "Invalid pincode" }),
     blood_group: z.enum(constants.bloodGroups as [string, ...string[]], {
-      required_error: "Invalid blood group",
+      required_error: "Blood group is required",
+    }),
+    gender: z.enum(constants.genders as [string, ...string[]], {
+      required_error: "Gender is required",
     }),
     state: z.enum(states as [string, ...string[]], {
       required_error: "State is required",
     }),
+    city: z.string().trim().min(1, { message: "City is required" }),
   })
   .refine((data) => data.mobile !== data.emergency_number, {
     message: "Mobile and emergency number must be different",
