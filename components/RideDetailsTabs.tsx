@@ -90,12 +90,13 @@ const RideDetailsTabs: React.FC<RideDetailsTabsProps> = ({
     const ids = ridersJoined.map((rider) => rider.user_id);
     setRiderIds(ids);
   }, []);
-  
 
   return (
     <>
       <div className="text-center">
-        {constants.allowedStates.includes(user.state.toLowerCase()) || !user.user_id ? (
+        {!user.onboarding ||
+        constants.allowedStates.includes(user.state.toLowerCase()) ||
+        !user.user_id ? (
           <>
             {riderIds.includes(user.user_id) || show ? (
               <p className="text-success bg-gray-800 p-4 rounded">
