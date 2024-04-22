@@ -60,7 +60,7 @@ const UserProfileActions: React.FC<UserProfileActionsProps> = ({ user }) => {
   return (
     <>
       <Card>
-        <CardBody className="text-center lg:text-start">
+        <CardBody>
           <h2 className="subtitle">Actions</h2>
           <div className="mb-6 grid md:grid-cols-2 gap-4">
             <Button
