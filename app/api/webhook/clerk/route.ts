@@ -93,7 +93,11 @@ export async function POST(req: Request) {
       onboarding: false,
       last_login: evt.data.last_sign_in_at,
       state: "",
-      is_original: false
+      is_original: false,
+      address: "",
+      pincode: "",
+      gender: "",
+      city: "",
     };
     await createUser(payload);
     return NextResponse.json({ message: "User created" }, { status: 201 });

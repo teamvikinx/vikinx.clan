@@ -53,21 +53,31 @@ const UserProfile: React.FC<UserProfileProps> = ({
               </h1>
               {/* username */}
 
-              {/* joining date */}
-              <small className="text-gray-500">
-                Member Since {helpers.formatDate(user.joined_at)}
-              </small>
-              {/* joining date */}
+              <div className="space-y-2 md:space-y-0 md:space-x-2">
+                {/* city */}
+                <small className="text-gray-500 block md:inline-block">
+                  {user.city}, {user.state}
+                </small>
+                {/* city */}
+                <span className="hidden md:inline-block text-xs text-gray-500">
+                  |
+                </span>
+                {/* joining date */}
+                <small className="text-gray-500 block md:inline-block">
+                  Member Since {helpers.formatDate(user.joined_at)}
+                </small>
+                {/* joining date */}
+              </div>
 
               {/* bio */}
               <p className="paragraph">{user.bio}</p>
               {/* bio */}
 
               {/* bikes */}
-              <div>
+              <div className="space-x-2 space-y-2 lg:space-y-0">
                 {user.bikes?.map((bike) => (
-                  <Chip size="sm" key={bike.name}>
-                    {bike.name} (AKA {bike.pet_name})
+                  <Chip size="sm" key={bike.name} color="primary" variant="dot">
+                    {bike.name} {bike.pet_name && `(AKA ${bike.pet_name})`}
                   </Chip>
                 ))}
               </div>

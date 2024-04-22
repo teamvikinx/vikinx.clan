@@ -67,6 +67,7 @@ export const constants = {
   },
   allowedStates: ["maharashtra"],
   bloodGroups: ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"],
+  genders: ["male", "female"],
   whyUsPoints: [
     {
       title: "Experience the Unmatched",
@@ -76,22 +77,22 @@ export const constants = {
     {
       title: "Safety in Numbers",
       content:
-        "Ride with the assurance of safety, as we provide state-of-the-art tech and a community that looks out for each other.",
+        "Ride with the assurance of safety. Because of our state-of-the-art tech and together as a community we go above and beyond in looking out of each other.",
     },
     {
       title: "Exclusive Access",
       content:
-        "Be among the elite ‘VikinX Originals’ and enjoy early access to features, bespoke merchandise, and privileges that elevate your riding status.",
+        "Become a VikinX Original and unlock exclusive access to features, limited-edition merchandise, and VIP rider privileges.",
     },
     {
       title: "Community and Connection",
       content:
-        "Forge lasting bonds over shared miles. Our platform is your gateway to a fraternity of riders who share your passion and zest for life on two wheels.",
+        "Create bonds that last even after rides end. Our platform connects you to a community of riders who motivate you to shift into high gear with your riding experience.",
     },
     {
       title: "Innovation at Your Fingertips",
       content:
-        "We’re not just about rides; we’re about revolutionizing riding. Get the latest updates, tips, and tech that keep you ahead of the curve.",
+        "We are on a one-way road to enhance your riding experience. Get the latest updates, tips, and tech that make you dominate the road.",
     },
   ],
   values: [
@@ -113,12 +114,12 @@ export const constants = {
     {
       title: "Integrity",
       content:
-        "We operate with integrity, ensuring transparency and honesty in all our interactions.",
+        "We uphold the highest standards of integrity by being transparent and honest in all interactions.",
     },
     {
       title: "Innovation",
       content:
-        "We are dedicated to continuous learning and innovation, always seeking to improve our platform and services to better serve our riders.",
+        "We're never satisfied with the status quo. That's why we're a platform built on continuous learning and innovation, pushing the boundaries to create the best possible ride experience for you.",
     },
   ],
 };

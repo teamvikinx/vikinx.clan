@@ -14,7 +14,7 @@ import {
 } from "@nextui-org/react";
 import { Controller, useFieldArray, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { userValidation } from "@/lib/validations/user.validation";
 import { z } from "zod";
 import { Facebook, Instagram, Twitter } from "lucide-react";
@@ -22,6 +22,7 @@ import axios from "axios";
 import { constants, helpers } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import { states } from "@/lib/data/states";
+import { cities } from "@/lib/data/cities";
 
 type OnboadringForm = z.infer<typeof userValidation>;
 
@@ -38,11 +39,13 @@ const UserAccountProfile: React.FC<UserAccountProfileProps> = ({
 
   const [editMode, setEditMode] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [selectedCities, setSelectedCities] = useState<typeof cities>([]);
 
   const {
     handleSubmit,
     control,
     formState: { errors },
+    setValue,
   } = useForm<OnboadringForm>({
     resolver: zodResolver(userValidation),
     defaultValues: {
@@ -68,6 +71,10 @@ const UserAccountProfile: React.FC<UserAccountProfileProps> = ({
         : undefined,
       blood_group: userData.blood_group,
       state: userData.state,
+      pincode: userData.pincode,
+      gender: userData.gender,
+      address: userData.address,
+      city: userData.city,
     },
   });
 
@@ -79,6 +86,13 @@ const UserAccountProfile: React.FC<UserAccountProfileProps> = ({
     control,
     name: "bikes",
   });
+
+  const onStateChange = (e: any): any => {
+    const _cities = cities.filter(
+      (city) => city.state.toLowerCase() === e.target.value.toLowerCase()
+    );
+    setSelectedCities(_cities);
+  };
 
   const onSubmit = async (data: OnboadringForm) => {
     setLoading(true);
@@ -115,6 +129,13 @@ const UserAccountProfile: React.FC<UserAccountProfileProps> = ({
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    const _cities = cities.filter(
+      (city) => city.state.toLowerCase() === userData.state.toLowerCase()
+    );
+    setSelectedCities(_cities);
+  }, []);
 
   return (
     <>
@@ -174,7 +195,6 @@ const UserAccountProfile: React.FC<UserAccountProfileProps> = ({
                   />
                 )}
               />
-
               <Controller
                 name="bio"
                 control={control}
@@ -187,6 +207,22 @@ const UserAccountProfile: React.FC<UserAccountProfileProps> = ({
                     {...field}
                     isInvalid={!!errors.bio?.message?.toString()}
                     errorMessage={errors.bio?.message?.toString()}
+                    className="col-span-2"
+                  />
+                )}
+              />
+              <Controller
+                name="address"
+                control={control}
+                render={({ field }) => (
+                  <Textarea
+                    isRequired
+                    readOnly={edit && !editMode}
+                    size="sm"
+                    label="Address"
+                    {...field}
+                    isInvalid={!!errors.address?.message?.toString()}
+                    errorMessage={errors.address?.message?.toString()}
                     className="col-span-2"
                   />
                 )}
@@ -253,13 +289,14 @@ const UserAccountProfile: React.FC<UserAccountProfileProps> = ({
                 )}
               />
               <Controller
-                 name="blood_group"
+                name="blood_group"
                 control={control}
                 render={({ field }) => {
                   return (
                     <Select
                       isRequired
                       size="sm"
+                      isDisabled={edit && !editMode}
                       label="Blood Group"
                       {...field}
                       isInvalid={!!errors.blood_group}
@@ -269,6 +306,34 @@ const UserAccountProfile: React.FC<UserAccountProfileProps> = ({
                       {constants.bloodGroups.map((blood_group) => (
                         <SelectItem key={blood_group} value={blood_group}>
                           {blood_group}
+                        </SelectItem>
+                      ))}
+                    </Select>
+                  );
+                }}
+              />
+              <Controller
+                name="gender"
+                control={control}
+                render={({ field }) => {
+                  return (
+                    <Select
+                      isRequired
+                      size="sm"
+                      isDisabled={edit && !editMode}
+                      label="Gender"
+                      {...field}
+                      isInvalid={!!errors.gender}
+                      errorMessage={errors.gender?.message?.toString()}
+                      defaultSelectedKeys={[field.value]}
+                    >
+                      {constants.genders.map((gender) => (
+                        <SelectItem
+                          key={gender}
+                          value={gender}
+                          className="capitalize"
+                        >
+                          {gender}
                         </SelectItem>
                       ))}
                     </Select>
@@ -289,6 +354,7 @@ const UserAccountProfile: React.FC<UserAccountProfileProps> = ({
                       isInvalid={!!errors.state}
                       errorMessage={errors.state?.message?.toString()}
                       defaultSelectedKeys={[field.value]}
+                      onChange={onStateChange}
                     >
                       {states.map((state) => (
                         <SelectItem key={state} value={state}>
@@ -298,6 +364,45 @@ const UserAccountProfile: React.FC<UserAccountProfileProps> = ({
                     </Select>
                   );
                 }}
+              />
+              <Controller
+                name="city"
+                control={control}
+                render={({ field }) => {
+                  return (
+                    <Select
+                      isRequired
+                      isDisabled={edit && !editMode}
+                      size="sm"
+                      label="City"
+                      {...field}
+                      isInvalid={!!errors.city}
+                      errorMessage={errors.city?.message?.toString()}
+                      defaultSelectedKeys={[field.value]}
+                    >
+                      {selectedCities.map((city) => (
+                        <SelectItem key={city.name} value={city.name}>
+                          {city.name}
+                        </SelectItem>
+                      ))}
+                    </Select>
+                  );
+                }}
+              />
+              <Controller
+                name="pincode"
+                control={control}
+                render={({ field }) => (
+                  <Input
+                    isRequired
+                    readOnly={edit && !editMode}
+                    size="sm"
+                    label="Pincode"
+                    {...field}
+                    isInvalid={!!errors.pincode?.message?.toString()}
+                    errorMessage={errors.pincode?.message?.toString()}
+                  />
+                )}
               />
             </div>
           </CardBody>
