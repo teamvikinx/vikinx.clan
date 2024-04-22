@@ -1,15 +1,9 @@
-import {
-  Card,
-  CardBody,
-  Avatar,
-  Badge,
-  Chip,
-  Image,
-} from "@nextui-org/react";
+import { Card, CardBody, Avatar, Badge, Chip, Image } from "@nextui-org/react";
 import React from "react";
 import Socials from "../common/Socials";
 import UserProfileActions from "./UserProfileActions";
 import { helpers } from "@/lib/utils";
+// import UserEvents from "./UserEvents";
 
 interface UserProfileProps {
   user: IUser;
@@ -106,7 +100,9 @@ const UserProfile: React.FC<UserProfileProps> = ({
                     {user.mobile}
                   </p>
                 </>
-              ) : <></>}
+              ) : (
+                <></>
+              )}
               <p>
                 <span className="font-semibold text-gray-500 mr-1">
                   Emergency Mobile:
@@ -129,6 +125,7 @@ const UserProfile: React.FC<UserProfileProps> = ({
 
         {!viewProfile && <UserProfileActions user={user} />}
       </div>
+      {/* <UserEvents userEventsIds={user.rides_joined} /> */}
     </section>
   );
 };

@@ -19,7 +19,7 @@ import { userValidation } from "@/lib/validations/user.validation";
 import { z } from "zod";
 import { Facebook, Instagram, Twitter } from "lucide-react";
 import axios from "axios";
-import { helpers } from "@/lib/utils";
+import { constants, helpers } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import { states } from "@/lib/data/states";
 
@@ -253,19 +253,27 @@ const UserAccountProfile: React.FC<UserAccountProfileProps> = ({
                 )}
               />
               <Controller
-                name="blood_group"
+                 name="blood_group"
                 control={control}
-                render={({ field }) => (
-                  <Input
-                    isRequired
-                    readOnly={edit && !editMode}
-                    size="sm"
-                    label="Blood Group"
-                    {...field}
-                    isInvalid={!!errors.blood_group?.message?.toString()}
-                    errorMessage={errors.blood_group?.message?.toString()}
-                  />
-                )}
+                render={({ field }) => {
+                  return (
+                    <Select
+                      isRequired
+                      size="sm"
+                      label="Blood Group"
+                      {...field}
+                      isInvalid={!!errors.blood_group}
+                      errorMessage={errors.blood_group?.message?.toString()}
+                      defaultSelectedKeys={[field.value]}
+                    >
+                      {constants.bloodGroups.map((blood_group) => (
+                        <SelectItem key={blood_group} value={blood_group}>
+                          {blood_group}
+                        </SelectItem>
+                      ))}
+                    </Select>
+                  );
+                }}
               />
               <Controller
                 name="state"
@@ -356,7 +364,7 @@ const UserAccountProfile: React.FC<UserAccountProfileProps> = ({
               <div
                 key={field.id}
                 className={`grid grid-cols-2 lg:grid-cols-${
-                  index ? 3 : 2
+                  index && editMode ? 3 : 2
                 }  gap-4 mb-6`}
               >
                 <Controller

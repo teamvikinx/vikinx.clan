@@ -59,13 +59,14 @@ export const constants = {
     users: "vikinx_users",
     rides: "rides",
     gallery: "vikinx-gallery",
-    contact: "contact",
+    contact: "contacts",
     newsletter: "newsletter",
     announcements: "announcements",
     review: "review",
     rules: "rules",
   },
   allowedStates: ["maharashtra"],
+  bloodGroups: ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"],
   whyUsPoints: [
     {
       title: "Experience the Unmatched",

@@ -14,6 +14,23 @@ export async function POST(req: NextRequest) {
       .collection("contact")
       .doc(payload.uuid);
 
+    const docRef2 = db
+      .collection("pageSizes")
+      .doc("contacts")
+      .collection("count")
+      .doc("vikin");
+
+    const countData = (await docRef2.get()).data() as {
+      read: number;
+      unread: number;
+      count: number;
+    };
+
+    await docRef2.update({
+      unread: countData.unread + 1,
+      count: countData.count + 1,
+    });
+
     await docRef.set(payload);
 
     return NextResponse.json({ message: "Message recieved!" }, { status: 200 });

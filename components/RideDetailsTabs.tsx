@@ -90,6 +90,7 @@ const RideDetailsTabs: React.FC<RideDetailsTabsProps> = ({
     const ids = ridersJoined.map((rider) => rider.user_id);
     setRiderIds(ids);
   }, []);
+  
 
   return (
     <>
