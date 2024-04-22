@@ -99,12 +99,12 @@ export default async function Home() {
 
           {/* FOR LARGE SCREENS */}
           <Image
-            className="grayscale object-cover hidden md:block"
+            className="grayscale object-cover hidden  md:block"
             src="/why-us.webp"
             alt="why-us-image"
             width={400}
           />
-          <div className="col-span-2 space-y-6">
+          <div className="col-span-2 space-y-6 hidden md:block">
             <h1 className="title">
               Why <VikinXText className="mr-2" />?
             </h1>
@@ -227,12 +227,13 @@ export default async function Home() {
               <h3 className="subtitle">Orginals Collected</h3>
               <Button
                 as={Link}
-                href="/sign-up"
                 color="primary"
+                href={user ? "/events" : "/sign-up"}
                 variant="flat"
-                className="mt-4"
+                radius="sm"
+                className="!w-[150px]  font-semibold uppercase"
               >
-                Sign up Now
+                Join Us now
               </Button>
             </div>
           </div>

@@ -70,7 +70,7 @@ const UserProfile: React.FC<UserProfileProps> = ({
               </div>
 
               {/* bio */}
-              <p className="paragraph">{user.bio}</p>
+              <p className="paragraph text-justify">{user.bio}</p>
               {/* bio */}
 
               {/* bikes */}
@@ -92,7 +92,7 @@ const UserProfile: React.FC<UserProfileProps> = ({
       </Card>
       <div className="grid lg:grid-cols-2 gap-4">
         <Card>
-          <CardBody className="text-center lg:text-start">
+          <CardBody className="text-start">
             <h2 className="subtitle">Personal Details</h2>
             <div className="text-sm space-y-1">
               {!viewProfile || !user.hide_details ? (
