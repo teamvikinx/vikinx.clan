@@ -47,7 +47,11 @@ async function fetchUserData(id: string) {
     state: userInfo?.state,
     profile_picture: userInfo?.profile_picture || userInfo?.name[0],
     hide_details: userInfo?.hide_details,
-    is_original: userInfo?.is_original
+    is_original: userInfo?.is_original,
+    city: userInfo?.city,
+    address: userInfo?.address,
+    pincode: userInfo?.pincode,
+    gender: userInfo?.gender
   };
 
   return userData as IUser;

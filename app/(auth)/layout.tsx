@@ -2,7 +2,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { Poppins } from "next/font/google";
 import { dark } from "@clerk/themes";
 import "../globals.css";
-
+import { Analytics } from "@vercel/analytics/react";
 
 const poppins = Poppins({ subsets: ["latin"], weight: ["400", "600", "900"] });
 
@@ -24,6 +24,7 @@ export default function RootLayout({
             {children}
           </main>
         </body>
+        <Analytics />
       </html>
     </ClerkProvider>
   );

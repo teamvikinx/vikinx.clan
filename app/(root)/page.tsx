@@ -31,15 +31,14 @@ export default async function Home() {
                 Journeys
               </h1>
               <p className="text-sm lg:text-lg lg:w-[900px] mx-auto text-justify lg:text-center">
-                Crafted with the soul of a rider, <VikinXText /> is your compass
-                to the uncharted. We’re not just about the ride; we’re about
-                revolutionizing the ride. Connect, conquer, and celebrate the
-                rider’s spirit with us.{" "}
-                <span className="text-secondary font-semibold">
-                  Ride Bold. Tour Vast. Explore Endless.{" "}
+                Fueled by the soul of a rider, <VikinXText /> is a community of
+                riders who love boundless adventure. Connect, conquer, and
+                celebrate the rider’s spirit with us. Ride fearlessly. Explore
+                Endlessly.
+                <span className="text-secondary font-semibold block">
+                  Join the <VikinXText /> revolution and transform your solo
+                  journeys into legendary squad sagas!
                 </span>
-                Join the <VikinXText /> revolution—where every journey is a
-                story waiting to be told.
               </p>
               <Button
                 as={Link}
@@ -49,7 +48,7 @@ export default async function Home() {
                 radius="sm"
                 className="!w-[150px]  font-semibold uppercase"
               >
-                Join Us
+                Let’s Go
               </Button>
             </div>
           </div>
@@ -59,8 +58,8 @@ export default async function Home() {
       <section>
         <div className="lg:grid lg:grid-cols-3 grid-flow-row gap-6 items-center">
           {/* FOR SMALL SCREENS */}
-          <div className="lg:hidden block">
-            <h1 className="title mb-4 text-center lg:hidden block">
+          <div className="md:hidden block">
+            <h1 className="title mb-4 text-center">
               Why <VikinXText />?
             </h1>
             <div className="relative">
@@ -73,11 +72,12 @@ export default async function Home() {
               <div className="bg-black/50 absolute top-0 left-0 w-full h-full z-10" />
               <div className="absolute text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
                 <p className="text-justify paragraph">
-                  Embark on a journey where the road never ends, and the
-                  adventure is eternal. Join <VikinXText />, and become part of
-                  a movement that’s more than just riding—it’s about embracing
-                  the spirit of the open road and the brotherhood that comes
-                  with it. Here’s why you should throttle up and join us.
+                  We are all about providing with you riding experiences filled
+                  with soul-stirring explorations that connect you with the open
+                  roads and riders who live for it. You'll return home forever
+                  changed with memories and new inspiration, all sparked by
+                  riding alongside passionate riders. Here’s what your next
+                  adventure holds with us:
                 </p>
               </div>
             </div>
@@ -99,21 +99,21 @@ export default async function Home() {
 
           {/* FOR LARGE SCREENS */}
           <Image
-            className="grayscale object-cover hidden lg:block"
+            className="grayscale object-cover hidden md:block"
             src="/why-us.webp"
             alt="why-us-image"
             width={400}
           />
-          <div className="col-span-2 space-y-6 hidden lg:block">
+          <div className="col-span-2 space-y-6">
             <h1 className="title">
               Why <VikinXText className="mr-2" />?
             </h1>
             <p className="text-justify paragraph">
-              Embark on a journey where the road never ends, and the adventure
-              is eternal. Join <VikinXText />, and become part of a movement
-              that’s more than just riding—it’s about embracing the spirit of
-              the open road and the brotherhood that comes with it. Here’s why
-              you should throttle up and join us.
+              We are all about providing with you riding experiences filled with
+              soul-stirring explorations that connect you with the open roads
+              and riders who live for it. You'll return home forever changed
+              with memories and new inspiration, all sparked by riding alongside
+              passionate riders. Here’s what your next adventure holds with us:
             </p>
             <div className="grid grid-rows-2 grid-cols-3 gap-6 mt-6">
               {constants.whyUsPoints.map((item, idx) => (
@@ -148,16 +148,16 @@ export default async function Home() {
         <div className="relative z-30">
           <h1 className="title text-center">
             <VikinXText className="mr-2 md:mr-3" />
-            Expeditions{" "}
+            Expeditions
             <span className="text-slate-500 block mt-2">
-              The Ultimate Riding Saga
+              The Redefined Riding Experience
             </span>
           </h1>
           <p className="mx-auto text-center lg:!w-[700px] paragraph">
-            Embark on <VikinXText /> Expeditions, where every throttle twist
-            narrates a tale of adventure and camaraderie. Join us to traverse
-            the uncharted, with the wind as your guide and the horizon as your
-            limit.
+            Join VikinX Expeditions. Here, every trip narrates the tale of an
+            adventure where riders like you conquer uncharted territories
+            shoulder-to-shoulder, pushing past the horizon. With us, you are
+            your only limit.
           </p>
         </div>
         <PulseBeams />
@@ -205,7 +205,7 @@ export default async function Home() {
           <p className="lg:!w-[700px] mx-auto paragraph">
             Join, and be part of a legacy in the making. Every ride is a chapter
             in the grand saga of the road. Are you ready to write yours? We are
-            taking first 100 users as{" "}
+            taking first 100 users as
             <span className="font-semibold">
               <VikinXText /> Originals.
             </span>

@@ -62,7 +62,7 @@ const UserProfileActions: React.FC<UserProfileActionsProps> = ({ user }) => {
       <Card>
         <CardBody className="text-center lg:text-start">
           <h2 className="subtitle">Actions</h2>
-          <div className="mb-6 grid lg:grid-cols-2 gap-4">
+          <div className="mb-6 grid md:grid-cols-2 gap-4">
             <Button
               onClick={() => router.push(`/onboarding?edit=${true}`)}
               size="sm"

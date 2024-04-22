@@ -31,6 +31,10 @@ async function fetchUserData() {
     status: userInfo?.status,
     onboarding: userInfo?.onboarding,
     state: userInfo?.state,
+    city: userInfo?.city,
+    address: userInfo?.address,
+    pincode: userInfo?.pincode,
+    gender: userInfo?.gender
   };
 
   return userData as IUser;

@@ -5,6 +5,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
 import Footer from "@/components/layout/Footer";
 import { Toaster } from "react-hot-toast";
+import { Analytics } from "@vercel/analytics/react";
 import "../globals.css";
 
 const poppins = Poppins({ subsets: ["latin"], weight: ["400", "600", "900"] });
@@ -58,6 +59,7 @@ export default function RootLayout({
           <Footer />
         </ClerkProvider>
       </body>
+      <Analytics />
     </html>
   );
 }

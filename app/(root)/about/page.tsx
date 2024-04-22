@@ -60,16 +60,20 @@ const Page = () => {
           <span className="text-slate-500"> Values</span>
         </h1>
         <p className="lg:w-[700px] mx-auto text-justify lg:text-center paragraph">
-          To revolutionize the biking experience by creating a global community
-          of riders who share a passion for the open road, and to make every
-          ride an effortless adventure.
+          To revolutionize the biking experience By building a global community
+          of riders, we aim to unlock limitless possibilities in the biking
+          experience, transforming every ride into an effortless adventure.
         </p>
         <div className="grid grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
           {constants.values.map((item, idx) => (
             <TextCard
               key={item.title}
               item={item}
-              className={idx === 2 ? "row-span-2 justify-center lg:text-justify" : "row-span-1 lg:text-justify"}
+              className={
+                idx === 2
+                  ? "row-span-2 justify-center lg:text-justify"
+                  : "row-span-1 lg:text-justify"
+              }
             />
           ))}
         </div>
@@ -117,36 +121,46 @@ const Page = () => {
         <div className="flex justify-center">
           <span>
             <h1 className="title">
-              Why We <span className="text-primary">Exist!</span>
+              Our <span className="text-primary">Origin!</span>
             </h1>
             <Image src="/vikinx-bikes.webp" alt="guys-on-bike" width={700} />
           </span>
         </div>
         <div>
           <h3 className="subtitle">
-            Discover the Joy of Effortless Riding with <VikinXText />!
+            Quest to explore limitless wonders over bikes!
           </h3>
           <div className="lg:w-[700px] mx-auto text-justify lg:text-center space-y-4 paragraph">
             <p>
-              Are you a solo rider seeking the thrill of the open road, yet
-              yearning for the camaraderie and safety of a group ride? Or
-              perhaps you're part of a riding group, finding it challenging to
-              manage your rides and keep up with the latest moto updates and
-              tips? Your quest ends here!
+              We are VIKINX, an India-based moto tech community/startup, forged
+              from the fires of passion and the open road. We’ve tasted the
+              freedom of solo adventures and the camaraderie of group rides.
+              We've battled the elements, faced the frustrations, and now we're
+              here to change the game.
             </p>
             <p>
-              We are <VikinXText />, an India-based moto tech startup, born out
-              of our own experiences and passion for biking. We understand the
-              exhilaration of solo rides, the fun and safety of group rides, and
-              the challenges that come with both. We've been there, faced those
-              issues, and are now committed to making your life easier as a
-              rider. With VikinX, every ride is a breeze, be it on a Sunday
-              morning or a Monday evening. We're here to transform your riding
-              experience, making it more enjoyable, safer, and absolutely
-              effortless. So gear up, rev your engines, and join us on this
-              exciting journey. Welcome to VikinX, where every ride is an
-              adventure waiting to unfold!
+              The name <VikinXText /> echoes the spirit of those legendary
+              warriors who roamed the seas, shared unmatched brotherhood and
+              unwavering courage. Just like a Viking, a rider needs bravery to
+              conquer the open road, facing the wind and whatever challenges it
+              throws your way. It's about carving your own path, leaving your
+              mark on the world, mile after glorious mile.
             </p>
+            <p>
+              So, if you're looking for a community that thrives on adventure
+              and companionship, <VikinXText /> is calling your name. Answer the
+              call, and join the ride!
+            </p>
+            <Button
+              as={Link}
+              color="primary"
+              href={"/events"}
+              variant="solid"
+              radius="sm"
+              className="!w-[150px]  font-semibold uppercase"
+            >
+              Join now
+            </Button>
           </div>
         </div>
       </section>
@@ -165,15 +179,26 @@ const Page = () => {
                 <VikinXText /> Originals?
               </span>
             </h1>
-            <p className="mx-auto text-justify lg:text-justify paragraph">
-              VikinX Originals represents the pinnacle of distinction within the
-              VikinX Community. It’s not merely a title; it’s a symbol of
-              prestige and respect. Members awarded this honor enjoy exclusive
-              benefits, privileges, and early access to our newest features. The
-              path to achieving this esteemed status will be unveiled with our
-              application’s launch. Embrace the spirit of excellence—become a
-              VikinX Original. Don’t just ride; lead the way as a true original.
-            </p>
+            <div className="space-y-4">
+              <p className="mx-auto text-justify lg:text-justify paragraph">
+                VikinX Originals is the pinnacle of distinction within the
+                VikinX Community, reserved for the most dedicated riders who
+                conquer countless journeys. By earning this coveted status, you
+                prove your passion for the ride and commitment to safety.
+              </p>
+              <p className="mx-auto text-justify lg:text-justify paragraph">
+                It’s not merely a title; it’s a symbol of prestige and respect.
+                Members awarded this honor enjoy exclusive access to extra
+                features, limited-edition merchandise, and VIP Rider privileges
+                that put you at the front of the pack.
+              </p>
+              <p className="mx-auto text-justify lg:text-justify paragraph">
+                The path to this elite status will be revealed with our
+                application launch. Choose the road to excellence—become a
+                VikinX Original. Don’t just ride; lead the way as a true
+                original.
+              </p>
+            </div>
           </div>
         </div>
       </section>
