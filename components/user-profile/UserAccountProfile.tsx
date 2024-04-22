@@ -89,7 +89,7 @@ const UserAccountProfile: React.FC<UserAccountProfileProps> = ({
 
   const onStateChange = (e: any): any => {
     const _cities = cities.filter(
-      (city) => city.state.toLowerCase() === e.target.value.toLowerCase()
+      (city) => city.state?.toLowerCase() === e.target.value?.toLowerCase()
     );
     setSelectedCities(_cities);
   };
@@ -132,7 +132,7 @@ const UserAccountProfile: React.FC<UserAccountProfileProps> = ({
 
   useEffect(() => {
     const _cities = cities.filter(
-      (city) => city.state.toLowerCase() === userData.state.toLowerCase()
+      (city) => city.state?.toLowerCase() === userData.state?.toLowerCase()
     );
     setSelectedCities(_cities);
   }, []);
