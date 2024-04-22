@@ -159,8 +159,6 @@ const UserAccountProfile: React.FC<UserAccountProfileProps> = ({
     }
   };
 
-  console.log(params.get("eventId"));
-
   useEffect(() => {
     const _cities = cities.filter(
       (city) => city.state?.toLowerCase() === userData.state?.toLowerCase()
