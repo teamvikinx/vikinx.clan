@@ -87,9 +87,10 @@ const UserAccountProfile: React.FC<UserAccountProfileProps> = ({
     name: "bikes",
   });
 
-  const onStateChange = (e: any): any => {
+  const onStateChange = (state: any): any => {
     const _cities = cities.filter(
-      (city) => city.state?.toLowerCase() === e.target.value?.toLowerCase()
+      (city) =>
+        city.state?.toLowerCase() === state.values().next().value?.toLowerCase()
     );
     setSelectedCities(_cities);
   };
@@ -354,7 +355,7 @@ const UserAccountProfile: React.FC<UserAccountProfileProps> = ({
                       isInvalid={!!errors.state}
                       errorMessage={errors.state?.message?.toString()}
                       defaultSelectedKeys={[field.value]}
-                      onChange={onStateChange}
+                      onSelectionChange={onStateChange}
                     >
                       {states.map((state) => (
                         <SelectItem key={state} value={state}>
