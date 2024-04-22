@@ -1,3 +1,4 @@
+'use server'
 import { constants } from "../utils";
 import admin from "../config/firebase";
 
@@ -45,8 +46,8 @@ export const createUser = async (payload: IUser) => {
 
     await docRef.set(finalPayload);
     await docRef2.update({
-      active: countData.active++,
-      count: countData.count++,
+      active: countData.active + 1,
+      count: countData.count + 1,
     });
   } catch (error: any) {
     throw new Error(`Failed to fetch user:  ${error.message}`);

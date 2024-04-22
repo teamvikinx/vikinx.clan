@@ -8,10 +8,23 @@ const db = admin.firestore();
 export async function POST(req: NextRequest) {
   try {
     const payload = (await req.json()) as INewsletterForm;
-    const docRef = db
-      .collection(constants.tables.newsletter)
-      .doc(helpers.generateUniqueId());
+    const newsletterCollection = db.collection(constants.tables.newsletter);
 
+    // Check if the user's email or mobile number already exists in the collection
+    const snapshot = await newsletterCollection
+      .where("email", "==", payload.email)
+      .get();
+
+    if (!snapshot.empty) {
+      // User already exists in the collection
+      return NextResponse.json(
+        { message: "You are already subscribed" },
+        { status: 409 } // Conflict
+      );
+    }
+
+    // User does not exist in the collection, so subscribe them
+    const docRef = newsletterCollection.doc(helpers.generateUniqueId());
     await docRef.set(payload);
 
     return NextResponse.json(

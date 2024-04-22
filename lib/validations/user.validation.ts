@@ -1,30 +1,38 @@
 import * as z from "zod";
 import { states } from "../data/states";
+import { constants } from "../utils";
 
 const bikes = z.object({
   name: z
     .string()
+    .trim()
     .min(3, { message: "Bike name must contain at least 3 character(s)" }),
-  pet_name: z.string().optional(),
+  pet_name: z
+    .string()
+    .trim()
+    .min(3, { message: "Pet name must contain at least 3 character(s)" })
+    .optional()
+    .or(z.literal("")),
 });
 
 const eighteenYearsAgo = new Date();
 eighteenYearsAgo.setFullYear(eighteenYearsAgo.getFullYear() - 18);
 
+const indianMobileNumberRegex = /^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$/;
+
 export const userValidation = z
   .object({
-    name: z.string().min(3).max(30),
-    aka: z.string().optional(),
-    bio: z.string().min(30).max(1000),
-
-    mobile: z
-      .string()
-      .min(10, { message: "Invalid mobile number" })
-      .max(12, { message: "Invalid mobile number" }),
+    name: z.string().trim().min(3).max(30),
+    aka: z.string().trim().min(3).optional().or(z.literal("")),
+    bio: z.string().trim().min(50).max(1000),
+    mobile: z.string().refine((value) => indianMobileNumberRegex.test(value), {
+      message: "Invalid mobile number",
+    }),
     emergency_number: z
       .string()
-      .min(10, { message: "Invalid mobile number" })
-      .max(12, { message: "Invalid mobile number" }),
+      .refine((value) => indianMobileNumberRegex.test(value), {
+        message: "Invalid mobile number",
+      }),
     email: z.string().email(),
     bikes: z.array(bikes),
     dob: z
@@ -35,10 +43,30 @@ export const userValidation = z
         message: "You must be at least 18 years old to register",
       })
       .default(""),
-    instagram: z.string().url().optional().or(z.literal('')),
-    facebook: z.string().url().optional().or(z.literal('')),
-    twitter: z.string().url().optional().or(z.literal('')),
-    blood_group: z.string({ required_error: "Blood group is required field" }),
+    instagram: z
+      .string()
+      .trim()
+      .min(1, { message: "Please enter a valid URL" })
+      .url()
+      .optional()
+      .or(z.literal("")),
+    facebook: z
+      .string()
+      .trim()
+      .min(1, { message: "Please enter a valid URL" })
+      .url()
+      .optional()
+      .or(z.literal("")),
+    twitter: z
+      .string()
+      .trim()
+      .min(1, { message: "Please enter a valid URL" })
+      .url()
+      .optional()
+      .or(z.literal("")),
+    blood_group: z.enum(constants.bloodGroups as [string, ...string[]], {
+      required_error: "Invalid blood group",
+    }),
     state: z.enum(states as [string, ...string[]], {
       required_error: "State is required",
     }),

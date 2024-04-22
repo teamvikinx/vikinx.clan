@@ -22,9 +22,15 @@ const AnnouncementsTabs = () => {
   const getAnnouncements = async () => {
     setLoading(true);
     try {
-      const { data } = await axios.get<{ data: Announcement[] }>(
-        "/api/announcements"
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/announcements`,
+        {
+          cache: "no-cache",
+        }
       );
+
+      const data = await res.json();
+
       setAnnouncements(data.data);
       setAnnouncementsFiltered(data.data);
       setLoading(false);

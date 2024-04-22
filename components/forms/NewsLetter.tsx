@@ -12,7 +12,7 @@ import {
   ModalHeader,
   useDisclosure,
 } from "@nextui-org/react";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import React, { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
@@ -57,13 +57,20 @@ const NewsLetter = () => {
       );
 
       if (response.data.message) {
-        helpers.toastify("Successfully subscribed to our newsletter", "success");
+        helpers.toastify(
+          "Successfully subscribed to our newsletter",
+          "success"
+        );
       }
 
       reset();
       setLoading(false);
     } catch (error: any) {
-      helpers.toastify(error.message || "Something went wrong!", "error");
+      const _error = error as AxiosError;
+
+      _error.response?.status === 409
+        ? helpers.toastify("You have already registered to our newsletter.", 'success')
+        : helpers.toastify("Something went wrong!", "error");
       setLoading(false);
     }
   };

@@ -13,12 +13,15 @@ const PhotoGallery = () => {
   const getGalleryImages = async () => {
     setLoading(true);
     try {
-      const response = await axios.get<{ data: CloudinaryResponse[] }>(
-        "/api/gallery"
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/gallery`,
+        { next: { revalidate: 3600 } }
       );
 
-      if (response.data && response.data.data) {
-        const updatedData = response.data.data.map((image) => ({
+      const data = await res.json();
+
+      if (data.data && data.data.data) {
+        const updatedData = data.data.data.map((image: CloudinaryResponse) => ({
           src: image.secure_url,
           width: image.width,
           height: image.height,
