@@ -138,7 +138,7 @@ const UserAccountProfile: React.FC<UserAccountProfileProps> = ({
           });
 
           if (response.data.message) {
-            router.push(`/events${params.get("eventId")}`);
+            router.push(`/events/${params.get("eventId")}`);
             setLoading(false);
             return
           }
