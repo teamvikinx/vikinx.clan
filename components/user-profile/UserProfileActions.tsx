@@ -1,6 +1,6 @@
 "use client";
 
-import { useAuth } from "@clerk/nextjs";
+import { UserProfile, useAuth } from "@clerk/nextjs";
 import {
   Card,
   CardBody,
@@ -8,14 +8,18 @@ import {
   Modal,
   ModalBody,
   ModalContent,
-  ModalFooter,
-  ModalHeader,
   useDisclosure,
+  ScrollShadow,
 } from "@nextui-org/react";
-import { Edit3Icon, EyeIcon, EyeOffIcon, LogOutIcon } from "lucide-react";
+import {
+  Edit3Icon,
+  EyeIcon,
+  EyeOffIcon,
+  LogOutIcon,
+  Settings2,
+} from "lucide-react";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
-import UserAccountProfile from "./UserAccountProfile";
 import axios from "axios";
 import { helpers } from "@/lib/utils";
 
@@ -26,6 +30,7 @@ interface UserProfileActionsProps {
 const UserProfileActions: React.FC<UserProfileActionsProps> = ({ user }) => {
   const { signOut } = useAuth();
   const router = useRouter();
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   const [hiddenDetails, setHiddenDetails] = useState(user.hide_details);
   const [loading, setLoading] = useState(false);
@@ -89,11 +94,45 @@ const UserProfileActions: React.FC<UserProfileActionsProps> = ({ user }) => {
               )}
             </Button>
           </div>
-          <Button onClick={logout} size="sm" color="primary" variant="flat">
-            <LogOutIcon size={16} /> Signout
-          </Button>
+          <div className="mb-6 grid md:grid-cols-2 gap-4">
+            <Button
+              onClick={() => onOpen()}
+              size="sm"
+              color="secondary"
+              variant="flat"
+            >
+              <Settings2 size={16} /> Other Details
+            </Button>
+            <Button onClick={logout} size="sm" color="primary" variant="flat">
+              <LogOutIcon size={16} /> Signout
+            </Button>
+          </div>
         </CardBody>
       </Card>
+
+      {/* other details */}
+      <Modal size={"5xl"} isOpen={isOpen} onOpenChange={onOpenChange}>
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalBody className="px-0 lg:pl-8">
+                <ScrollShadow className="h-[500px] lg:h-full w-fit">
+                  <UserProfile
+                    appearance={{
+                      elements: {
+                        profileSection__danger: "hidden",
+                        navbar: "hidden",
+                        navbarMobileMenuRow: "hidden",
+                      },
+                    }}
+                  />
+                </ScrollShadow>
+              </ModalBody>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
+      {/* other details */}
     </>
   );
 };
