@@ -47,9 +47,11 @@ const UserProfile: React.FC<UserProfileProps> = ({
               {/* username */}
               <h1 className="text-2xl md:text-3xl font-semibold">
                 {user.name}
-                <span className="text-gray-500 text-lg md:text-xl lg:text-2xl font-medium block lg:inline ml-1">
-                  (AKA {user.aka})
-                </span>
+                {user.aka && (
+                  <span className="text-gray-500 text-lg md:text-xl lg:text-2xl font-medium block lg:inline ml-1">
+                    (AKA {user.aka})
+                  </span>
+                )}
               </h1>
               {/* username */}
 
@@ -70,7 +72,7 @@ const UserProfile: React.FC<UserProfileProps> = ({
               </div>
 
               {/* bio */}
-              <p className="paragraph text-justify">{user.bio}</p>
+              <p className="text-sm text-justify">{user.bio}</p>
               {/* bio */}
 
               {/* bikes */}
