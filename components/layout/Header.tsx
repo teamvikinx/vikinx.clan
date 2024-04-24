@@ -140,20 +140,22 @@ const Header = () => {
             </Link>
             <UserButton
               afterSignOutUrl="/"
-              userProfileProps={{
-                appearance: {
-                  elements: {
-                    profileSection__danger: "hidden",
-                  },
-                },
-              }}
+              userProfileMode="navigation"
+              userProfileUrl="/profile"
+              // userProfileProps={{
+              //   appearance: {
+              //     elements: {
+              //       profileSection__danger: "hidden",
+              //     },
+              //   },
+              // }}
             >
-              <UserButton.UserProfileLink
+              {/* <UserButton.UserProfileLink
                 key={"profile-section-custom"}
                 label="Profile"
                 url="/profile"
                 labelIcon={<UserRoundCog size={18} />}
-              />
+              /> */}
             </UserButton>
           </span>
         </SignedIn>

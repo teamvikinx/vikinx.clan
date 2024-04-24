@@ -43,7 +43,7 @@ export async function POST(req: NextRequest) {
       user.rides_joined = ridesJoinedArray;
       await docRef2.update(user as any);
 
-      revalidatePath("/events/:id");
+      revalidatePath(`/events/[id]`, 'page')
       return NextResponse.json(
         { message: "Enrolled successfully" },
         { status: HttpStatusCode.Ok }

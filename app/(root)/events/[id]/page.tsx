@@ -68,6 +68,8 @@ async function fetchUserData() {
     state: userInfo?.state || "",
     name: userInfo?.name,
     profile_picture: userInfo?.profile_picture,
+    mobile: userInfo?.mobile,
+    emergency_number: userInfo?.emergency_number
   };
 
   return userData as IUser;

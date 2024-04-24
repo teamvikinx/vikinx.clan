@@ -19,6 +19,7 @@ import { constants, helpers } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import VikinXText from "./common/VikinXText";
+import QuickEnrollForm from "./forms/QuickEnrollForm";
 // import Confetti from "./ui/Confetti";
 
 interface RideDetailsTabsProps {
@@ -37,6 +38,8 @@ interface RideDetailsTabsProps {
     state: string;
     name: string;
     profile_picture: string;
+    mobile: string;
+    emergency_number: string;
   };
   rules: string;
 }
@@ -53,15 +56,23 @@ const RideDetailsTabs: React.FC<RideDetailsTabsProps> = ({
   const [show, setShow] = useState(false);
   const [riderIds, setRiderIds] = useState<string[]>([]);
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const {
+    isOpen: quickEnrollModalIsOpen,
+    onOpen: quickEnrollModalOnOpen,
+    onOpenChange: quickEnrollModalOnOpenChange,
+  } = useDisclosure();
 
   const enroll = async () => {
     if (!user.user_id) {
-      router.push("/sign-in");
+      router.push(
+        `/sign-in?redirect_url=${process.env.NEXT_PUBLIC_API_URL}/events/${rideId}`
+      );
       return;
     }
 
-    if (!user.onboarding) {
-      router.push(`/onboarding?enroll=true&eventId=${rideId}`);
+    if (!user.mobile && !user.emergency_number) {
+      quickEnrollModalOnOpen();
+      // router.push(`/onboarding?enroll=true&eventId=${rideId}`);
       return;
     }
 
@@ -94,7 +105,7 @@ const RideDetailsTabs: React.FC<RideDetailsTabsProps> = ({
   return (
     <>
       <div className="text-center">
-        {!user.onboarding ||
+        {(!user.mobile && !user.emergency_number) ||
         constants.allowedStates.includes(user.state.toLowerCase()) ||
         !user.user_id ? (
           <>
@@ -184,6 +195,7 @@ const RideDetailsTabs: React.FC<RideDetailsTabsProps> = ({
       </Tabs>
       {/* {show && <Confetti />} */}
 
+      {/* rules regulations modal */}
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (
@@ -198,6 +210,27 @@ const RideDetailsTabs: React.FC<RideDetailsTabsProps> = ({
           )}
         </ModalContent>
       </Modal>
+      {/* rules regulations modal */}
+
+      {/* quick enroll modal */}
+      <Modal
+        isOpen={quickEnrollModalIsOpen}
+        onOpenChange={quickEnrollModalOnOpenChange}
+      >
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalHeader className="flex flex-col gap-1">
+                Just there!
+              </ModalHeader>
+              <ModalBody>
+                <QuickEnrollForm user={user} onClose={onClose} />
+              </ModalBody>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
+      {/* quick enroll modal */}
     </>
   );
 };
