@@ -4,14 +4,12 @@ import { quickEnrollFormValidation } from "@/lib/validations/quickEnrollValidati
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Button,
-  Divider,
   Input,
-  Link,
   Select,
   SelectItem,
 } from "@nextui-org/react";
 import axios from "axios";
-import { useParams, useRouter, useSearchParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
