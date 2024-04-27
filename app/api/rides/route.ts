@@ -29,6 +29,7 @@ export async function POST(req: NextRequest) {
         user_id: payload.user_id,
         name: payload.name,
         profile_picture: payload.profile_picture,
+        completed: false
       });
 
       ride.users_joined = ridersArray;
