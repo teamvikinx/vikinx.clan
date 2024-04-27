@@ -1,20 +1,35 @@
+import StartRideButton from "@/components/user-profile/StartRideButton";
+import { startRide } from "@/lib/actions/users.action";
 import { helpers } from "@/lib/utils";
 import { Card, CardHeader, CardFooter, Image, Button } from "@nextui-org/react";
+import moment from "moment";
 import Link from "next/link";
 import React from "react";
 
 interface RideCardProps {
   ride: IRide;
+  userId?: string;
   options?: {
     from: string;
-    type: string;
+    type: string[];
   };
 }
 
-const RideCard: React.FC<RideCardProps> = ({
+const RideCard: React.FC<RideCardProps> = async ({
   ride,
-  options = { from: "none", type: "none" },
+  userId,
+  options = { from: "none", type: [] },
 }) => {
+  const showStartEvent = () => {
+    const start = moment(new Date(JSON.parse(ride.start_date)))
+      .hour(5)
+      .minute(0);
+    const end = moment(new Date(JSON.parse(ride.start_date)))
+      .hour(8)
+      .minute(0);
+    return moment().isBetween(start, end);
+  };
+
   return (
     <Card
       isFooterBlurred
@@ -56,16 +71,15 @@ const RideCard: React.FC<RideCardProps> = ({
           >
             Join Now
           </Button>
+        ) : ride.status === 'ongoing' ? (
+          <p className="text-tiny md:text-sm text-white/80 mx-auto">Ongoing</p>
+        ) : showStartEvent() ? (
+          <StartRideButton rideId={ride.uuid} userId={userId!} />
         ) : (
-          <Button
-            as={Link}
-            href={`/events/${ride.uuid}`}
-            color="primary"
-            size="sm"
-            className="w-full"
-          >
-            Start Ride
-          </Button>
+          <p className="text-tiny md:text-sm text-white/80 mx-auto">
+            <span className="mr-1">Expedition Start Date:</span>
+            {helpers.formatDate(JSON.parse(ride.start_date))}
+          </p>
         )}
       </CardFooter>
     </Card>

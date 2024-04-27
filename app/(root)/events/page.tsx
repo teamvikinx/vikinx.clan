@@ -1,8 +1,6 @@
+import EventCards from "@/components/common/cards/EventCards";
 import { getRides } from "@/lib/actions/rides.action";
-import { helpers } from "@/lib/utils";
-import { Button, Card, CardHeader, Image } from "@nextui-org/react";
 import { Metadata } from "next";
-import Link from "next/link";
 import React from "react";
 
 export const metadata: Metadata = {
@@ -33,11 +31,11 @@ const Page = async () => {
 
   return (
     <>
-      <main className="py-8">
+      <main className="py-8 space-y-16 lg:space-y-32">
         <section className="space-y-6">
           <div>
             <h1 className="title">
-              Upcoming <span className="text-primary">Expedition Rides</span>
+              <span className="text-primary">Expedition</span> Events
             </h1>
             <p className="text-sm lg:text-lg">
               Embark on VikinX Expeditions, where every throttle twist narrates
@@ -51,43 +49,7 @@ const Page = async () => {
             Note: Click on ride cards to enroll and view ride details!
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {rides.map((ride) => (
-              <Link key={ride.uuid} href={`/events/${ride.uuid}`}>
-                <Card
-                  isPressable
-                  className="border-primary  border-l-8 rounded-none h-[200px] w-full"
-                >
-                  <CardHeader className="absolute z-10 bottom-0 flex-col !items-start backdrop-blur-sm bg-white/500 rounded-none">
-                    <div className="flex justify-between items-center w-full">
-                      <div className="text-left">
-                        <p className="text-tiny text-secondary-200 uppercase font-semibold">
-                          {helpers.formatDate(JSON.parse(ride.start_date))}
-                        </p>
-                        <h4 className="text-white font-medium text-xl">
-                          {ride.title}
-                        </h4>
-                      </div>
-                      {/* <Button
-                        as={Link}
-                        href={`/events/${ride.uuid}`}
-                        size="sm"
-                        color="primary"
-                      >
-                        Enroll
-                      </Button> */}
-                    </div>
-                  </CardHeader>
-                  <Image
-                    removeWrapper
-                    alt="Card background"
-                    className="z-0 w-full h-full object-cover rounded-none "
-                    src={ride.thumbnail}
-                  />
-                </Card>
-              </Link>
-            ))}
-          </div>
+          <EventCards rides={JSON.stringify(rides)} />
         </section>
       </main>
     </>

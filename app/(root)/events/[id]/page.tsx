@@ -121,6 +121,7 @@ const Page = async ({ params }: { params: { [key: string]: string } }) => {
               user={user}
               ridersJoined={ride.users_joined}
               rules={rule}
+              rideStatus={ride.status || 'deleted'}
             />
           </div>
         </CardBody>

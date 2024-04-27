@@ -3,7 +3,7 @@ import React from "react";
 import Socials from "../common/Socials";
 import UserProfileActions from "./UserProfileActions";
 import { helpers } from "@/lib/utils";
-// import UserEvents from "./UserEvents";
+import UserEvents from "./UserEvents";
 
 interface UserProfileProps {
   user: IUser;
@@ -137,7 +137,7 @@ const UserProfile: React.FC<UserProfileProps> = ({
 
         {!viewProfile && <UserProfileActions user={user} />}
       </div>
-      {/* <UserEvents userEventsIds={user.rides_joined} /> */}
+      <UserEvents userEventsIds={user.rides_joined} userId={user.user_id} />
     </section>
   );
 };

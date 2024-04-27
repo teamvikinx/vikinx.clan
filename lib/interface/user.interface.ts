@@ -15,7 +15,7 @@ interface IUser {
   blood_group: string;
   state: string;
   city: string;
-  rides_joined: { joined_at: any; ride_id: string }[];
+  rides_joined: { joined_at: any; ride_id: string; completed: boolean }[];
   status: boolean;
   onboarding: boolean;
   last_login: any;

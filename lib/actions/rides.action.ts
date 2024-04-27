@@ -1,4 +1,4 @@
-'use server'
+"use server";
 import { constants } from "../utils";
 import admin from "../config/firebase";
 
@@ -24,12 +24,11 @@ export const getRides = async () => {
   try {
     const querySnapshot = await db
       .collection(constants.tables.rides)
-      .where("status", "==", "active")
+      .where("status", "!=", "deleted")
       .where("is_published", "==", true)
       .get();
 
     const data = querySnapshot.docs.map((data) => data.data() as IRide);
-
     return data;
   } catch (error: any) {
     throw new Error(`Failed to fetch rides: ${error.message}`);
@@ -54,25 +53,29 @@ export const getRules = async () => {
   }
 };
 export const getEventsByIds = async (eventIds: string[]) => {
-try {
-  const fetchPromises = eventIds.map(id => {
-    const docRef = db.collection(constants.tables.rides).doc(id); // replace with your collection name
-    return docRef.get();
-  });
+  try {
+    const fetchPromises = eventIds.map((id) => {
+      const docRef = db.collection(constants.tables.rides).doc(id); // replace with your collection name
+      return docRef.get();
+    });
 
-  const docSnaps = await Promise.all(fetchPromises);
+    const docSnaps = await Promise.all(fetchPromises);
 
-  const documentsData = docSnaps.map((docSnap, index) => {
-    if (docSnap.exists) {
-      return docSnap.data() as IRide;
-    } else {
-      console.log(`No such document with id: ${eventIds[index]}`);
-      return null;
-    }
-  }).filter(data => data !== null);
+    const documentsData = docSnaps
+      .map((docSnap, index) => {
+        if (docSnap.exists) {
+          return docSnap.data() as IRide;
+        } else {
+          console.log(`No such document with id: ${eventIds[index]}`);
+          return null;
+        }
+      })
+      .filter((data) => data !== null);
 
-  return documentsData;
-} catch (error: any) {
-  throw new Error(`Something went wrong while getting event details: ${error.message}`);
-}
-}
+    return documentsData;
+  } catch (error: any) {
+    throw new Error(
+      `Something went wrong while getting event details: ${error.message}`
+    );
+  }
+};
