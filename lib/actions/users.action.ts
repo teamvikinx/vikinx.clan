@@ -1,6 +1,7 @@
-'use server'
+"use server";
 import { constants } from "../utils";
 import admin from "../config/firebase";
+import { revalidatePath } from "next/cache";
 
 const db = admin.firestore();
 
@@ -84,3 +85,47 @@ export const getTotalActiveUsersCount = async () => {
   }
 };
 
+export const startRide = async (payload: {
+  user_id: string;
+  ride_id: string;
+}) => {
+  try {
+    const docRef = db.collection(constants.tables.rides).doc(payload.ride_id);
+    const docRef2 = db.collection(constants.tables.users).doc(payload.user_id);
+
+    const rideData = await docRef.get();
+    const userData = await docRef2.get();
+
+    if (rideData.exists && userData.exists) {
+      const ride = rideData.data() as IRide;
+      const ridersArray = [...ride.users_joined];
+
+      const userRideDetailsIdx = ridersArray.findIndex(
+        (rider) => rider.user_id === payload.user_id
+      );
+
+      ridersArray[userRideDetailsIdx].completed = true;
+      ride.status = "ongoing";
+      ride.users_joined = ridersArray;
+      await docRef.update(ride as any);
+
+      const user = userData.data() as IUser;
+      const ridesJoinedArray = user.rides_joined ? [...user.rides_joined] : [];
+
+      const userRideJoinedIdx = ridesJoinedArray.findIndex(
+        (ride) => ride.ride_id === payload.ride_id
+      );
+
+      ridesJoinedArray[userRideJoinedIdx].completed = true;
+      user.rides_joined = ridesJoinedArray;
+      await docRef2.update(user as any);
+
+      revalidatePath(`/profile`);
+    } else {
+      throw new Error(`Ride does not exist!`);
+    }
+  } catch (error: any) {
+    console.log(error);
+    throw new Error(`Ride does not exist!: ${error.message}`);
+  }
+};
