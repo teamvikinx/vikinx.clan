@@ -56,7 +56,13 @@ interface IRide {
   average_kilometers: number;
   is_published: boolean;
   status?: RideStatus;
-  users_joined: { joined_at: any; user_id: string, name: string; profile_picture: string }[];
+  users_joined: {
+    joined_at: any;
+    user_id: string;
+    name: string;
+    profile_picture: string;
+    completed: boolean;
+  }[];
   uuid: string;
   createdAt: Date | string;
   createdBy: string;
@@ -87,7 +93,6 @@ interface IReview {
 }
 
 type RideStatus =
-  | "count"
   | "active"
   | "inactive"
   | "ongoing"

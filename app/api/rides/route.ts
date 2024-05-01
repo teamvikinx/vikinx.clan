@@ -29,6 +29,7 @@ export async function POST(req: NextRequest) {
         user_id: payload.user_id,
         name: payload.name,
         profile_picture: payload.profile_picture,
+        completed: false
       });
 
       ride.users_joined = ridersArray;
@@ -39,6 +40,7 @@ export async function POST(req: NextRequest) {
       ridesJoinedArray.push({
         joined_at: payload.joined_at,
         ride_id: payload.ride_id,
+        completed: false
       });
       user.rides_joined = ridesJoinedArray;
       await docRef2.update(user as any);

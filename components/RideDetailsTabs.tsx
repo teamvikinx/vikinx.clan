@@ -20,6 +20,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import VikinXText from "./common/VikinXText";
 import QuickEnrollForm from "./forms/QuickEnrollForm";
+import ShareEvent from "./common/ShareEvent";
 // import Confetti from "./ui/Confetti";
 
 interface RideDetailsTabsProps {
@@ -42,6 +43,7 @@ interface RideDetailsTabsProps {
     emergency_number: string;
   };
   rules: string;
+  rideStatus: RideStatus;
 }
 
 const RideDetailsTabs: React.FC<RideDetailsTabsProps> = ({
@@ -50,6 +52,7 @@ const RideDetailsTabs: React.FC<RideDetailsTabsProps> = ({
   ridersJoined,
   user,
   rules,
+  rideStatus,
 }) => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
@@ -104,16 +107,17 @@ const RideDetailsTabs: React.FC<RideDetailsTabsProps> = ({
 
   return (
     <>
+      <ShareEvent url={`${process.env.NEXT_PUBLIC_API_URL}/events/${rideId}`} />
       <div className="text-center">
         {(!user.mobile && !user.emergency_number) ||
         constants.allowedStates.includes(user.state.toLowerCase()) ||
         !user.user_id ? (
           <>
-            {riderIds.includes(user.user_id) || show ? (
+            {(riderIds.includes(user.user_id) || show) && rideStatus === 'active' ? (
               <p className="text-success bg-gray-800 p-4 rounded">
                 Already Enrolled!
               </p>
-            ) : (
+            ) : rideStatus === "active" ? (
               <>
                 <Divider />
                 <p className="my-2 text-xs">
@@ -136,6 +140,10 @@ const RideDetailsTabs: React.FC<RideDetailsTabsProps> = ({
                   Enroll Now
                 </Button>
               </>
+            ) : (
+              <p className="text-success bg-gray-800 p-4 rounded capitalize">
+                {rideStatus}
+              </p>
             )}
           </>
         ) : (
