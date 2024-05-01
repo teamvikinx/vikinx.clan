@@ -47,6 +47,8 @@ export default async function Home() {
                 variant="solid"
                 radius="sm"
                 className="!w-[150px]  font-semibold uppercase"
+                target="_blank"
+                download
               >
                 Let’s Go
               </Button>
@@ -232,6 +234,8 @@ export default async function Home() {
                 variant="flat"
                 radius="sm"
                 className="!w-[150px]  font-semibold uppercase"
+                target="_blank"
+                download
               >
                 Join Us now
               </Button>
