@@ -95,6 +95,8 @@ const Header = () => {
               href="/sign-in"
               variant="bordered"
               size="sm"
+              target="_blank"
+              download
             >
               Sign In
             </Button>
@@ -106,6 +108,8 @@ const Header = () => {
               href="/sign-up"
               variant="solid"
               size="sm"
+              target="_blank"
+              download
             >
               Sign Up
             </Button>
