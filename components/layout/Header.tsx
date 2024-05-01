@@ -5,9 +5,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import {
   MegaphoneIcon,
-  RadioTower,
   TicketXIcon,
-  UserRoundCog,
 } from "lucide-react";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import {
