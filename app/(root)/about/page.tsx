@@ -94,7 +94,7 @@ const Page = () => {
             </p>
           </div>
           <div className="flex items-center justify-center space-x-4">
-           <JoinBtn user={null} buttonTitle="Sign up Now" />
+           <JoinBtn user={false} buttonTitle="Sign up Now" />
             <Button
               as={Link}
               href="/events"
