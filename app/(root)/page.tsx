@@ -41,7 +41,7 @@ export default async function Home() {
                   journeys into legendary squad sagas!
                 </span>
               </p>
-              <JoinBtn user={user} buttonTitle="Let’s Go" />
+              <JoinBtn user={!!user} buttonTitle="Let’s Go" />
             </div>
           </div>
         </div>
@@ -217,7 +217,7 @@ export default async function Home() {
                 {totalUsersRegistered < 20 ? 25 : totalUsersRegistered} / 100
               </h1>
               <h3 className="subtitle">Orginals Collected</h3>
-              <JoinBtn user={user} buttonTitle="Join Us now" />
+              <JoinBtn user={!!user} buttonTitle="Join Us now" />
             </div>
           </div>
           <div className="flex justify-center">

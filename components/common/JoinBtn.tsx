@@ -5,7 +5,7 @@ import { useSearchParams } from "next/navigation";
 import React from "react";
 
 interface JoinBtnProps {
-  user: User | null;
+  user: boolean;
   buttonTitle: string;
   link?: string;
   variant?:
