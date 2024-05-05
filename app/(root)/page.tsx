@@ -11,6 +11,7 @@ import TextCard from "@/components/common/cards/TextCard";
 import { getFeaturedRides } from "@/lib/actions/rides.action";
 import { Suspense } from "react";
 import { currentUser } from "@clerk/nextjs";
+import JoinBtn from "@/components/common/JoinBtn";
 
 export default async function Home() {
   const user = await currentUser();
@@ -40,17 +41,7 @@ export default async function Home() {
                   journeys into legendary squad sagas!
                 </span>
               </p>
-              <Button
-                as={Link}
-                color="primary"
-                href={user ? "/events" : "/sign-up"}
-                variant="solid"
-                radius="sm"
-                className="!w-[150px]  font-semibold uppercase"
-                target="_blank"
-              >
-                Let’s Go
-              </Button>
+              <JoinBtn user={user} buttonTitle="Let’s Go" />
             </div>
           </div>
         </div>
@@ -226,17 +217,7 @@ export default async function Home() {
                 {totalUsersRegistered < 20 ? 25 : totalUsersRegistered} / 100
               </h1>
               <h3 className="subtitle">Orginals Collected</h3>
-              <Button
-                as={Link}
-                color="primary"
-                href={user ? "/events" : "/sign-up"}
-                variant="flat"
-                radius="sm"
-                className="!w-[150px]  font-semibold uppercase"
-                target="_blank"
-              >
-                Join Us now
-              </Button>
+              <JoinBtn user={user} buttonTitle="Join Us now" />
             </div>
           </div>
           <div className="flex justify-center">
