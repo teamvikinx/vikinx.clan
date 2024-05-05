@@ -2,6 +2,7 @@
 import { User } from "@clerk/nextjs/server";
 import { Button, ButtonVariantProps, Link } from "@nextui-org/react";
 import { useSearchParams } from "next/navigation";
+
 import React from "react";
 
 interface JoinBtnProps {
