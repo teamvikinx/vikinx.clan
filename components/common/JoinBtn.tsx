@@ -1,6 +1,7 @@
 "use client";
 import { User } from "@clerk/nextjs/server";
 import { Button, ButtonVariantProps, Link } from "@nextui-org/react";
+import { useSearchParams } from "next/navigation";
 import React from "react";
 
 interface JoinBtnProps {
@@ -33,9 +34,11 @@ const JoinBtn: React.FC<JoinBtnProps> = ({
   color = "primary",
   size = "md",
 }) => {
+  const params = useSearchParams();
+
   return (
     <>
-      {typeof window !== 'undefined' && window?.navigator.userAgent.includes("Instagram") ? (
+      {Boolean(params.get("social")) ? (
         <Button
           as={Link}
           color={color}
