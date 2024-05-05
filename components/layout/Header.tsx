@@ -84,58 +84,24 @@ const Header = () => {
       <NavbarContent justify="end">
         <SignedOut>
           <NavbarItem>
-            {typeof window !== "undefined" &&
-            window?.navigator.userAgent.includes("Instagram") ? (
-              <Button
-                as={Link}
-                color="secondary"
-                href="/sign-in"
-                variant="bordered"
-                size="sm"
-                target="_blank"
-                download
-              >
-                Sign In
-              </Button>
-            ) : (
-              <Button
-                as={Link}
-                color="secondary"
-                href="/sign-in"
-                variant="bordered"
-                size="sm"
-                target="_blank"
-              >
-                Sign In
-              </Button>
-            )}
+            <Button
+              color="secondary"
+              variant="bordered"
+              size="sm"
+              onClick={() => window.open("/sign-in", "_system")}
+            >
+              Sign In
+            </Button>
           </NavbarItem>
           <NavbarItem>
-            {typeof window !== "undefined" &&
-            window?.navigator.userAgent.includes("Instagram") ? (
-              <Button
-                as={Link}
-                color="secondary"
-                href="/sign-up"
-                variant="solid"
-                size="sm"
-                target="_blank"
-                download
-              >
-                Sign Up
-              </Button>
-            ) : (
-              <Button
-                as={Link}
-                color="secondary"
-                href="/sign-up"
-                variant="solid"
-                size="sm"
-                target="_blank"
-              >
-                Sign Up
-              </Button>
-            )}
+            <Button
+              color="secondary"
+              variant="solid"
+              size="sm"
+              onClick={() => window.open("/sign-up", "_system")}
+            >
+              Sign Up
+            </Button>
           </NavbarItem>
         </SignedOut>
         <SignedIn>
