@@ -16,12 +16,13 @@ import {
   NavbarMenuToggle,
   Link,
 } from "@nextui-org/react";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 
 const Header = () => {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const params = useSearchParams();
   return (
     <Navbar onMenuOpenChange={setIsMenuOpen} className="z-[99]">
       <NavbarContent>
@@ -84,24 +85,56 @@ const Header = () => {
       <NavbarContent justify="end">
         <SignedOut>
           <NavbarItem>
-            <Button
-              color="secondary"
-              variant="bordered"
-              size="sm"
-              onClick={() => window.open("/sign-in", "_system")}
-            >
-              Sign In
-            </Button>
+            {Boolean(params.get("social")) ? (
+              <Button
+                as={Link}
+                color="secondary"
+                href="/sign-in"
+                variant="bordered"
+                size="sm"
+                target="_blank"
+                download
+              >
+                Sign In
+              </Button>
+            ) : (
+              <Button
+                as={Link}
+                color="secondary"
+                href="/sign-in"
+                variant="bordered"
+                size="sm"
+                target="_blank"
+              >
+                Sign In
+              </Button>
+            )}
           </NavbarItem>
           <NavbarItem>
-            <Button
-              color="secondary"
-              variant="solid"
-              size="sm"
-              onClick={() => window.open("/sign-up", "_system")}
-            >
-              Sign Up
-            </Button>
+            {Boolean(params.get("social")) ? (
+              <Button
+                as={Link}
+                color="secondary"
+                href="/sign-up"
+                variant="solid"
+                size="sm"
+                target="_blank"
+                download
+              >
+                Sign Up
+              </Button>
+            ) : (
+              <Button
+                as={Link}
+                color="secondary"
+                href="/sign-up"
+                variant="solid"
+                size="sm"
+                target="_blank"
+              >
+                Sign Up
+              </Button>
+            )}
           </NavbarItem>
         </SignedOut>
         <SignedIn>
