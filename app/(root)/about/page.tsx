@@ -1,3 +1,4 @@
+import JoinBtn from "@/components/common/JoinBtn";
 import Stories from "@/components/common/Stories";
 import VikinXText from "@/components/common/VikinXText";
 import TextCard from "@/components/common/cards/TextCard";
@@ -93,17 +94,7 @@ const Page = () => {
             </p>
           </div>
           <div className="flex items-center justify-center space-x-4">
-            <Button
-              as={Link}
-              href="/sign-up"
-              color="primary"
-              variant="bordered"
-              className="mt-4"
-              size="sm"
-              target="_blank"
-            >
-              Sign up Now
-            </Button>
+           <JoinBtn user={null} buttonTitle="Sign up Now" />
             <Button
               as={Link}
               href="/events"

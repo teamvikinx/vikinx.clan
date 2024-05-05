@@ -84,28 +84,58 @@ const Header = () => {
       <NavbarContent justify="end">
         <SignedOut>
           <NavbarItem>
-            <Button
-              as={Link}
-              color="secondary"
-              href="/sign-in"
-              variant="bordered"
-              size="sm"
-              target="_blank"
-            >
-              Sign In
-            </Button>
+            {typeof window !== "undefined" &&
+            window?.navigator.userAgent.includes("Instagram") ? (
+              <Button
+                as={Link}
+                color="secondary"
+                href="/sign-in"
+                variant="bordered"
+                size="sm"
+                target="_blank"
+                download
+              >
+                Sign In
+              </Button>
+            ) : (
+              <Button
+                as={Link}
+                color="secondary"
+                href="/sign-in"
+                variant="bordered"
+                size="sm"
+                target="_blank"
+              >
+                Sign In
+              </Button>
+            )}
           </NavbarItem>
           <NavbarItem>
-            <Button
-              as={Link}
-              color="secondary"
-              href="/sign-up"
-              variant="solid"
-              size="sm"
-              target="_blank"
-            >
-              Sign Up
-            </Button>
+            {typeof window !== "undefined" &&
+            window?.navigator.userAgent.includes("Instagram") ? (
+              <Button
+                as={Link}
+                color="secondary"
+                href="/sign-up"
+                variant="solid"
+                size="sm"
+                target="_blank"
+                download
+              >
+                Sign Up
+              </Button>
+            ) : (
+              <Button
+                as={Link}
+                color="secondary"
+                href="/sign-up"
+                variant="solid"
+                size="sm"
+                target="_blank"
+              >
+                Sign Up
+              </Button>
+            )}
           </NavbarItem>
         </SignedOut>
         <SignedIn>
