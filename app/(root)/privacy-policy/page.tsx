@@ -145,6 +145,7 @@ const Page = () => {
               href="https://www.VikinX.in"
               rel="external nofollow noopener"
               target="_blank"
+              className="ml-1"
             >
               https://www.vikinx.in
             </a>
