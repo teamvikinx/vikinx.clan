@@ -101,7 +101,6 @@ const Page = () => {
               className="mt-4"
               size="sm"
               target="_blank"
-              download
             >
               Sign up Now
             </Button>

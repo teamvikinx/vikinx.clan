@@ -3,10 +3,7 @@
 import { constants } from "@/lib/utils";
 import React, { useState } from "react";
 import Image from "next/image";
-import {
-  MegaphoneIcon,
-  TicketXIcon,
-} from "lucide-react";
+import { MegaphoneIcon, TicketXIcon } from "lucide-react";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import {
   Button,
@@ -94,7 +91,6 @@ const Header = () => {
               variant="bordered"
               size="sm"
               target="_blank"
-              download
             >
               Sign In
             </Button>
@@ -107,7 +103,6 @@ const Header = () => {
               variant="solid"
               size="sm"
               target="_blank"
-              download
             >
               Sign Up
             </Button>
